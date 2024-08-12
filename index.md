@@ -4,6 +4,7 @@ layout: home
 hero:
   name: "Liminova"
   text: "A group of developers and CTF enjoyers!"
+  tagline: "We're a group of young developers, some of which happens to be interested in learning and playing Capture the Flag."
 ---
 
 <script setup>
@@ -13,7 +14,7 @@ const members = [
     {
         avatar: "https://avatars.githubusercontent.com/u/52886388?v=4",
         name: "Rylie",
-        title: "resident troller, CTF division",
+        title: "resident troller, founder of CTF division",
         links: [
             { icon: "github", link: "https://github.com/j1nxie" },
             { icon: "twitter", link: "https://x.com/_lumi9" },
