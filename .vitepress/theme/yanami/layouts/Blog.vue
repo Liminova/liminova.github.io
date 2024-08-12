@@ -1,6 +1,7 @@
 <template>
     <div class="main">
         <h1>All Posts</h1>
+        <hr />
         <div v-for="yearList in data" class="yearItem">
             <div class="my-5 font-medium text-xl">
                 {{ yearList[0].date.original.split("-")[0] }}
@@ -31,12 +32,16 @@ const data = computed(() => useYearSort(posts));
 <style scoped lang="postcss">
 .main {
     @apply mx-auto my-0;
-    @apply max-w-3xl;
+    @apply max-w-4xl;
     @apply pt-10 px-8 pb-0;
 }
 
 h1 {
-    @apply leading-10 text-3xl font-semibold;
+    @apply leading-10 text-5xl font-semibold;
+}
+
+hr {
+    @apply my-8;
 }
 
 .yearItem {
