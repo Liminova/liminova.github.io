@@ -76,7 +76,7 @@ const members = [
     {
         avatar: "/sorako.jpg",
         name: "Sorako",
-        title: "local yappend developer",
+        title: "happy to be here",
         links: [],
     },
 ]
