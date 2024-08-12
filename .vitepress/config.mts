@@ -7,7 +7,7 @@ export default defineConfig({
     themeConfig: {
         nav: [
             { text: "Home", link: "/" },
-            { text: "Blogs", link: "/blogs" }
+            { text: "Blog", link: "/blog" }
         ],
 
         socialLinks: [

@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <h1 class="">Blogs</h1>
+        <h1>All Posts</h1>
         <div v-for="yearList in data" class="yearItem">
             <div class="my-5 font-medium text-xl">
                 {{ yearList[0].date.original.split("-")[0] }}
@@ -36,7 +36,7 @@ const data = computed(() => useYearSort(posts));
 }
 
 h1 {
-    @apply leading-10 text-2xl font-semibold;
+    @apply leading-10 text-3xl font-semibold;
 }
 
 .yearItem {
