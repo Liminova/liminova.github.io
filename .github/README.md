@@ -2,6 +2,6 @@
 
 ![Anna Yanami](./yanami.jpg)
 
-codename `yanami.`
+codename `yanami`.
 
 powered by [VitePress](https://vitepress.dev).
