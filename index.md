@@ -74,7 +74,7 @@ const members = [
         ],
     },
     {
-        avatar: "assets/sorako.jpg",
+        avatar: "/sorako.jpg",
         name: "Sorako",
         title: "local yappend developer",
         links: [],
