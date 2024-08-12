@@ -82,6 +82,6 @@ const members = [
 ]
 </script>
 
-<h1>Members</h1>
+<h1>Meet the Team</h1>
 
 <VPTeamMembers size="medium" :members="members" />
