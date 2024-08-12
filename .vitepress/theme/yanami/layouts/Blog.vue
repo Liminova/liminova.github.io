@@ -1,6 +1,7 @@
 <template>
     <div class="main">
         <h1>All Posts</h1>
+        <p class="my-6">An archive of our blog posts.</p>
         <hr />
         <div v-for="yearList in data" class="yearItem">
             <div class="my-5 font-medium text-xl">
@@ -32,7 +33,7 @@ const data = computed(() => useYearSort(posts));
 <style scoped lang="postcss">
 .main {
     @apply mx-auto my-0;
-    @apply max-w-4xl;
+    @apply max-w-6xl;
     @apply pt-10 px-8 pb-0;
 }
 
