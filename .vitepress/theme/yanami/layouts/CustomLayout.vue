@@ -24,10 +24,10 @@ const date = formatDate(page.frontmatter.value["date"]);
 
 <style lang="postcss">
 .image-wrapper {
-    @apply flex flex-wrap justify-evenly
+    @apply flex flex-wrap justify-evenly gap-y-2;
 }
 
 .caption {
-    @apply text-center italic my-5
+    @apply text-center italic my-5;
 }
 </style>
