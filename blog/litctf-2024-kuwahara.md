@@ -12,7 +12,7 @@ Challenge files: [kuwahara-png-problem.zip](https://nazunacord.net/cTmZrWlZUejO.
 
 I was invited to play [Lexington Informatics Tournament CTF 2024](https://lit.lhsmathcs.org/)
 with Liminova. This is my first time playing CTF, and while we did not win, we had two
-first-solves, one of which is titled `Kawamura`, the problem you're reading about now.
+first-solves, one of which is titled `Kuwahara`, the problem you're reading about now.
 
 ## The challenge
 
