@@ -1,8 +1,8 @@
 <template>
-    <div class="main">
-        <h1>Contests</h1>
+    <div class="mx-auto my-0 max-w-6xl pt-10 px-8 pb-0">
+        <h1 class="@apply leading-10 text-5xl font-semibold">Contests</h1>
         <p class="my-6">We aren't very good yet, but we're trying. :3</p>
-        <hr />
+        <hr class="my-8" />
         <div class="rounded-md border">
             <table class="w-full caption-bottom text-sm">
                 <thead>
@@ -59,20 +59,6 @@ const data = [
 </script>
 
 <style scoped lang="postcss">
-.main {
-    @apply mx-auto my-0;
-    @apply max-w-6xl;
-    @apply pt-10 px-8 pb-0;
-}
-
-h1 {
-    @apply leading-10 text-5xl font-semibold;
-}
-
-hr {
-    @apply my-8;
-}
-
 .year {
     padding: 16px 0 8px 0;
     font-size: 1.2rem;

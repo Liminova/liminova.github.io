@@ -1,14 +1,18 @@
 <template>
-    <div class="main">
-        <h1>All Posts</h1>
+    <div class="mx-auto my-0 max-w-6xl pt-10 px-8 pb-0">
+        <h1 class="leading-10 text-5xl font-semibold">All Posts</h1>
         <p class="my-6">An archive of our blog posts.</p>
-        <hr />
-        <div v-for="yearList in data" class="yearItem">
+        <hr class="my-8" />
+        <div v-for="yearList in data" class="border-[1px] border-dashed border-[#c7c7c7] last:border-none">
             <div class="my-5 font-medium text-xl">
                 {{ yearList[0].date.original.split("-")[0] }}
             </div>
             <div v-for="(article, index) in yearList">
-                <a :href="article.url" :key="index" class="article">
+                <a
+                    :href="article.url"
+                    :key="index"
+                    class="flex items-center justify-between m-3 hover:no-underline text-[color:var(--vp-c-text-2)] hover:text-[color:var(--vp-c-brand)]"
+                    style="transition: border 0.3s ease, color 0.3s ease;">
                     <div class="title">
                         <div class="title-o"></div>
                         {{ article.title }}
@@ -31,43 +35,9 @@ const data = computed(() => useYearSort(posts));
 </script>
 
 <style scoped lang="postcss">
-.main {
-    @apply mx-auto my-0;
-    @apply max-w-6xl;
-    @apply pt-10 px-8 pb-0;
-}
-
-h1 {
-    @apply leading-10 text-5xl font-semibold;
-}
-
-hr {
-    @apply my-8;
-}
-
-.yearItem {
-    border-bottom: 1px dashed #c7c7c7;
-}
-
-.yearItem:last-child {
-    border: none;
-}
-
 .year {
     padding: 16px 0 8px 0;
     font-size: 1.2rem;
     font-weight: 600;
-}
-
-.article {
-    @apply flex items-center justify-between;
-    @apply m-3;
-    color: var(--vp-c-text-2);
-    transition: border 0.3s ease, color 0.3s ease;
-}
-
-.article:hover {
-    text-decoration: none;
-    color: var(--vp-c-brand);
 }
 </style>
