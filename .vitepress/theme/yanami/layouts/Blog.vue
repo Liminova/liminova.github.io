@@ -33,7 +33,7 @@ import { useYearSort } from "../utils";
 const data = computed(() => useYearSort(posts));
 </script>
 
-<style scoped lang="postcss">
+<style scoped>
 .year {
     padding: 16px 0 8px 0;
     font-size: 1.2rem;

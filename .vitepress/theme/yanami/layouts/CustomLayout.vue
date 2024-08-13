@@ -22,7 +22,7 @@ const date = formatDate(page.frontmatter.value["date"]);
     </Layout>
 </template>
 
-<style lang="postcss">
+<style>
 .image-wrapper {
     @apply flex flex-wrap justify-evenly gap-y-2;
 }
