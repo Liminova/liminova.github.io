@@ -22,13 +22,3 @@ const { title, author, date } = page.frontmatter.value;
         </template>
     </Layout>
 </template>
-
-<style scoped>
-.image-wrapper {
-    @apply flex flex-wrap justify-evenly gap-y-2;
-}
-
-.caption {
-    @apply text-center italic my-5;
-}
-</style>
