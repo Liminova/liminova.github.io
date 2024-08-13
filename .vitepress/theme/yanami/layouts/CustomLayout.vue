@@ -1,4 +1,5 @@
 <script setup lang="ts">
+/* eslint vue/no-useless-template-attributes: 0 */
 import { useData } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { formatDate } from "../utils";
