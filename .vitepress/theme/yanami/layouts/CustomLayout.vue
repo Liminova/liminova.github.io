@@ -5,8 +5,7 @@ import { formatDate } from "../utils";
 
 const { Layout } = DefaultTheme;
 const page = useData();
-const date = formatDate(page.frontmatter.value["date"]);
-const { title, author } = page.frontmatter.value;
+const { title, author, date } = page.frontmatter.value;
 </script>
 
 <template>
@@ -14,7 +13,7 @@ const { title, author } = page.frontmatter.value;
         <template class="my-4" #doc-before>
             <h1 class="my-2 leading-10 text-4xl font-semibold">{{ title }}</h1>
             <h2 class="my-2">
-                {{ date.string }} •
+                {{ formatDate(date).string }} •
                 <span>
                     Written by <span class="font-semibold">{{ author }}</span>
                 </span>
