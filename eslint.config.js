@@ -6,20 +6,21 @@ import tseslint from "typescript-eslint";
 
 export default [
   {
-    ignores : [
-      ".vitepress/cache/**/*.*", ".vitepress/theme/env.d.ts",
-      "postcss.config.cjs"
-    ]
+    ignores: [
+      ".vitepress/cache/**/*.*",
+      ".vitepress/theme/env.d.ts",
+      "postcss.config.cjs",
+    ],
   },
-  {files : [ "**/*.{js,mjs,cjs,ts,vue}" ]},
-  {languageOptions : {globals : globals.browser}},
+  { files: ["**/*.{js,mjs,cjs,ts,vue}"] },
+  { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   ...tailwind.configs["flat/recommended"],
   ...pluginVue.configs["flat/essential"],
-  {rules : {"vue/multi-word-component-names" : "off"}},
+  { rules: { "vue/multi-word-component-names": "off" } },
   {
-    files : [ "**/*.vue" ],
-    languageOptions : {parserOptions : {parser : tseslint.parser}}
+    files: ["**/*.vue"],
+    languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
 ];
