@@ -14,7 +14,7 @@ export interface Post {
 declare const data: Post[];
 export { data }
 
-export default createContentLoader("blogs/*.md", { excerpt: true, transform(raw): Post[] {
+export default createContentLoader("blog/*.md", { excerpt: true, transform(raw): Post[] {
     return raw.map(({ url, frontmatter, excerpt }) => ({
         title: frontmatter.title,
         url,
@@ -22,7 +22,6 @@ export default createContentLoader("blogs/*.md", { excerpt: true, transform(raw)
         date: formatDate(frontmatter.date)
     })).sort((a, b) => b.date.time - a.date.time);
 } });
-
 function formatDate(raw: string): Post["date"] {
     const date = new Date(raw);
     date.setUTCHours(12);
