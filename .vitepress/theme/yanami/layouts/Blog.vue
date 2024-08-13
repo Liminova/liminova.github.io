@@ -1,17 +1,18 @@
 <template>
-    <div class="mx-auto my-0 max-w-6xl pt-10 px-8 pb-0">
-        <h1 class="leading-10 text-5xl font-semibold">All Posts</h1>
+    <div class="mx-auto my-0 max-w-6xl px-8 pb-0 pt-10">
+        <h1 class="text-5xl font-semibold leading-10">All Posts</h1>
         <p class="my-6">An archive of our blog posts.</p>
         <hr class="my-8" />
-        <div v-for="yearList in data" class="border-[1px] border-dashed border-[#c7c7c7] last:border-none">
-            <div class="my-5 font-medium text-xl">
+        <div v-for="yearList in data" :key="yearList[0].date.original.split('-')[0]"
+            class="border border-dashed border-[#c7c7c7] last:border-none">
+            <div class="my-5 text-xl font-medium">
                 {{ yearList[0].date.original.split("-")[0] }}
             </div>
-            <div v-for="(article, index) in yearList">
+            <div v-for="(article, index) in yearList" :key="index">
                 <a
                     :href="article.url"
                     :key="index"
-                    class="flex items-center justify-between m-3 hover:no-underline text-[color:var(--vp-c-text-2)] hover:text-[color:var(--vp-c-brand)]"
+                    class="m-3 flex items-center justify-between text-[color:var(--vp-c-text-2)] hover:text-[color:var(--vp-c-brand)] hover:no-underline"
                     style="transition: border 0.3s ease, color 0.3s ease;">
                     <div class="title">
                         <div class="title-o"></div>

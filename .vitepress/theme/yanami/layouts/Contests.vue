@@ -1,28 +1,28 @@
 <template>
-    <div class="mx-auto my-0 max-w-6xl pt-10 px-8 pb-0">
-        <h1 class="@apply leading-10 text-5xl font-semibold">Contests</h1>
+    <div class="mx-auto my-0 max-w-6xl px-8 pb-0 pt-10">
+        <h1 class="text-5xl font-semibold leading-10">Contests</h1>
         <p class="my-6">We aren't very good yet, but we're trying. :3</p>
         <hr class="my-8" />
         <div class="rounded-md border">
             <table class="w-full caption-bottom text-sm">
                 <thead>
                     <tr class="border-b">
-                        <th class="h-12 px-4 text-left align-middle font-medium -ml-4">Placement</th>
-                        <th class="h-12 px-4 text-left align-middle font-medium -ml-4">Contest</th>
-                        <th class="h-12 px-4 text-right align-middle font-medium -ml-4">CTFtime Rating</th>
+                        <th class="-ml-4 h-12 px-4 text-left align-middle font-medium">Placement</th>
+                        <th class="-ml-4 h-12 px-4 text-left align-middle font-medium">Contest</th>
+                        <th class="-ml-4 h-12 px-4 text-right align-middle font-medium">CTFtime Rating</th>
                     </tr>
                 </thead>
-                <tbody v-for="contest in data">
-                    <td class="h-12 w-10 p-4 text-center align-middle -ml-4">
+                <tbody v-for="contest in data" :key="contest.name">
+                    <td class="-ml-4 h-12 w-10 p-4 text-center align-middle">
                         <div class="text-2xl font-semibold">#{{ contest.placement }}</div>
                     </td>
-                    <td class="h-12 p-4 text-left align-middle -ml-4">
+                    <td class="-ml-4 h-12 p-4 text-left align-middle">
                         <div>
                             <div class="text-xl font-semibold">{{ contest.name }}</div>
                             <div>{{ contest.time }}</div>
                         </div>
                     </td>
-                    <td class="h-12 px-4 text-right align-middle -ml-4">
+                    <td class="-ml-4 h-12 px-4 text-right align-middle">
                         <div>
                             <div>
                                 <span class="text-xl font-semibold">{{ contest.ctfPoints }}</span> points
