@@ -1,4 +1,5 @@
 import { createContentLoader } from "vitepress";
+import { formatDate } from "./theme/yanami/utils";
 
 export interface Post {
     title: string;
@@ -22,16 +23,3 @@ export default createContentLoader("blog/*.md", { excerpt: true, transform(raw):
         date: formatDate(frontmatter.date)
     })).sort((a, b) => b.date.time - a.date.time);
 } });
-function formatDate(raw: string): Post["date"] {
-    const date = new Date(raw);
-    date.setUTCHours(12);
-    return {
-        original: raw,
-        time: +date,
-        string: date.toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-        }),
-    }
-}
