@@ -1,6 +1,6 @@
 import { Post } from "../../posts.data";
 
-export function useYearSort(posts: Post[]) {
+export function useYearSort(posts: Post[]): any[] {
     const data: any = [];
     let year = "0";
     let num = -1;
