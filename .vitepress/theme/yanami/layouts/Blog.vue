@@ -5,17 +5,17 @@
         <hr class="my-8" />
         <div v-for="yearList in data" :key="yearList[0].date.original.split('-')[0]"
             class="border border-dashed border-[#c7c7c7] last:border-none">
-            <div class="my-5 text-xl font-medium">
+            <div class="my-5 text-2xl font-medium">
                 {{ yearList[0].date.original.split("-")[0] }}
             </div>
             <div class="mx-3" v-for="(article, index) in yearList" :key="index">
                 <a :href="article.url" :key="index"
-                    class="my-2 flex items-center justify-between text-[color:var(--vp-c-text-2)] hover:text-[color:var(--vp-c-brand)] hover:no-underline"
+                    class="my-1 flex items-center justify-between hover:text-[color:var(--vp-c-brand)] hover:no-underline"
                     style="transition: border 0.3s ease, color 0.3s ease;">
                     <div class="text-xl">
                         {{ article.title }}
                     </div>
-                    <div class="date">{{ article.date.string.slice(0, -6) }}</div>
+                    <div>{{ article.date.string.slice(0, -6) }}</div>
                 </a>
                 <div>Written by <span class="font-semibold">{{ article.author }}</span></div>
                 <div>{{ article.excerpt }}</div>
@@ -32,11 +32,3 @@ import { useYearSort } from "../utils";
 
 const data = computed(() => useYearSort(posts));
 </script>
-
-<style scoped>
-.year {
-    padding: 16px 0 8px 0;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-</style>
