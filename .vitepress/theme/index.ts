@@ -6,10 +6,10 @@ import DefaultTheme from "vitepress/theme";
 import "./style.css";
 
 export default {
-    extends: DefaultTheme,
-    Layout: CustomLayout,
-    enhanceApp({ app }: EnhanceAppContext) {
-        app.component("Blog", Blog);
-        app.component("Contests", Contests);
-    }
+	extends: DefaultTheme,
+	Layout: CustomLayout,
+	enhanceApp({ app }: EnhanceAppContext) {
+		app.component("Blog", Blog);
+		app.component("Contests", Contests);
+	}
 } satisfies Theme;

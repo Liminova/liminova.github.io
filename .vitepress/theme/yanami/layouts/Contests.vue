@@ -41,20 +41,20 @@
 
 <script setup lang="ts">
 const data = [
-    {
-        name: "osu!gaming CTF 2024",
-        time: "March 02 - March 04, 2024",
-        placement: 166,
-        ctfPoints: 1771,
-        ctfRating: 4.912,
-    },
-    {
-        name: "SekaiCTF 2023",
-        time: "August 25 - August 27, 2024",
-        placement: 175,
-        ctfPoints: 573,
-        ctfRating: 1.510,
-    },
+	{
+		name: "osu!gaming CTF 2024",
+		time: "March 02 - March 04, 2024",
+		placement: 166,
+		ctfPoints: 1771,
+		ctfRating: 4.912,
+	},
+	{
+		name: "SekaiCTF 2023",
+		time: "August 25 - August 27, 2024",
+		placement: 175,
+		ctfPoints: 573,
+		ctfRating: 1.510,
+	},
 ];
 </script>
 
