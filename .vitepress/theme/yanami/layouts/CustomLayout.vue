@@ -12,7 +12,7 @@ const { title, author, date } = page.frontmatter.value;
 <template>
     <Layout>
         <template class="my-4" #doc-before>
-            <h1 class="my-2 leading-10 text-4xl font-semibold">{{ title }}</h1>
+            <h1 class="my-2 text-4xl font-semibold leading-10">{{ title }}</h1>
             <h2 class="my-2">
                 {{ formatDate(date).string }} •
                 <span>
