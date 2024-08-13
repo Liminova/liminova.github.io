@@ -4,6 +4,7 @@ import { formatDate } from "./theme/yanami/utils";
 export interface Post {
     title: string;
     url: string;
+    author: string;
     date: {
         original: string,
         time: number;
@@ -19,6 +20,7 @@ export default createContentLoader("blog/*.md", { excerpt: true, transform(raw):
     return raw.map(({ url, frontmatter, excerpt }) => ({
         title: frontmatter.title,
         url,
+        author: frontmatter.author,
         excerpt,
         date: formatDate(frontmatter.date)
     })).sort((a, b) => b.date.time - a.date.time);

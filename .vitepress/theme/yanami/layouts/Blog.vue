@@ -8,18 +8,16 @@
             <div class="my-5 text-xl font-medium">
                 {{ yearList[0].date.original.split("-")[0] }}
             </div>
-            <div v-for="(article, index) in yearList" :key="index">
-                <a
-                    :href="article.url"
-                    :key="index"
-                    class="m-3 flex items-center justify-between text-[color:var(--vp-c-text-2)] hover:text-[color:var(--vp-c-brand)] hover:no-underline"
+            <div class="mx-3" v-for="(article, index) in yearList" :key="index">
+                <a :href="article.url" :key="index"
+                    class="my-2 flex items-center justify-between text-[color:var(--vp-c-text-2)] hover:text-[color:var(--vp-c-brand)] hover:no-underline"
                     style="transition: border 0.3s ease, color 0.3s ease;">
-                    <div class="title">
-                        <div class="title-o"></div>
+                    <div class="text-xl">
                         {{ article.title }}
                     </div>
                     <div class="date">{{ article.date.string.slice(0, -6) }}</div>
                 </a>
+                <div>Written by <span class="font-semibold">{{ article.author }}</span></div>
                 <div>{{ article.excerpt }}</div>
             </div>
         </div>
