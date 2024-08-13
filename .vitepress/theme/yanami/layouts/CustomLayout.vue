@@ -21,3 +21,13 @@ const date = formatDate(page.frontmatter.value["date"]);
         </template>
     </Layout>
 </template>
+
+<style lang="postcss">
+.image-wrapper {
+    @apply flex flex-wrap justify-evenly
+}
+
+.caption {
+    @apply text-center italic my-5
+}
+</style>

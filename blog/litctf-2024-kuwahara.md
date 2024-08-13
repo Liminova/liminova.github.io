@@ -18,7 +18,7 @@ first-solves, one of which is titled `Kawamura`, the problem you're reading abou
 
 We are given a noisy image and an encoded image:
 
-<div class="flex flex-wrap justify-evenly">
+<div class="image-wrapper">
     <img src="https://nazunacord.net/M65cLWyIlWUt.png" width="271" alt="The original, noisy image of a bird">
     <img src="https://nazunacord.net/Nx4jxgIOe4IW.png" width="271" alt="The same image of a bird, but with the Kuwahara filter applied and a message encoded into it">
 </div>
@@ -292,13 +292,12 @@ Flag: help_im_trapped_in_a_kuwahara_factory
 
 Then I noticed that my encoded image had way sharper edges than the provided encoded image:
 
-<div>
+<div class="image-wrapper">
     <img src="https://nazunacord.net/JzPGJDmiUbEL.png" alt="An image of the bird's eye after applying Kuwahara's filter using radius 2 (or window size 5)">
     <img src="https://nazunacord.net/U2Y2vkzCX7v4.png" height="125" alt="An image of the bird's eye in the provided encoded image">
-    <br>
-    <i style="align: center;">An image of the bird's eye</i>
-    <br>
 </div>
+
+<div class="caption">An image of the bird's eye</div>
 
 After experimenting with different options in the `pykuwahara` encoder, it became clear
 that what the provided code referred to as `window_size` is actually the size of a
