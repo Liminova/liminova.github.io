@@ -7,28 +7,18 @@
 			<table class="w-full caption-bottom text-sm">
 				<thead>
 					<tr class="border-b">
-						<th
-							class="-ml-4 h-12 px-4 text-left align-middle font-medium"
-						>
+						<th class="-ml-4 h-12 px-4 text-left align-middle font-medium">
 							Placement
 						</th>
-						<th
-							class="-ml-4 h-12 px-4 text-left align-middle font-medium"
-						>
-							Contest
-						</th>
-						<th
-							class="-ml-4 h-12 px-4 text-right align-middle font-medium"
-						>
+						<th class="-ml-4 h-12 px-4 text-left align-middle font-medium">Contest</th>
+						<th class="-ml-4 h-12 px-4 text-right align-middle font-medium">
 							CTFtime Rating
 						</th>
 					</tr>
 				</thead>
 				<tbody v-for="contest in data" :key="contest.name">
 					<td class="-ml-4 h-12 w-10 p-4 text-center align-middle">
-						<div class="text-2xl font-semibold">
-							#{{ contest.placement }}
-						</div>
+						<div class="text-2xl font-semibold">#{{ contest.placement }}</div>
 					</td>
 					<td class="-ml-4 h-12 p-4 text-left align-middle">
 						<div>
@@ -41,15 +31,11 @@
 					<td class="-ml-4 h-12 px-4 text-right align-middle">
 						<div>
 							<div>
-								<span class="text-xl font-semibold">{{
-									contest.ctfPoints
-								}}</span>
+								<span class="text-xl font-semibold">{{ contest.ctfPoints }}</span>
 								points
 							</div>
 							<div>
-								<span class="text-xl font-semibold">{{
-									contest.ctfRating
-								}}</span>
+								<span class="text-xl font-semibold">{{ contest.ctfRating }}</span>
 								rating
 							</div>
 						</div>
@@ -57,9 +43,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div v-if="data.length === 0" class="my-4">
-			Nothing here just yet, but we're cooking.
-		</div>
+		<div v-if="data.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
 	</div>
 </template>
 

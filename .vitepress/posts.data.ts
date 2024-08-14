@@ -13,12 +13,12 @@ export interface Post {
 	excerpt: string | undefined;
 }
 
-declare const data: Post[];
+declare const data: Array<Post>;
 export { data };
 
 export default createContentLoader("blog/*.md", {
 	excerpt: true,
-	transform(raw): Post[] {
+	transform(raw): Array<Post> {
 		return raw
 			.map(({ url, frontmatter, excerpt }) => ({
 				title: frontmatter.title,

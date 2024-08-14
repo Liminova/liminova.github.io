@@ -14,7 +14,7 @@ watch(
 	() => route.path,
 	(path, referrer) => {
 		window.goatcounter?.count?.({ path, referrer });
-	},
+	}
 );
 </script>
 
@@ -28,9 +28,7 @@ watch(
 				{{ formatDate(useData().frontmatter.value.date).string }} •
 				<span>
 					Written by
-					<span class="font-semibold">{{
-						useData().frontmatter.value.author
-					}}</span>
+					<span class="font-semibold">{{ useData().frontmatter.value.author }}</span>
 				</span>
 			</h2>
 		</template>

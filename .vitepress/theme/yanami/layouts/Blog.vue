@@ -34,9 +34,7 @@
 				<div>{{ article.excerpt }}</div>
 			</div>
 		</div>
-		<div v-if="data.length === 0" class="my-4">
-			Nothing here just yet, but we're cooking.
-		</div>
+		<div v-if="data.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
 	</div>
 </template>
 
