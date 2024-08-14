@@ -7,11 +7,11 @@ import "./style.css";
 import goatcounter from "./yanami/plugin/goatcounter";
 
 export default {
-    extends: DefaultTheme,
-    Layout: CustomLayout,
-    enhanceApp({ app }: EnhanceAppContext) {
-        app.component("Blog", Blog);
-        app.component("Contests", Contests);
-        goatcounter({ id: "liminova" });
-    }
+	extends: DefaultTheme,
+	Layout: CustomLayout,
+	enhanceApp({ app }: EnhanceAppContext) {
+		app.component("Blog", Blog);
+		app.component("Contests", Contests);
+		goatcounter({ id: "liminova" });
+	}
 } satisfies Theme;
