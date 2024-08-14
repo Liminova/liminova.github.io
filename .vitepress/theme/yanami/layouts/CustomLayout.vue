@@ -10,6 +10,9 @@ const { Layout } = DefaultTheme;
 watch(() => route.path, (path, referrer) => {
   window.goatcounter?.count?.({ path, referrer });
 })
+// watch(() => route.path, (path, referrer) => {
+//   window.goatcounter?.count?.({ path, referrer });
+// })
 </script>
 
 <template>
