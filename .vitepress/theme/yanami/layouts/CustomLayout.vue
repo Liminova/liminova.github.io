@@ -1,9 +1,15 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
 <script setup lang="ts">
 /* eslint vue/no-useless-template-attributes: 0 */
 import DefaultTheme from "vitepress/theme";
 import { formatDate } from "../utils";
 
 const { Layout } = DefaultTheme;
+
+watch(() => route.path, (path, referrer) => {
+  window.goatcounter?.count?.({ path, referrer });
+})
 </script>
 
 <template>
