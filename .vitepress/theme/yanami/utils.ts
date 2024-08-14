@@ -1,6 +1,6 @@
-import { Post } from "../../posts.data";
+import type { Post } from "../../posts.data";
 
-export function useYearSort(posts: Post[]): any[] {
+export function useYearSort(posts: Array<Post>): Array<any> {
 	const data: any = [];
 	let year = "0";
 	let num = -1;
