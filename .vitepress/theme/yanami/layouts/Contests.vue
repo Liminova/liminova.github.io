@@ -42,6 +42,13 @@
 <script setup lang="ts">
 const data = [
     {
+        name: "Lexington Informatics Tournament CTF 2024",
+        time: "August 10 - August 13, 2024",
+        placement: 47,
+        ctfPoints: 2710,
+        ctfRating: 25.298,
+    },
+    {
         name: "osu!gaming CTF 2024",
         time: "March 02 - March 04, 2024",
         placement: 166,
