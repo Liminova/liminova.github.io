@@ -4,15 +4,15 @@
 /* eslint vue/no-useless-template-attributes: 0 */
 import DefaultTheme from "vitepress/theme";
 import { formatDate } from "../utils";
+import { useRoute } from "vitepress";
+import { watch } from "vue";
 
 const { Layout } = DefaultTheme;
+const route = useRoute();
 
 watch(() => route.path, (path, referrer) => {
-  window.goatcounter?.count?.({ path, referrer });
+    window.goatcounter?.count?.({ path, referrer });
 })
-// watch(() => route.path, (path, referrer) => {
-//   window.goatcounter?.count?.({ path, referrer });
-// })
 </script>
 
 <template>
