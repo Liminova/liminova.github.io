@@ -1,22 +1,19 @@
 <script setup lang="ts">
 /* eslint vue/no-useless-template-attributes: 0 */
-import { useData } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { formatDate } from "../utils";
 
 const { Layout } = DefaultTheme;
-const page = useData();
-const { title, author, date } = page.frontmatter.value;
 </script>
 
 <template>
     <Layout>
         <template class="my-4" #doc-before>
-            <h1 class="my-2 text-4xl font-semibold leading-10">{{ title }}</h1>
+            <h1 class="my-2 text-4xl font-semibold leading-10">{{ $frontmatter.title }}</h1>
             <h2 class="my-2">
-                {{ formatDate(date).string }} •
+                {{ formatDate($frontmatter.date).string }} •
                 <span>
-                    Written by <span class="font-semibold">{{ author }}</span>
+                    Written by <span class="font-semibold">{{ $frontmatter.author }}</span>
                 </span>
             </h2>
         </template>
