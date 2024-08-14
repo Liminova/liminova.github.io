@@ -34,5 +34,5 @@ export function formatDate(raw: string): Post["date"] {
 			month: "long",
 			day: "numeric",
 		}),
-	}
+	};
 }

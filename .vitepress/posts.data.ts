@@ -6,7 +6,7 @@ export interface Post {
 	url: string;
 	author: string;
 	date: {
-		original: string,
+		original: string;
 		time: number;
 		string: string;
 	};
@@ -14,16 +14,19 @@ export interface Post {
 }
 
 declare const data: Post[];
-export { data }
+export { data };
 
 export default createContentLoader("blog/*.md", {
-	excerpt: true, transform(raw): Post[] {
-		return raw.map(({ url, frontmatter, excerpt }) => ({
-			title: frontmatter.title,
-			url,
-			author: frontmatter.author,
-			excerpt,
-			date: formatDate(frontmatter.date)
-		})).sort((a, b) => b.date.time - a.date.time);
-	}
+	excerpt: true,
+	transform(raw): Post[] {
+		return raw
+			.map(({ url, frontmatter, excerpt }) => ({
+				title: frontmatter.title,
+				url,
+				author: frontmatter.author,
+				excerpt,
+				date: formatDate(frontmatter.date),
+			}))
+			.sort((a, b) => b.date.time - a.date.time);
+	},
 });

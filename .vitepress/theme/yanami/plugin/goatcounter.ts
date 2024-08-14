@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 function mountGoatcounter(id: string) {
-	if (window.goatcounter || window.location.hostname === 'localhost') {
+	if (window.goatcounter || window.location.hostname === "localhost") {
 		return;
 	}
 	const script = document.createElement("script");
@@ -10,11 +10,15 @@ function mountGoatcounter(id: string) {
 	script.async = true;
 	script.src = "//gc.zgo.at/count.js";
 
-	document.head.appendChild(script)
+	document.head.appendChild(script);
 }
 
 export default function ({ id }: { id: string }) {
-	if (process.env.NODE_ENV === 'production' && id && typeof window !== 'undefined') {
+	if (
+		process.env.NODE_ENV === "production" &&
+		id &&
+		typeof window !== "undefined"
+	) {
 		mountGoatcounter(id);
 	}
 }

@@ -10,19 +10,27 @@ import { formatDate } from "../utils";
 const { Layout } = DefaultTheme;
 const route = useRoute();
 
-watch(() => route.path, (path, referrer) => {
-	window.goatcounter?.count?.({ path, referrer });
-})
+watch(
+	() => route.path,
+	(path, referrer) => {
+		window.goatcounter?.count?.({ path, referrer });
+	},
+);
 </script>
 
 <template>
 	<Layout>
 		<template class="my-4" #doc-before>
-			<h1 class="my-2 text-4xl font-semibold leading-10">{{ useData().frontmatter.value.title }}</h1>
+			<h1 class="my-2 text-4xl font-semibold leading-10">
+				{{ useData().frontmatter.value.title }}
+			</h1>
 			<h2 class="my-2">
 				{{ formatDate(useData().frontmatter.value.date).string }} •
 				<span>
-					Written by <span class="font-semibold">{{ useData().frontmatter.value.author }}</span>
+					Written by
+					<span class="font-semibold">{{
+						useData().frontmatter.value.author
+					}}</span>
 				</span>
 			</h2>
 		</template>

@@ -1,16 +1,27 @@
-import pluginJs from "@eslint/js";
+import prettier from "eslint-plugin-prettier/recommended";
 import tailwind from "eslint-plugin-tailwindcss";
-import pluginVue from "eslint-plugin-vue";
+import vue from "eslint-plugin-vue";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default [
-	{ignores: [".vitepress/cache/**/*.*", ".vitepress/theme/env.d.ts", "postcss.config.cjs"]},
-	{files: ["**/*.{js,mjs,cjs,ts,vue}"]},
-	{languageOptions: { globals: globals.browser }},
-	pluginJs.configs.recommended,
+	{
+		ignores: [
+			".vitepress/cache/**/*.*",
+			".vitepress/theme/env.d.ts",
+			"postcss.config.cjs",
+		],
+	},
+	{ files: ["**/*.{ts,vue}"] },
+	{ languageOptions: { globals: globals.browser } },
 	...tseslint.configs.recommended,
+	prettier,
 	...tailwind.configs["flat/recommended"],
-	...pluginVue.configs["flat/essential"],
-	{rules: {"vue/multi-word-component-names": "off", "indent": ["error", "tab"]}},
+	...vue.configs["flat/essential"],
+	{
+		rules: {
+			"vue/multi-word-component-names": "off",
+			indent: ["error", "tab"],
+		},
+	},
 ];
