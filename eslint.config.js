@@ -1,4 +1,4 @@
-import hagemanto from "eslint-plugin-hagemanto";
+// import hagemanto from "eslint-plugin-hagemanto";
 import tailwind from "eslint-plugin-tailwindcss";
 import vue from "eslint-plugin-vue";
 import globals from "globals";
@@ -7,7 +7,7 @@ export default [
 	{ ignores: [".vitepress/cache/**/*.*", ".vitepress/theme/env.d.ts", "*.config.{ts,js,cjs}"] },
 	{ files: ["**/*.{ts,vue}"] },
 
-	...hagemanto.configs.recommended,
+	// ...hagemanto.configs.recommended,
 	...vue.configs["flat/essential"],
 	...tailwind.configs["flat/recommended"],
 
