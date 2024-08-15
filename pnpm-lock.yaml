@@ -26,7 +26,7 @@ importers:
         version: 9.9.0(jiti@1.21.6)
       eslint-plugin-hagemanto:
         specifier: github:Delnegend/hagemanto
-        version: https://codeload.github.com/Delnegend/hagemanto/tar.gz/41729fbaed04188548a5f6f3b5778cdfb4c470ba(@types/eslint@9.6.0)(eslint@9.9.0(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)
+        version: https://codeload.github.com/Delnegend/hagemanto/tar.gz/55e3fb7606caaf88d25e521b392eeaf0787890b8(@types/eslint@9.6.0)(eslint@9.9.0(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)
       eslint-plugin-tailwindcss:
         specifier: ^3.17.4
         version: 3.17.4(tailwindcss@3.4.10)
@@ -897,9 +897,9 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-plugin-hagemanto@https://codeload.github.com/Delnegend/hagemanto/tar.gz/41729fbaed04188548a5f6f3b5778cdfb4c470ba:
-    resolution: {tarball: https://codeload.github.com/Delnegend/hagemanto/tar.gz/41729fbaed04188548a5f6f3b5778cdfb4c470ba}
-    version: 1.0.2
+  eslint-plugin-hagemanto@https://codeload.github.com/Delnegend/hagemanto/tar.gz/55e3fb7606caaf88d25e521b392eeaf0787890b8:
+    resolution: {tarball: https://codeload.github.com/Delnegend/hagemanto/tar.gz/55e3fb7606caaf88d25e521b392eeaf0787890b8}
+    version: 1.0.4
     peerDependencies:
       eslint: ^9.9.0
 
@@ -1615,8 +1615,8 @@ packages:
     resolution: {integrity: sha512-jOWVmzVceKlVVdwjNSenT4PbGghU0SBIizAev8ofZVgivk/TVHXSbNL8LP6M3spZvkR9/QolkyJavGSX5Cs0UA==}
     engines: {node: '>=10'}
 
-  vite@5.4.0:
-    resolution: {integrity: sha512-5xokfMX0PIiwCMCMb9ZJcMyh5wbBun0zUzKib+L65vAZ8GY9ePZMXxFrHbr/Kyll2+LSCY7xtERPpxkBDKngwg==}
+  vite@5.4.1:
+    resolution: {integrity: sha512-1oE6yuNXssjrZdblI9AfBbHCC41nnyoVoEZxQnID6yvQZAFBzxxkqoFLtHUMkYunL8hwOLEjgTuxpkRxvba3kA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -2210,9 +2210,9 @@ snapshots:
       '@typescript-eslint/types': 8.1.0
       eslint-visitor-keys: 3.4.3
 
-  '@vitejs/plugin-vue@5.1.2(vite@5.4.0(@types/node@22.3.0))(vue@3.4.38(typescript@5.5.4))':
+  '@vitejs/plugin-vue@5.1.2(vite@5.4.1(@types/node@22.3.0))(vue@3.4.38(typescript@5.5.4))':
     dependencies:
-      vite: 5.4.0(@types/node@22.3.0)
+      vite: 5.4.1(@types/node@22.3.0)
       vue: 3.4.38(typescript@5.5.4)
 
   '@vue/compiler-core@3.4.38':
@@ -2574,10 +2574,11 @@ snapshots:
     dependencies:
       eslint: 9.9.0(jiti@1.21.6)
 
-  eslint-plugin-hagemanto@https://codeload.github.com/Delnegend/hagemanto/tar.gz/41729fbaed04188548a5f6f3b5778cdfb4c470ba(@types/eslint@9.6.0)(eslint@9.9.0(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4):
+  eslint-plugin-hagemanto@https://codeload.github.com/Delnegend/hagemanto/tar.gz/55e3fb7606caaf88d25e521b392eeaf0787890b8(@types/eslint@9.6.0)(eslint@9.9.0(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4):
     dependencies:
       '@eslint/js': 9.9.0
       '@stylistic/eslint-plugin-ts': 2.6.2(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4)
+      '@typescript-eslint/types': 8.1.0
       '@typescript-eslint/utils': 8.1.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4)
       eslint: 9.9.0(jiti@1.21.6)
       eslint-config-prettier: 9.1.0(eslint@9.9.0(jiti@1.21.6))
@@ -3302,7 +3303,7 @@ snapshots:
 
   valid-data-url@3.0.1: {}
 
-  vite@5.4.0(@types/node@22.3.0):
+  vite@5.4.1(@types/node@22.3.0):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.41
@@ -3318,7 +3319,7 @@ snapshots:
       '@shikijs/core': 1.13.0
       '@shikijs/transformers': 1.13.0
       '@types/markdown-it': 14.1.2
-      '@vitejs/plugin-vue': 5.1.2(vite@5.4.0(@types/node@22.3.0))(vue@3.4.38(typescript@5.5.4))
+      '@vitejs/plugin-vue': 5.1.2(vite@5.4.1(@types/node@22.3.0))(vue@3.4.38(typescript@5.5.4))
       '@vue/devtools-api': 7.3.8
       '@vue/shared': 3.4.38
       '@vueuse/core': 10.11.1(vue@3.4.38(typescript@5.5.4))
@@ -3327,7 +3328,7 @@ snapshots:
       mark.js: 8.11.1
       minisearch: 7.1.0
       shiki: 1.13.0
-      vite: 5.4.0(@types/node@22.3.0)
+      vite: 5.4.1(@types/node@22.3.0)
       vue: 3.4.38(typescript@5.5.4)
     optionalDependencies:
       markdown-it-mathjax3: 4.3.2
