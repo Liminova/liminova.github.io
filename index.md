@@ -8,7 +8,6 @@ hero:
 ---
 
 <script setup>
-import { VPTeamMembers } from "vitepress/theme";
 import osu from ".vitepress/build-assets/osu.svg?raw";
 import email from ".vitepress/build-assets/email.svg?raw";
 
@@ -84,4 +83,4 @@ const members = [
 
 <h1>Meet the Team</h1>
 
-<VPTeamMembers size="medium" :members="members" />
+<TeamMembers size="medium" :members="members" />
