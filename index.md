@@ -33,7 +33,7 @@ const members = [
         ],
     },
     {
-        avatar: "https://avatars.githubusercontent.com/u/20481024?v=4",
+        avatar: "/delnegend.mp4",
         name: "Delnegend",
         links: [
             { icon: "github", link: "https://github.com/Delnegend" },
@@ -41,7 +41,7 @@ const members = [
         ],
     },
     {
-        avatar: "https://avatars.githubusercontent.com/u/92161394?v=4",
+        avatar: "/ellimac.mp4",
         name: "Ellimac",
         links: [
             { icon: "github", link: "https://github.com/EllimacH" },
