@@ -10,6 +10,7 @@ hero:
 <script setup>
 import { VPTeamMembers } from "vitepress/theme";
 import osu from ".vitepress/build-assets/osu.svg?raw";
+import email from ".vitepress/build-assets/email.svg?raw";
 
 const members = [
     {
@@ -37,6 +38,7 @@ const members = [
         name: "Delnegend",
         links: [
             { icon: "github", link: "https://github.com/Delnegend" },
+            { icon: { svg: email }, link: "mailto:kiennguyen19323@gmail.com" },
         ],
     },
     {
