@@ -16,9 +16,13 @@ export interface Post {
 declare const data: Array<Post>;
 export { data };
 
+/**
+ * Load posts from markdown files.
+ */
 export default createContentLoader("blog/*.md", {
 	excerpt: true,
 	transform(raw): Array<Post> {
+		/* eslint-disable */
 		return raw
 			.map(({ url, frontmatter, excerpt }) => ({
 				title: frontmatter.title,
@@ -26,7 +30,9 @@ export default createContentLoader("blog/*.md", {
 				author: frontmatter.author,
 				excerpt,
 				date: formatDate(frontmatter.date),
-			}))
+			}
+			))
 			.sort((a, b) => b.date.time - a.date.time);
+		/* eslint-enable */
 	},
 });
