@@ -17,8 +17,21 @@ withDefaults(defineProps<Props>(), {
 	<article class="TeamMembersItem" :class="[size]">
 		<div class="profile">
 			<figure class="avatar">
-				<video v-if="member.avatar && member.avatar.endsWith('.mp4')" class="avatar-img" :src="member.avatar" autoplay muted loop playsinline />
-				<img v-else-if="member.avatar" class="avatar-img" :src="member.avatar" :alt="member.name" />
+				<video
+					v-if="member.avatar && member.avatar.endsWith('.mp4')"
+					class="avatar-img"
+					:src="member.avatar"
+					autoplay
+					muted
+					loop
+					playsinline
+				/>
+				<img
+					v-else-if="member.avatar"
+					class="avatar-img"
+					:src="member.avatar"
+					:alt="member.name"
+				/>
 			</figure>
 			<div class="data">
 				<h1 class="name">
@@ -34,7 +47,8 @@ withDefaults(defineProps<Props>(), {
 						class="org"
 						:class="{ link: member.orgLink }"
 						:href="member.orgLink"
-						no-icon>
+						no-icon
+					>
 						{{ member.org }}
 					</VPLink>
 				</p>
