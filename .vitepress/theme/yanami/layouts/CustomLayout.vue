@@ -5,7 +5,7 @@
 import { useData, useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { watch } from "vue";
-import { formatDate } from "../utils";
+import { formatDate } from "../libs";
 
 const { Layout } = DefaultTheme;
 const route = useRoute();

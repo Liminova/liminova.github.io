@@ -1,5 +1,5 @@
 import { createContentLoader } from "vitepress";
-import { formatDate } from "./theme/yanami/utils";
+import { formatDate } from "./theme/yanami/libs";
 
 export interface Post {
 	title: string;
