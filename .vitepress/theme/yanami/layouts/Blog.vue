@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { computed } from "vue";
+import { data as posts } from "../../../posts.data";
+import { useYearSort } from "../libs";
+
+const data = computed(() => useYearSort(posts));
+</script>
+
 <template>
 	<div class="mx-auto my-0 max-w-6xl px-8 pb-0 pt-10">
 		<h1 class="text-5xl font-semibold leading-10">All Posts</h1>
@@ -37,11 +45,3 @@
 		<div v-if="data.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
 	</div>
 </template>
-
-<script setup lang="ts">
-import { computed } from "vue";
-import { data as posts } from "../../../posts.data";
-import { useYearSort } from "../utils";
-
-const data = computed(() => useYearSort(posts));
-</script>
