@@ -1,3 +1,4 @@
+import animate from "tailwindcss-animate";
 import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
@@ -10,5 +11,5 @@ export default {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [animate],
 };
