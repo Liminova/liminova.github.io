@@ -21,7 +21,13 @@
         "vue": "^3.4.38"
     },
     "dependencies": {
-        "lucide-vue-next": "^0.427.0",
-        "markdown-it-mathjax3": "^4.3.2"
-    }
+        "class-variance-authority": "0.7.0",
+        "clsx": "2.1.1",
+        "lucide-vue-next": "^0.428.0",
+        "markdown-it-mathjax3": "^4.3.2",
+        "radix-vue": "^1.9.4",
+        "tailwind-merge": "^2.5.2",
+        "tailwindcss-animate": "^1.0.7"
+    },
+    "packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247"
 }
