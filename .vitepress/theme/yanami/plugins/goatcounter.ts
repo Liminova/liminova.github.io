@@ -14,7 +14,7 @@ function mountGoatcounter(id: string) {
 	document.head.appendChild(script);
 }
 
-export default function ({ id }: { id: string }) {
+export function goatcounter({ id }: { id: string }): void {
 	if (process.env.NODE_ENV === "production" && id && typeof window !== "undefined") {
 		mountGoatcounter(id);
 	}

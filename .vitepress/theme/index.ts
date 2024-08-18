@@ -5,7 +5,7 @@ import TeamMembers from "./yanami/components/TeamMembers.vue";
 import Blog from "./yanami/layouts/Blog.vue";
 import Contests from "./yanami/layouts/Contests.vue";
 import CustomLayout from "./yanami/layouts/CustomLayout.vue";
-import goatcounter from "./yanami/plugin/goatcounter";
+import { goatcounter } from "./yanami/plugins";
 
 export default {
 	extends: DefaultTheme,
