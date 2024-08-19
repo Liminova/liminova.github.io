@@ -16,10 +16,15 @@ export interface Post {
 declare const data: Array<Post>;
 export { data };
 
+const patterns = ["blog/*.md"];
+if (process.env.NODE_ENV !== "production") {
+    patterns.push("drafts/*.md");
+}
+
 /**
  * Load posts from markdown files.
  */
-export default createContentLoader("blog/*.md", {
+export default createContentLoader(patterns, {
 	excerpt: true,
 	transform(raw): Array<Post> {
 		/* eslint-disable */
