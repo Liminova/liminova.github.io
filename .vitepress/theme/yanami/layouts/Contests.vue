@@ -2,6 +2,7 @@
 	<div class="mx-auto my-0 max-w-6xl px-8 pb-0 pt-10">
 		<h1 class="text-5xl font-semibold leading-10">Contests</h1>
 		<p class="my-6">We aren't very good yet, but we're trying. :3</p>
+		<p class="my-6">All times are in UTC+7 (ICT), as displayed on CTFtime.</p>
 		<hr class="my-8" />
 		<div class="rounded-md border">
 			<table class="w-full caption-bottom text-sm">
@@ -49,6 +50,13 @@
 
 <script setup lang="ts">
 const data = [
+	{
+		name: "idekCTF 2024",
+		time: "August 17 - August 19, 2024",
+		placement: 143,
+		ctfPoints: 568,
+		ctfRating: 0,
+	},
 	{
 		name: "Lexington Informatics Tournament CTF 2024",
 		time: "August 10 - August 13, 2024",
