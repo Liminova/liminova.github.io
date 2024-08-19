@@ -19,11 +19,11 @@ const data = computed(() => useYearSort(posts));
 			<div class="my-5 text-2xl font-medium">
 				{{ yearList[0].date.original.split("-")[0] }}
 			</div>
-			<div class="mx-3" v-for="(article, index) in yearList" :key="index">
+			<div class="mx-3 my-5" v-for="(article, index) in yearList" :key="index">
 				<a
 					:href="article.url"
 					:key="index"
-					class="my-1 flex items-center justify-between hover:text-[color:var(--vp-c-brand)] hover:no-underline"
+					class="flex items-center justify-between hover:text-[color:var(--vp-c-brand)] hover:no-underline"
 					style="
 						transition:
 							border 0.3s ease,
@@ -35,13 +35,27 @@ const data = computed(() => useYearSort(posts));
 					</div>
 					<div>{{ article.date.string.slice(0, -6) }}</div>
 				</a>
-				<div>
+				<div
+    				class="flex items-center justify-between text-gray-500 dark:text-gray-300"
+				>
+				    <div>
 					Written by
 					<span class="font-semibold">{{ article.author }}</span>
+					</div>
+					<div class="inline">
+					<ul>
+    					<li class="inline" v-if="article.tags" v-for="tag in article.tags">#{{ tag }}</li>
+					</ul>
+					</div>
 				</div>
-				<div>{{ article.excerpt }}</div>
 			</div>
 		</div>
 		<div v-if="data.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
 	</div>
 </template>
+
+<style>
+li:not(:last-child)::after {
+	content: " ";
+}
+</style>

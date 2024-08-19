@@ -11,6 +11,7 @@ export interface Post {
 		string: string;
 	};
 	excerpt: string | undefined;
+    tags: Array<string> | undefined;
 }
 
 declare const data: Array<Post>;
@@ -25,7 +26,7 @@ if (process.env.NODE_ENV !== "production") {
  * Load posts from markdown files.
  */
 export default createContentLoader(patterns, {
-	excerpt: true,
+    excerpt: true,
 	transform(raw): Array<Post> {
 		/* eslint-disable */
 		return raw
@@ -35,6 +36,7 @@ export default createContentLoader(patterns, {
 				author: frontmatter.author,
 				excerpt,
 				date: formatDate(frontmatter.date),
+				tags: frontmatter.tags,
 			}
 			))
 			.sort((a, b) => b.date.time - a.date.time);
