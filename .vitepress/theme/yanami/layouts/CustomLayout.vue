@@ -25,12 +25,37 @@ watch(
 				{{ useData().frontmatter.value.title }}
 			</h1>
 			<h2 class="my-2">
-				{{ formatDate(useData().frontmatter.value.date).string }} •
-				<span>
-					Written by
-					<span class="font-semibold">{{ useData().frontmatter.value.author }}</span>
-				</span>
+				<ul>
+					<li>{{ formatDate(useData().frontmatter.value.date).string }}</li>
+					<li>
+						Written by
+						<span class="font-semibold">{{ useData().frontmatter.value.author }}</span>
+					</li>
+					<li>
+						<span>
+							<ul class="inline" v-if="useData().frontmatter.value.tags">
+								<li
+									class="tag"
+									:key="tag"
+									v-for="tag in useData().frontmatter.value.tags"
+								>
+									#{{ tag }}
+								</li>
+							</ul>
+						</span>
+					</li>
+				</ul>
 			</h2>
 		</template>
 	</Layout>
 </template>
+
+<style scoped>
+li {
+	@apply inline;
+}
+
+li:not(.tag):not(:last-child)::after {
+	content: " • ";
+}
+</style>
