@@ -35,17 +35,17 @@ const data = computed(() => useYearSort(posts));
 					</div>
 					<div>{{ article.date.string.slice(0, -6) }}</div>
 				</a>
-				<div
-    				class="flex items-center justify-between text-gray-500 dark:text-gray-300"
-				>
-				    <div>
-					Written by
-					<span class="font-semibold">{{ article.author }}</span>
+				<div class="flex items-center justify-between text-gray-500 dark:text-gray-300">
+					<div>
+						Written by
+						<span class="font-semibold">{{ article.author }}</span>
 					</div>
-					<div class="inline">
-					<ul>
-    					<li class="inline" v-if="article.tags" v-for="tag in article.tags">#{{ tag }}</li>
-					</ul>
+					<div class="inline" v-if="article.tags">
+						<ul>
+							<li class="inline" :key="tag" v-for="tag in article.tags">
+								#{{ tag }}
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
