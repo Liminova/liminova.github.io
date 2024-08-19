@@ -40,13 +40,13 @@ const data = computed(() => useYearSort(posts));
 						Written by
 						<span class="font-semibold">{{ article.author }}</span>
 					</div>
-					<div class="inline" v-if="article.tags">
+					<span v-if="article.tags">
 						<ul>
 							<li class="inline" :key="tag" v-for="tag in article.tags">
 								#{{ tag }}
 							</li>
 						</ul>
-					</div>
+					</span>
 				</div>
 			</div>
 		</div>
