@@ -1,6 +1,6 @@
 ---
 title: "idekCTF 2024: web/Hello"
-date: 2024-08-19
+date: 2024-08-27
 author: Rylie
 categories: ["ctf"]
 tags: ["web", "idekctf"]
