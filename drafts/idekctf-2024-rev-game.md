@@ -10,23 +10,19 @@ tags: ["rev", "idekctf"]
 
 Challenge files: [Game.tar.gz](https://nazunacord.net/2Blf4C8h5OA9.gz)
 
-The time is 9:20 am. I just woke up and found out that [idekCTF 2024](https://ctf.idek.team/) has a game in it!
-Time to try it out!
+The time is 9:20 am. I just woke up and found out that [idekCTF 2024](https://ctf.idek.team/) has a game in it! Time to try it out!
 
 ## The challenge
 
-We are given a game (above), and the problem states that the flag will be given to
-"players who reach a high enough score". Our goal will be doing just that.
+We are given a game (above), and the problem states that the flag will be given to "players who reach a high enough score". Our goal will be doing just that.
 
 ## Playing the game normally
 
-Since you just need to reach a high enough score, we can play the game normally
-and reach it. But then why are you reading this? So...
+Since you just need to reach a high enough score, we can play the game normally and reach it. But then why are you reading this? So...
 
 ## Playing the game abnormally
 
-By examining the challenge files, we see a `spritesheet.json` file, which is
-suspicious to say the least. So let's open that.
+By examining the challenge files, we see a `spritesheet.json` file, which is suspicious to say the least. So let's open that.
 
 ```json
     "trex_running_0": {
