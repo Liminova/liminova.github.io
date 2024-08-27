@@ -1,6 +1,6 @@
 ---
 title: "SekaiCTF 2024: ppc/Miku vs. Machine"
-date: 2024-08-13
+date: 2024-08-27
 author: NamSPro
 categories: ["ctf"]
 tags: ["ppc", "sekaictf"]
