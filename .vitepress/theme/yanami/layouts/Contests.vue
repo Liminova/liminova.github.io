@@ -51,6 +51,13 @@
 <script setup lang="ts">
 const data = [
 	{
+		name: "SekaiCTF 2024",
+		time: "August 23 - August 25, 2024",
+		placement: 193,
+		ctfPoints: 239,
+		ctfRating: 1.74,
+	},
+	{
 		name: "idekCTF 2024",
 		time: "August 17 - August 19, 2024",
 		placement: 143,
