@@ -34,4 +34,42 @@ For a longer post, a visual proof of this will be shown below.
 </div>
 <div class="text-center italic my-5">pardon my incredible art skills</div>
 
+## The C++ implementation
+
+I find the code is self-explanatory so...
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m;
+
+void solve() {
+    int currentArtist = 1, remainingArtistTime = m;
+    cout << n << "\n";
+    for (int i = 1; i <= m; i++) {
+        if (n <= remainingArtistTime) {
+            cout << n << " " << currentArtist << " 0 " << currentArtist << "\n";
+            remainingArtistTime -= n;
+        } else {
+            cout << remainingArtistTime << " " << currentArtist << " "
+            << n - remainingArtistTime << " " << currentArtist + 1 << "\n";
+            currentArtist++;
+            remainingArtistTime = m - (n - remainingArtistTime);
+        }
+    }
+}
+
+int main() {
+    int t;
+    cin >> t;
+    for (int i = 1; i <= t; i++) {
+        cin >> n >> m;
+        solve();
+    }
+    return 0;
+}
+```
+
 Now excuse me, I need to sleep, the time is 11:15 pm...
