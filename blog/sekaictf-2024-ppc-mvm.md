@@ -36,7 +36,7 @@ For a longer post, a visual proof of this will be shown below.
 
 ## The C++ implementation
 
-I find the code is self-explanatory so...
+I find the code self-explanatory so...
 
 ```cpp
 #include <bits/stdc++.h>
