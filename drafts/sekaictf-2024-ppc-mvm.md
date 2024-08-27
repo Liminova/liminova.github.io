@@ -32,6 +32,6 @@ For a longer post, a visual proof of this will be shown below.
 <div class="flex flex-wrap justify-evenly gap-y-2">
     <img src="https://nazunacord.net/vsUB1KbySiic.png" alt="Visual proof of the above statement">
 </div>
-<sup>pardon my incredible art skills</sup>
+<div class="text-center italic my-5">pardon my incredible art skills</div>
 
 Now excuse me, I need to sleep, the time is 11:15 pm...
