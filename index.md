@@ -13,7 +13,7 @@ import email from ".vitepress/build-assets/email.svg?raw";
 
 const members = [
     {
-        avatar: "https://avatars.githubusercontent.com/u/52886388?v=4",
+        avatar: "/rylie.png",
         name: "Rylie",
         title: "resident troller, founder of CTF division",
         links: [
