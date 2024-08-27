@@ -55,8 +55,9 @@ const members = [
         ],
     },
     {
-        avatar: "https://avatars.githubusercontent.com/u/44142531?v=4",
+        avatar: "/namspro.png",
         name: "NamSPro",
+        title: "founder of competitive programming/gaming division",
         links: [
             { icon: "github", link: "https://github.com/NamSPro" },
             {
