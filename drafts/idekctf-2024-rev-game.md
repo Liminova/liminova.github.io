@@ -21,11 +21,11 @@ We are given a game (above), and the problem states that the flag will be given 
 ## Playing the game normally
 
 Since you just need to reach a high enough score, we can play the game normally
-and reach it. But then why are you read this? So...
+and reach it. But then why are you reading this? So...
 
 ## Playing the game abnormally
 
-By examining tha challenge files, we see a `spritesheet.json` file, which is
+By examining the challenge files, we see a `spritesheet.json` file, which is
 suspicious to say the least. So let's open that.
 
 ```json
