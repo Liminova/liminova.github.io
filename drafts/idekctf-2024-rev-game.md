@@ -67,4 +67,4 @@ What's this? Game logic? Will making the `collision` array empty makes us invinc
 
 Nice! All that's left now is to wait for the flag to show itself.
 
-Now please wait warmly as I get myself some breakfast.
+Now excuse me, I am going to get myself some breakfast.
