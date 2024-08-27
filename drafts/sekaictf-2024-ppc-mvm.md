@@ -30,7 +30,7 @@ assign the artist(s) for each show in `O(n)` time.
 
 For a longer post, a visual proof of this will be shown below.
 <div class="flex flex-wrap justify-evenly gap-y-2">
-    <img src="https://nazunacord.net/vsUB1KbySiic.png" alt="A dinosaur colliding with some cacti without dying">
+    <img src="https://nazunacord.net/vsUB1KbySiic.png" alt="Visual proof of the above statement">
 </div>
 <sup>pardon my incredible art skills</sup>
 
