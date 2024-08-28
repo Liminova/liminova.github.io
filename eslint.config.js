@@ -7,7 +7,7 @@ export default [
 	{ ignores: [".vitepress/cache/**/*.*", ".vitepress/dist/**/*.*", ".vitepress/theme/env.d.ts", "*.config.{ts,js,cjs}"] },
 	{ files: ["**/*.{ts,vue}"] },
 
-	...hagemanto,
+	...hagemanto(),
 	...vue.configs["flat/essential"],
 	...tailwind.configs["flat/recommended"],
 
