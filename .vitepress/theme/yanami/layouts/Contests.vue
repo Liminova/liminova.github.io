@@ -87,7 +87,7 @@ const data = [
 	},
 	{
 		name: "SekaiCTF 2023",
-		time: "August 25 - August 27, 2024",
+		time: "August 25 - August 27, 2023",
 		placement: 175,
 		ctfPoints: 573,
 		ctfRating: 1.51,
