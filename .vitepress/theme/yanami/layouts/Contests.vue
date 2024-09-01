@@ -51,6 +51,13 @@
 <script setup lang="ts">
 const data = [
 	{
+		name: "CyberSpace CTF 2024",
+		time: "August 30 - September 01, 2024",
+		placement: 235,
+		ctfPoints: 451,
+		ctfRating: 0,
+	},
+	{
 		name: "SekaiCTF 2024",
 		time: "August 23 - August 25, 2024",
 		placement: 193,
