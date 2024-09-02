@@ -1,51 +1,21 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { defineProps, onMounted, ref } from 'vue';
 
-const data = [
-	{
-		name: "CyberSpace CTF 2024",
-		time: "August 30 - September 01, 2024",
-		placement: 235,
-		ctfPoints: 451,
-		ctfRating: 0,
+interface Contest {
+	name: string;
+	time: string;
+	placement: number;
+	ctfPoints?: number;
+	ctfRating?: number;
+	short?: string;
+}
+
+const props = defineProps({
+	data: {
+		type: Array<Contest>,
+		required: true,
 	},
-	{
-		name: "SekaiCTF 2024",
-		time: "August 23 - August 25, 2024",
-		placement: 193,
-		ctfPoints: 239,
-		ctfRating: 1.74,
-	},
-	{
-		name: "idekCTF 2024",
-		time: "August 17 - August 19, 2024",
-		placement: 143,
-		ctfPoints: 568,
-		ctfRating: 0,
-	},
-	{
-		name: "Lexington Informatics Tournament CTF 2024",
-		short: "LIT CTF 2024",
-		time: "August 10 - August 13, 2024",
-		placement: 47,
-		ctfPoints: 2710,
-		ctfRating: 25.298,
-	},
-	{
-		name: "osu!gaming CTF 2024",
-		time: "March 02 - March 04, 2024",
-		placement: 166,
-		ctfPoints: 1771,
-		ctfRating: 4.912,
-	},
-	{
-		name: "SekaiCTF 2023",
-		time: "August 25 - August 27, 2023",
-		placement: 175,
-		ctfPoints: 573,
-		ctfRating: 1.51,
-	},
-];
+});
 
 const isMobile = ref(window.innerWidth <= 768);
 
@@ -80,7 +50,7 @@ onMounted(() => {
 						</th>
 					</tr>
 				</thead>
-				<tbody v-for="contest in data" :key="contest.name">
+				<tbody v-for="contest in props.data" :key="contest.name">
 					<td class="-ml-4 h-12 w-10 p-4 text-center align-middle">
 						<div class="text-2xl font-semibold">#{{ contest.placement }}</div>
 					</td>
@@ -132,7 +102,7 @@ onMounted(() => {
 			</div>
 		</div>
 
-		<div v-if="data.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
+		<div v-if="props.data.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
 	</div>
 </template>
 
