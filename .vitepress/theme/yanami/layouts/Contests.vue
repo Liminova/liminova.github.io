@@ -105,25 +105,3 @@ onMounted(() => {
 		<div v-if="props.data.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
 	</div>
 </template>
-
-<style scoped>
-.year {
-	padding: 16px 0 8px 0;
-	font-size: 1.2rem;
-	font-weight: 600;
-}
-
-.article {
-	@apply flex items-center justify-between;
-	@apply m-3;
-	color: var(--vp-c-text-2);
-	transition:
-		border 0.3s ease,
-		color 0.3s ease;
-}
-
-.article:hover {
-	text-decoration: none;
-	color: var(--vp-c-brand);
-}
-</style>
