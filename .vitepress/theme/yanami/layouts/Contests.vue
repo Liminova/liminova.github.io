@@ -25,6 +25,7 @@ const data = [
 	},
 	{
 		name: "Lexington Informatics Tournament CTF 2024",
+		short: "LIT CTF 2024",
 		time: "August 10 - August 13, 2024",
 		placement: 47,
 		ctfPoints: 2710,
