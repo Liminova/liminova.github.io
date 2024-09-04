@@ -5,9 +5,9 @@ import globals from "globals";
 
 export default [
 	{ ignores: [".vitepress/cache/**/*.*", ".vitepress/dist/**/*.*", ".vitepress/theme/env.d.ts", "*.config.{ts,js,cjs}"] },
-	{ files: ["**/*.{ts,vue}"] },
+	{ files: ["**/*.{ts,vue,mts}"] },
 
-	...hagemanto(),
+	...hagemanto({ enablePrettier: true }),
 	...vue.configs["flat/essential"],
 	...tailwind.configs["flat/recommended"],
 
