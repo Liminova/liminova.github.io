@@ -49,7 +49,7 @@ onMounted(() => {
 						</th>
 					</tr>
 				</thead>
-				<tbody v-for="contest in props.data" :key="contest.name">
+				<tr v-for="contest in props.data" :key="contest.name">
 					<td class="-ml-4 h-12 w-10 p-4 text-center align-middle">
 						<div class="text-2xl font-semibold">#{{ contest.placement }}</div>
 					</td>
@@ -73,7 +73,7 @@ onMounted(() => {
 							</div>
 						</div>
 					</td>
-				</tbody>
+				</tr>
 			</table>
 		</div>
 
