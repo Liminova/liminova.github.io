@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { data as posts } from "../../../posts.data";
 import { useYearSort } from "../libs";
 
-const data = computed(() => useYearSort(posts));
+const postsByYear = computed(() => useYearSort(posts));
 </script>
 
 <template>
@@ -12,16 +12,16 @@ const data = computed(() => useYearSort(posts));
 		<p class="my-6">An archive of our blog posts.</p>
 		<hr class="my-8" />
 		<div
-			v-for="yearList in data"
-			:key="yearList[0].date.original.split('-')[0]"
+			v-for="posts in postsByYear"
+			:key="posts[0].date.readable.slice(-4)"
 			class="border border-dashed border-[#c7c7c7] last:border-none"
 		>
 			<div class="my-5 text-2xl font-medium">
-				{{ yearList[0].date.original.split("-")[0] }}
+				{{ posts[0].date.readable.slice(-4) }}
 			</div>
-			<div class="mx-3 my-5" v-for="(article, index) in yearList" :key="index">
+			<div class="mx-3 my-5" v-for="(post, index) in posts" :key="index">
 				<a
-					:href="article.url"
+					:href="post.url"
 					:key="index"
 					class="flex items-center justify-between hover:text-[color:var(--vp-c-brand)] hover:no-underline"
 					style="
@@ -31,26 +31,26 @@ const data = computed(() => useYearSort(posts));
 					"
 				>
 					<div class="text-xl">
-						{{ article.title }}
+						{{ post.title }}
 					</div>
 					<div>{{ post.date.readable.slice(0, -6) }}</div>
 				</a>
 				<div class="flex items-center justify-between text-gray-500 dark:text-gray-300">
 					<div>
 						Written by
-						<span class="font-semibold">{{ article.author }}</span>
+						<span class="font-semibold">{{ post.author }}</span>
 					</div>
-					<span v-if="article.tags">
+					<span v-if="post.tags">
 						<ul>
-							<li class="inline" :key="tag" v-for="tag in article.tags">
-								#{{ tag }}
-							</li>
+							<li class="inline" :key="tag" v-for="tag in post.tags">#{{ tag }}</li>
 						</ul>
 					</span>
 				</div>
 			</div>
 		</div>
-		<div v-if="data.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
+		<div v-if="postsByYear.length === 0" class="my-4">
+			Nothing here just yet, but we're cooking.
+		</div>
 	</div>
 </template>
 
