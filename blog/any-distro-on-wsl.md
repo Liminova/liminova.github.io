@@ -10,6 +10,7 @@ This guide will take you step-by-step through the process of creating a WSL2 Lin
 
 <details>
 <summary>Ranting</summary>
+
 I've been using Ubuntu on WSL and Ubuntu Server on my server for years. At the time of writing, Canonical has released Ubuntu 24.04 LTS with many updates, especially in the toolchains. However, it feels bloated to me; I prefer something minimal and stable, but this isn't enough reason for me to switch distributions yet. A few days ago, I SSHed into my server and ran a regular `sudo apt update`, but I encountered a warning about a conflicting update. It suggested I run `apt --fix-broken install`, which I did, and it broke many system packages.
 
 I still wanted to use Ubuntu Server, so I downloaded the latest installation image, only to find that my server doesn't work with the GRUB bootloader. It works to boot installed Linux, but not when booting the Linux installation image, so I had to use Syslinux. Since Ubuntu 22, they switched to GRUB for the installation image, so I opted for version 20. However, for some reason, it couldn't resolve the IP address for some repositories when installing additional packages, and that was the last straw for me.
