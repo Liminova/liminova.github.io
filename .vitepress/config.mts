@@ -21,6 +21,7 @@ export default defineConfig({
 			copyright:
 				'Copyright © 2024-present <a href="https://github.com/Liminova">Liminova</a>.',
 		},
+		externalLinkIcon: true,
 	},
 	head: [
 		["link", { rel: "icon", href: "/favicon/favicon.ico" }],
