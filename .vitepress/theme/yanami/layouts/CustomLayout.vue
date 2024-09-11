@@ -26,7 +26,7 @@ watch(
 			</h1>
 			<h2 class="my-2">
 				<ul>
-					<li>{{ formatDate(useData().frontmatter.value.date).string }}</li>
+					<li>{{ formatDate(useData().frontmatter.value.date).readable }}</li>
 					<li>
 						Written by
 						<span class="font-semibold">{{ useData().frontmatter.value.author }}</span>

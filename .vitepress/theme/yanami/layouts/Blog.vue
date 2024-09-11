@@ -33,7 +33,7 @@ const data = computed(() => useYearSort(posts));
 					<div class="text-xl">
 						{{ article.title }}
 					</div>
-					<div>{{ article.date.string.slice(0, -6) }}</div>
+					<div>{{ post.date.readable.slice(0, -6) }}</div>
 				</a>
 				<div class="flex items-center justify-between text-gray-500 dark:text-gray-300">
 					<div>

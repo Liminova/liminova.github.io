@@ -8,8 +8,8 @@ export function formatDate(raw: string): Post["date"] {
 	date.setUTCHours(12);
 	return {
 		original: raw,
-		time: Number(date),
-		string: date.toLocaleDateString("en-US", {
+		unixMilliseconds: Number(date),
+		readable: date.toLocaleDateString("en-US", {
 			year: "numeric",
 			month: "long",
 			day: "numeric",

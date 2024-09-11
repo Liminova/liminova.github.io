@@ -6,9 +6,9 @@ export interface Post {
 	url: string;
 	author: string;
 	date: {
-		original: string;
-		time: number;
-		string: string;
+		original: string; // ISO 8601 date string
+		unixMilliseconds: number; // Unix timestamp
+		readable: string; // Human-readable date string
 	};
 	excerpt?: string;
 	tags?: Array<string>;
@@ -37,6 +37,6 @@ export default createContentLoader(patterns, {
 				date: formatDate(frontmatter.date as string),
 				tags: frontmatter.tags as Array<string>,
 			}))
-			.sort((a, b) => b.date.time - a.date.time);
+			.sort((a, b) => b.date.unixMilliseconds - a.date.unixMilliseconds);
 	},
 });
