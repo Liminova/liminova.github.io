@@ -1,5 +1,5 @@
 ---
-title: "Last guide you'll ever need: <your distro> on WSL2"
+title: "Last guide you'll ever need: [your distro] on WSL2"
 date: 2024-09-11
 author: Delnegend
 categories: ["misc"]
