@@ -25,7 +25,6 @@ onMounted(() => {
 		isMobile.value = e.matches;
 	});
 });
-
 </script>
 
 <template>
@@ -81,7 +80,11 @@ onMounted(() => {
 		<!-- mobile layout -->
 
 		<div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4" v-if="isMobile">
-			<div v-for="contest in data" :key="contest.time" class="flex size-full flex-col justify-between rounded-md border">
+			<div
+				v-for="contest in data"
+				:key="contest.time"
+				class="flex size-full flex-col justify-between rounded-md border"
+			>
 				<div class="text-balance border-b px-4 py-3 text-center text-lg font-semibold">
 					<span v-if="contest.short">{{ contest.short }}</span>
 					<span v-else>{{ contest.name }}</span>
@@ -93,8 +96,12 @@ onMounted(() => {
 						<span class="text-3xl font-black">{{ contest.placement }}</span>
 					</div>
 					<div>
-						<div v-if="contest.ctfPoints"><span class="font-bold">{{ contest.ctfPoints }}</span> points</div>
-						<div v-if="contest.ctfRating"><span class="font-bold">{{ contest.ctfRating }}</span> rating</div>
+						<div v-if="contest.ctfPoints">
+							<span class="font-bold">{{ contest.ctfPoints }}</span> points
+						</div>
+						<div v-if="contest.ctfRating">
+							<span class="font-bold">{{ contest.ctfRating }}</span> rating
+						</div>
 					</div>
 				</div>
 
@@ -102,6 +109,8 @@ onMounted(() => {
 			</div>
 		</div>
 
-		<div v-if="props.data.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
+		<div v-if="props.data.length === 0" class="my-4">
+			Nothing here just yet, but we're cooking.
+		</div>
 	</div>
 </template>
