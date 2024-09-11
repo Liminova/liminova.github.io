@@ -72,56 +72,72 @@ At this point, you should see the `Fedora` distro in the WSL distro list.
 
 ## Post-installation
 
-Set default distro for WSL
-```powershell
-wsl --set-default Fedora
-```
+- Set default distro for WSL
+    ```powershell
+    wsl --set-default Fedora
+    ```
 
-Enter the distro
-```powershell
-wsl
-```
+- Path fixes
 
-Upon starting, you should expect a bunch of `ERROR: UtilTranslatePathList` messages. This is because Fedora was not shut down ["properly"](https://askubuntu.com/a/1442829) after when we use `docker run` to pull the image, create a container, run a command, and exit. To resolve this, terminate the WSL from Windows, not from within, and then relaunch it.
-```powershell
-wsl --terminate Fedora
-wsl
-```
-> In the future you should avoid shutdown WSL from the inside, use `wsl --shutdown`.
+    Enter the distro
+    ```powershell
+    wsl
+    ```
 
-Update & install additional packages
-```bash
-dnf update
-dnf install wget curl sudo ncurses dnf-plugins-core dnf-utils passwd findutils git nano
-```
+    Upon starting, you should expect a bunch of `ERROR: UtilTranslatePathList` messages. This is because Fedora was not shut down ["properly"](https://askubuntu.com/a/1442829) after when we use `docker run` to pull the image, create a container, run a command, and exit. To resolve this, terminate the WSL from Windows, not from within, and then relaunch it.
+    ```powershell
+    wsl --terminate Fedora
+    wsl
+    ```
+    > In the future you should avoid shutdown WSL from the inside, use `wsl --shutdown`.
 
-Add user & set password
-```bash
-useradd -G wheel yourusername
-passwd yourusername
-```
+- Update & install additional packages
+    > The term "essential" is subjective, but commonly, developers would require tools like `wget`, `curl`, `sudo`, and `git` for development tasks. However, these are not always included in Docker images by default since their primary use is for deployment.
+    ```bash
+    dnf update
+    dnf install wget curl sudo git passwd ncurses dnf-plugins-core dnf-utils findutils nano
+    ```
 
-Enable `systemd` and set default user in `wsl.conf`
-```bash
-sudo nano /etc/wsl.conf
-```
+-   Add user & set password
+    ```bash
+    useradd -G wheel yourusername
+    passwd yourusername
+    ```
 
-Add the following lines
-```bash
-[boot]
-systemd = true
+- Set default user in `wsl.conf` & enable `systemd`
+    ```bash
+    sudo nano /etc/wsl.conf
+    ```
 
-[user]
-default = yourusername
-```
-then restart WSL
-```powershell
-wsl --shutdown
-wsl
-```
+    Add the following lines
+    ```bash
+    [boot]
+    systemd = true
+
+    [user]
+    default = yourusername
+    ```
+    > Omit the `systemd` part if your distro doesn't use systemd.
+
+    then restart WSL
+    ```powershell
+    wsl --shutdown
+    wsl
+    ```
 
 ## Miscellaneous
+### WSLg
+Follow [this guide](https://github.com/microsoft/wslg/wiki/Diagnosing-%22cannot-open-display%22-type-issues-with-WSLg) from Microsoft to troubleshoot all "cannot open display" type issues with WSLg. For Fedora I only need to create this symlink
+```bash
+ln -s /mnt/wslg/.X11-unix /tmp/.X11-unix
+```
+and install GLES (OpenGL for Embedded Systems).
+```bash
+sudo dnf install libglvnd-gles
+```
+Everything else, X11 or Wayland-related, should be included in the dependency list of the GUI application you're installing.
 
+### Taskbar Shortcut
 If you're using Windows Terminal (btw you should), you can create a shortcut to open the WSL distro in Windows Terminal and pin it to the taskbar.
 - Right-click on desktop > `New` > `Shortcut`
 - Paste the following path
@@ -174,12 +190,14 @@ If you're using Windows Terminal (btw you should), you can create a shortcut to 
     ```
 
 ## References
-- [Import any Linux distribution to use with WSL](https://learn.microsoft.com/en-us/windows/wsl/use-custom-distro)
-- [Using Fedora 33 with Microsoft’s WSL2](https://fedoramagazine.org/wsl-fedora-33/)
-- [How to set default user for manually installed WSL distro?](https://superuser.com/a/1566031)
-- [Multiple UtilTranslatePathList errors when restarting Ubuntu on WSL after a shutdown](https://askubuntu.com/a/1442829)
-- [Advanced settings configuration in WSL](https://learn.microsoft.com/en-us/windows/wsl/wsl-config)
-- [Basic commands for WSL](https://learn.microsoft.com/en-us/windows/wsl/basic-commands)
+- [Import any Linux distribution to use with WSL | Microsoft](https://learn.microsoft.com/en-us/windows/wsl/use-custom-distro)
+- [Using Fedora 33 with Microsoft’s WSL2 | Fedora Magazine](https://fedoramagazine.org/wsl-fedora-33/)
+- [How to set default user for manually installed WSL distro? | superuser](https://superuser.com/a/1566031)
+- [Multiple UtilTranslatePathList errors when restarting Ubuntu on WSL after a shutdown | AskUbuntu](https://askubuntu.com/a/1442829)
+- [Advanced settings configuration in WSL | Microsoft](https://learn.microsoft.com/en-us/windows/wsl/wsl-config)
+- [Basic commands for WSL | Microsoft](https://learn.microsoft.com/en-us/windows/wsl/basic-commands)
+- [libGLESv2.so.2: cannot open shared object file: No such file or directory | Qt Forum](https://forum.qt.io/topic/137040/libglesv2-so-2-cannot-open-shared-object-file-no-such-file-or-directory)
+- [Diagnosing "cannot open display" type issues with WSLg | GitHub - wslg](https://github.com/microsoft/wslg/wiki/Diagnosing-%22cannot-open-display%22-type-issues-with-WSLg)
 
 <style>
 main img {
