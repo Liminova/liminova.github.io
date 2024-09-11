@@ -1,7 +1,33 @@
 import type { Post } from "../../../posts.data";
 
 /**
- * Sort posts by year.
+ * Group posts by year.
+ *
+ * Example:
+ * Input
+ * ```js
+ * [ { date: { original: "2022-01-01" } },
+ *   { date: { original: "2023-02-01" } },
+ *   { date: { original: "2023-03-01" } },
+ *   { date: { original: "2024-01-01" } },
+ *   { date: { original: "2024-02-01" } } ]
+ * ```
+ * Output
+ * ```js
+ * [
+ *   [
+ *     { date: { original: "2022-01-01" } }
+ *   ],
+ *  [
+ *     { date: { original: "2023-02-01" } },
+ *     { date: { original: "2023-03-01" } }
+ *   ],
+ *   [
+ *     { date: { original: "2024-01-01" } },
+ *     { date: { original: "2024-02-01" } } ]
+ *   ]
+ * ]
+ * ```
  */
 export function useYearSort(posts: Array<Post>): Array<Array<Post>> {
 	const data: Array<Array<Post>> = [];
