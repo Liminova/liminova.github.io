@@ -1,7 +1,7 @@
 import type { Post } from "../../../posts.data";
 
 /**
- * Format a date string to a human readable format.
+ * Format a raw date string to a human readable format + Unix timestamp.
  */
 export function formatDate(raw: string): Post["date"] {
 	const date = new Date(raw);
