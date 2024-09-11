@@ -10,8 +10,8 @@ export interface Post {
 		time: number;
 		string: string;
 	};
-	excerpt: string | undefined;
-	tags: Array<string> | undefined;
+	excerpt?: string;
+	tags?: Array<string>;
 }
 
 declare const data: Array<Post>;
@@ -28,18 +28,15 @@ if (process.env.NODE_ENV !== "production") {
 export default createContentLoader(patterns, {
 	excerpt: true,
 	transform(raw): Array<Post> {
-		/* eslint-disable */
 		return raw
 			.map(({ url, frontmatter, excerpt }) => ({
-				title: frontmatter.title,
+				title: frontmatter.title as string,
 				url,
-				author: frontmatter.author,
+				author: frontmatter.author as string,
 				excerpt,
-				date: formatDate(frontmatter.date),
-				tags: frontmatter.tags,
-			}
-			))
+				date: formatDate(frontmatter.date as string),
+				tags: frontmatter.tags as Array<string>,
+			}))
 			.sort((a, b) => b.date.time - a.date.time);
-		/* eslint-enable */
 	},
 });
