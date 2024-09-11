@@ -47,4 +47,6 @@ const data = [
 ];
 </script>
 
-<Contests :data="data" />
+<ClientOnly>
+    <Contests :data="data" />
+</ClientOnly>
