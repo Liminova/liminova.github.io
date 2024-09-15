@@ -10,7 +10,7 @@ export interface Post {
 		unixMilliseconds: number; // Unix timestamp
 		readable: string; // Human-readable date string
 	};
-	excerpt?: string;
+	description?: string;
 	tags?: Array<string>;
 }
 
@@ -26,14 +26,14 @@ if (process.env.NODE_ENV !== "production") {
  * Load posts from markdown files.
  */
 export default createContentLoader(patterns, {
-	excerpt: true,
+	excerpt: false,
 	transform(raw): Array<Post> {
 		return raw
-			.map(({ url, frontmatter, excerpt }) => ({
+			.map(({ url, frontmatter }) => ({
 				title: frontmatter.title as string,
 				url,
 				author: frontmatter.author as string,
-				excerpt,
+				description: frontmatter.description as string | undefined,
 				date: formatDate(frontmatter.date as string),
 				tags: frontmatter.tags as Array<string>,
 			}))
