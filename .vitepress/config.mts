@@ -30,4 +30,25 @@ export default defineConfig({
 		["link", { rel: "apple-touch-icon", href: "/favicon/apple-touch-icon.png" }],
 		["link", { rel: "manifest", href: "/favicon/site.webmanifest" }],
 	],
+	transformPageData(pageData, ctx) {
+		const excerpt = pageData.frontmatter.excerpt as string;
+		const thumbnail = pageData.frontmatter.thumbnail as string;
+		if (!pageData.frontmatter.head) {
+			pageData.frontmatter.head = [];
+		}
+		if (excerpt) {
+			pageData.frontmatter.head.push(
+				["meta", { property: "description", content: excerpt }],
+				["meta", { property: "og:description", content: excerpt }],
+				["meta", { property: "twitter:description", content: excerpt }]
+			);
+		}
+		if (thumbnail) {
+			pageData.frontmatter.head.push(
+				["meta", { property: "og:image", content: thumbnail }],
+				["meta", { property: "twitter:image", content: thumbnail }],
+				["meta", { name: "twitter:card", content: "summary_large_image" }]
+			);
+		}
+	},
 });
