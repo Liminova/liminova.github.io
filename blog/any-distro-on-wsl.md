@@ -125,18 +125,61 @@ At this point, you should see the `Fedora` distro in the WSL distro list.
     wsl
     ```
 
-## Miscellaneous
-### WSLg
-Follow [this guide](https://github.com/microsoft/wslg/wiki/Diagnosing-%22cannot-open-display%22-type-issues-with-WSLg) from Microsoft to troubleshoot all "cannot open display" type issues with WSLg. For Fedora I only need to create this symlink
-```bash
-ln -s /mnt/wslg/.X11-unix /tmp/.X11-unix
-```
-and install GLES (OpenGL for Embedded Systems).
-```bash
-sudo dnf install libglvnd-gles
-```
+## WSLg
+- Systemd service to recreate X11 socket symlink
+    ```bash
+    sudo nano /usr/lib/systemd/system/wslg-tmp-x11.service
+    ```
+
+    Paste the following contents
+
+    ```
+    [Unit]
+    Description=Recreate WSLg X display file link after /tmp mounted
+    ConditionPathIsDirectory=/mnt/wslg/.X11-unix
+    Requires=tmp.mount
+    After=tmp.mount
+    Before=systemd-tmpfiles-setup.service
+
+    [Service]
+    Type=oneshot
+    ExecStart=/bin/chmod +t /mnt/wslg/.X11-unix
+    ExecStart=-/bin/rmdir /tmp/.X11-unix
+    ExecStart=/bin/ln -sf /mnt/wslg/.X11-unix /tmp/.X11-unix
+    #ExecStart=/bin/mount -m -o bind /mnt/wslg/.X11-unix /tmp/.X11-unix
+
+    [Install]
+    WantedBy=default.target
+    ```
+- Systemd service to recreate WSLg sockets files in `$XDG_RUNTIME_DIR`
+    ```bash
+    sudo nano /usr/lib/systemd/user/wslg-runtime-dir.service
+    ```
+
+    Paste the following contents
+
+    ```
+    [Unit]
+    Description=Recreate WSLg sockets files in $XDG_RUNTIME_DIR
+    ConditionPathIsDirectory=/mnt/wslg/runtime-dir
+
+    [Service]
+    Type=oneshot
+    ExecStart=/bin/sh -c "ln -fs /mnt/wslg/runtime-dir/* "%t
+
+    [Install]
+    WantedBy=default.target
+    ```
+
+- Start these services
+    ```bash
+    sudo systemctl enable wslg-tmp-x11
+    sudo systemctl --global enable wslg-runtime-dir
+    ```
+
 Everything else, X11 or Wayland-related, should be included in the dependency list of the GUI application you're installing.
 
+## Miscellaneous
 ### Taskbar Shortcut
 If you're using Windows Terminal (btw you should), you can create a shortcut to open the WSL distro in Windows Terminal and pin it to the taskbar.
 - Right-click on desktop > `New` > `Shortcut`
@@ -198,6 +241,7 @@ If you're using Windows Terminal (btw you should), you can create a shortcut to 
 - [Basic commands for WSL | Microsoft](https://learn.microsoft.com/en-us/windows/wsl/basic-commands)
 - [libGLESv2.so.2: cannot open shared object file: No such file or directory | Qt Forum](https://forum.qt.io/topic/137040/libglesv2-so-2-cannot-open-shared-object-file-no-such-file-or-directory)
 - [Diagnosing "cannot open display" type issues with WSLg | GitHub - wslg](https://github.com/microsoft/wslg/wiki/Diagnosing-%22cannot-open-display%22-type-issues-with-WSLg)
+- [viruscamp/wslg-links | Recreate WSLg sockets after `/tmp` and `$XDG_RUNTIME_DIR` mounted](https://github.com/viruscamp/wslg-links)
 
 <style>
 main img {
