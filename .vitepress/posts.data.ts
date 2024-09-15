@@ -12,6 +12,7 @@ export interface Post {
 	};
 	description?: string;
 	tags?: Array<string>;
+	thumbnail?: string;
 }
 
 declare const data: Array<Post>;
@@ -36,6 +37,7 @@ export default createContentLoader(patterns, {
 				description: frontmatter.description as string | undefined,
 				date: formatDate(frontmatter.date as string),
 				tags: frontmatter.tags as Array<string>,
+				thumbnail: frontmatter.thumbnail as string | undefined,
 			}))
 			.sort((a, b) => b.date.unixMilliseconds - a.date.unixMilliseconds);
 	},
