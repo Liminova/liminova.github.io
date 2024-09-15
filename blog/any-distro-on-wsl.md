@@ -4,9 +4,11 @@ date: 2024-09-11
 author: Delnegend
 categories: ["misc"]
 tags: ["fedora", "wsl", "wsl2", "linux", "windows"]
+description: They should've told us about this waaay before July 2024. Turning any container image into WSL2 distro, I'll be using `fedora` to demonstrate.
+thumbnail: "./any-distro-on-wsl/thumb.jpg"
 ---
 
-This guide will take you step-by-step through the process of creating a WSL2 Linux distribution from any Docker container. While we use `fedora` as our example, the same steps can be applied to `archlinux`, `almalinux`, or even `alpine`, except for anything related to their package managers of course.
+They should've told us about this waaay before July 2024. Turning any container image into WSL2 distro, I'll be using `fedora` to demonstrate.
 
 <details>
 <summary>Ranting</summary>
@@ -27,7 +29,7 @@ Fedora Remix requires me to wait for their fork to upgrade before I can proceed 
 > There are a ton of guides on the internet but here's one to avoid jumping to another article if you haven't installed it yet.
 
 - `Windows + S` > type `Turn Windows features`
-- Open Turn Windows features on or off`
+- Open `Turn Windows features on or off`
 - Enable `Virtual Machine Platform` and `Windows Subsystem for Linux` > `OK` > Restart
 - `Windows + X` > `Terminal` or `PowerShell`
 - `wsl --update`
