@@ -36,7 +36,7 @@ export default createContentLoader(patterns, {
 				author: frontmatter.author as string,
 				description: frontmatter.description as string | undefined,
 				date: formatDate(frontmatter.date as string),
-				tags: frontmatter.tags as Array<string>,
+				tags: frontmatter.tags as Array<string> | undefined,
 				thumbnail: frontmatter.thumbnail as string | undefined,
 			}))
 			.sort((a, b) => b.date.unixMilliseconds - a.date.unixMilliseconds);
