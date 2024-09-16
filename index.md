@@ -11,7 +11,7 @@ hero:
 import { useData } from "vitepress";
 
 const data = useData();
-const members = data.site.value.themeConfig.members;
+const members = data.theme.value.members;
 </script>
 
 <h1>Meet the Team</h1>
