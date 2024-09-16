@@ -91,7 +91,7 @@ At this point, you should see the `Fedora` distro in the WSL distro list.
     wsl --terminate Fedora
     wsl
     ```
-    > In the future you should avoid shutdown WSL from the inside, use `wsl --shutdown`.
+    > In the future you should avoid shutting down WSL from the inside, use `wsl --shutdown`.
 
 - Update & install additional packages
     > The term "essential" is subjective, but commonly, developers would require tools like `wget`, `curl`, `sudo`, and `git` for development tasks. However, these are not always included in Docker images by default since their primary use is for deployment.
