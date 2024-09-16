@@ -4,6 +4,7 @@ date: 2024-08-27
 author: Rylie
 categories: ["ctf"]
 tags: ["web", "idekctf"]
+description: We participated in idekCTF 2024, as extra preparation for SekaiCTF 2024, and wow, it is one hell of a difficult event. We struggled quite a lot - barely solving a misc challenge, one rev challenge and one web challenge - the one you're reading about now.
 ---
 
 > Just to warm you up for the next Fight :"D

@@ -4,6 +4,7 @@ date: 2024-08-13
 author: beerpsi
 categories: ["ctf"]
 tags: ["misc", "litctf"]
+description:  I was invited to play Lexington Informatics Tournament CTF 2024 with Liminova. This is my first time playing CTF, and while we did not win, we had two first-solves, one of which is titled Kuwahara, the problem you're reading about now.
 ---
 
 > Finally a good stego problem??

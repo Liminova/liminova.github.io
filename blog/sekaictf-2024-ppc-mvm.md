@@ -4,6 +4,7 @@ date: 2024-08-27
 author: NamSPro
 categories: ["ctf"]
 tags: ["ppc", "sekaictf"]
+description:  Continuing with last year's PPC success, I tackled this first. Too bad ours is only the 4th fastest solve...
 ---
 
 > Ah, yes, competitive programming... This would be rated codeforces-800
