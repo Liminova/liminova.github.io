@@ -78,6 +78,7 @@ const members = data.theme.value.members;
 						</ul>
 					</span>
 				</div>
+				<hr class="my-3" v-if="index !== posts.length - 1" />
 			</div>
 		</div>
 		<div v-if="postsByYear.length === 0" class="my-4">
