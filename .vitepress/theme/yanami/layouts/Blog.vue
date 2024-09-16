@@ -19,7 +19,7 @@ const postsByYear = computed(() => useYearSort(posts));
 			<div class="my-5 text-2xl font-medium">
 				{{ posts[0].date.readable.slice(-4) }}
 			</div>
-			<div class="mx-3 my-5" v-for="(post, index) in posts" :key="index">
+			<div class="mx-3 my-6" v-for="(post, index) in posts" :key="index">
 				<a
 					:href="post.url"
 					:key="index"
@@ -30,15 +30,19 @@ const postsByYear = computed(() => useYearSort(posts));
 							color 0.3s ease;
 					"
 				>
-					<div class="text-xl">
+					<div class="text-xl font-semibold">
 						{{ post.title }}
 					</div>
-					<div>{{ post.date.readable.slice(0, -6) }}</div>
 				</a>
-				<div class="flex items-center justify-between text-gray-500 dark:text-gray-300">
+				<div
+					class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-300"
+				>
+					{{ post.description }}
+				</div>
+				<div class="my-1 flex items-center justify-between text-sm">
 					<div>
-						Written by
 						<span class="font-semibold">{{ post.author }}</span>
+						<span> • {{ post.date.readable.slice(0, -6) }}</span>
 					</div>
 					<span v-if="post.tags">
 						<ul>
