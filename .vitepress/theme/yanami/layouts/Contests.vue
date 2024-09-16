@@ -67,7 +67,7 @@ onMounted(() => {
 								<span class="text-xl font-semibold">{{ contest.ctfPoints }}</span>
 								points
 							</div>
-							<div>
+							<div v-if="contest.ctfRating">
 								<span class="text-xl font-semibold">{{ contest.ctfRating }}</span>
 								rating
 							</div>
