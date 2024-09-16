@@ -164,7 +164,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 		for (const { src, dest } of assetsCopyQueue) {
 			copyFile(src, dest, (err) => {
 				if (err) {
-					console.error(err);
+					throw err;
 				}
 			});
 		}
