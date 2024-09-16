@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue";
 
 interface Contest {
 	name: string;
@@ -17,7 +17,11 @@ const props = defineProps({
 	},
 });
 
-const isMobile = ref(window.innerWidth <= 768);
+const isMobile = ref(false);
+
+onBeforeMount(() => {
+	isMobile.value = window.innerWidth <= 768;
+});
 
 onMounted(() => {
 	const mediaQuery = window.matchMedia("(max-width: 768px)");
