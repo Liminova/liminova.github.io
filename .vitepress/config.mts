@@ -2,11 +2,9 @@ import { createHash } from "node:crypto";
 import { copyFile, readFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { type DefaultTheme, defineConfigWithTheme } from "vitepress";
-import { AtSign } from "lucide-vue-next";
-import type { FunctionalComponent } from "vue";
 
 type Head = Array<[string, Record<string, string>]>;
-type ThemeConfig = DefaultTheme.Config & { members?: Array<TeamMember> };
+export type ThemeConfig = DefaultTheme.Config & { members?: Array<TeamMember> };
 interface TeamMember {
 	avatar: string;
 	name: string;
