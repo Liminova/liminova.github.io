@@ -29,6 +29,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.10)
+      vue3-simple-icons:
+        specifier: ^13.2.0
+        version: 13.2.0(typescript@5.5.4)
     devDependencies:
       '@types/node':
         specifier: ^22.5.3
@@ -1734,6 +1737,9 @@ packages:
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
+
+  vue3-simple-icons@13.2.0:
+    resolution: {integrity: sha512-RCAr9gCQEDtHbQZ5xBPXm4+y6RWUZkER3yimb/XgJlAwK0UuwecTLw3kGXHvemfaCCSDBO3PqyPryIXHyZMgWw==}
 
   vue@3.5.0:
     resolution: {integrity: sha512-1t70favYoFijwfWJ7g81aTd32obGaAnKYE9FNyMgnEzn3F4YncRi/kqAHHKloG0VXTD8vBYMhbgLKCA+Sk6QDw==}
@@ -3502,6 +3508,12 @@ snapshots:
       semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
+
+  vue3-simple-icons@13.2.0(typescript@5.5.4):
+    dependencies:
+      vue: 3.5.0(typescript@5.5.4)
+    transitivePeerDependencies:
+      - typescript
 
   vue@3.5.0(typescript@5.5.4):
     dependencies:

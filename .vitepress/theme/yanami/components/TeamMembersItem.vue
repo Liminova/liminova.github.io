@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import VPLink from "vitepress/dist/client/theme-default/components/VPLink.vue";
-import VPSocialLinks from "vitepress/dist/client/theme-default/components/VPSocialLinks.vue";
+import VPSocialLinks from "./VPSocialLinks.vue";
 import type { DefaultTheme } from "vitepress/theme";
 
 interface Props {

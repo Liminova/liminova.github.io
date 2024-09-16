@@ -1,15 +1,33 @@
-/* eslint-disable no-console */
-
 import { createHash } from "node:crypto";
 import { copyFile, readFileSync } from "node:fs";
 import { basename, join } from "node:path";
-import { defineConfig } from "vitepress";
+import { type DefaultTheme, defineConfigWithTheme } from "vitepress";
+import { AtSign } from "lucide-vue-next";
+import type { FunctionalComponent } from "vue";
 
 type Head = Array<[string, Record<string, string>]>;
+type ThemeConfig = DefaultTheme.Config & { members?: Array<TeamMember> };
+interface TeamMember {
+	avatar: string;
+	name: string;
+	title?: string;
+	org?: string;
+	orgLink?: string;
+	desc?: string;
+	links?: Array<SocialLink>;
+	sponsor?: string;
+	actionText?: string;
+}
+interface SocialLink {
+	icon: SocialLinkIcon;
+	link: string;
+	ariaLabel?: string;
+}
+export type SocialLinkIcon = DefaultTheme.SocialLinkIcon | "osu" | "mail";
 
 const assetsCopyQueue: Array<{ src: string; dest: string }> = [];
 
-export default defineConfig({
+export default defineConfigWithTheme<ThemeConfig>({
 	title: "Liminova",
 	description: "We are a group of developers and CTF enjoyers!",
 	cleanUrls: true,
@@ -31,6 +49,61 @@ export default defineConfig({
 				'Copyright © 2024-present <a href="https://github.com/Liminova">Liminova</a>.',
 		},
 		externalLinkIcon: true,
+		members: [
+			{
+				avatar: "/rylie.png",
+				name: "Rylie",
+				title: "resident troller, founder of CTF division",
+				links: [
+					{ icon: "github", link: "https://github.com/j1nxie" },
+					{ icon: "twitter", link: "https://x.com/_lumi9" },
+					{ icon: "osu", link: "https://osu.ppy.sh/u/14585583" },
+				],
+			},
+			{
+				avatar: "https://avatars.githubusercontent.com/u/107946882?v=4",
+				name: "Peachy",
+				links: [{ icon: "github", link: "https://github.com/Peachy72" }],
+			},
+			{
+				avatar: "/delnegend.mp4",
+				name: "Delnegend",
+				links: [
+					{ icon: "github", link: "https://github.com/Delnegend" },
+					{ icon: "mail", link: "mailto:kiennguyen19323@gmail.com" },
+				],
+			},
+			{
+				avatar: "/ellimac.mp4",
+				name: "Ellimac",
+				links: [{ icon: "github", link: "https://github.com/EllimacH" }],
+			},
+			{
+				avatar: "https://avatars.githubusercontent.com/u/101856461?v=4",
+				name: "Maxim",
+				links: [{ icon: "github", link: "https://github.com/GHCMaxim" }],
+			},
+			{
+				avatar: "/namspro.png",
+				name: "NamSPro",
+				title: "founder of competitive programming/gaming division",
+				links: [
+					{ icon: "github", link: "https://github.com/NamSPro" },
+					{ icon: "osu", link: "https://osu.ppy.sh/u/11387006" },
+				],
+			},
+			{
+				avatar: "https://avatars.githubusercontent.com/u/92439990?v=4",
+				name: "beerpsi",
+				links: [{ icon: "github", link: "https://github.com/beer-psi" }],
+			},
+			{
+				avatar: "/sorako.jpg",
+				name: "Sorako",
+				title: "happy to be here",
+				links: [],
+			},
+		],
 	},
 	head: [
 		["link", { rel: "icon", href: "/favicon/favicon.ico" }],
