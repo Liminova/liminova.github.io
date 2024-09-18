@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .tag {
-    @apply mr-1 inline rounded-md bg-gray-100 px-2.5 py-1 text-center text-xs mb-1;
+    @apply mr-1 inline rounded-md bg-gray-100 px-2.5 py-1 text-center text-xs mb-1 dark:text-gray-500;
 }
