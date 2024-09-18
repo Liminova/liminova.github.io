@@ -44,7 +44,7 @@ const members = data.theme.value.members;
 					{{ post.description }}
 				</div>
 				<div class="my-2 flex items-center justify-between text-sm">
-					<div class="flex items-center">
+					<div class="flex min-w-fit items-center">
 						<video
 							v-if="
 								members
@@ -72,11 +72,11 @@ const members = data.theme.value.members;
 							• {{ post.date.readable.slice(0, -6) }}
 						</span>
 					</div>
-					<span v-if="post.tags">
-						<ul>
-							<li class="inline" :key="tag" v-for="tag in post.tags">#{{ tag }}</li>
-						</ul>
-					</span>
+					<ul class="ml-8 flex max-w-fit flex-wrap justify-end" v-if="post.tags">
+						<li class="tag" :key="tag" v-for="tag in post.tags">
+							{{ tag }}
+						</li>
+					</ul>
 				</div>
 				<hr class="my-3" v-if="index !== posts.length - 1" />
 			</div>
@@ -88,10 +88,6 @@ const members = data.theme.value.members;
 </template>
 
 <style>
-li:not(:last-child)::after {
-	content: " ";
-}
-
 .avatar {
 	position: relative;
 	flex-shrink: 0;
