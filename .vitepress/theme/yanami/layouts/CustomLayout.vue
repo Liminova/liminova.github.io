@@ -7,11 +7,13 @@ import DefaultTheme from "vitepress/theme";
 import { watch } from "vue";
 import { formatDate } from "../libs";
 import type { ThemeConfig } from "../../../config.mts";
+import TagBadges from "../components/TagBadges.vue";
 
 const { Layout } = DefaultTheme;
 const route = useRoute();
 const data = useData<ThemeConfig>();
 const members = data.theme.value.members;
+const post = data.frontmatter.value;
 
 watch(
 	() => route.path,
@@ -32,17 +34,11 @@ watch(
 					<video
 						v-if="
 							members
-								?.filter(
-									(member) => member.name === useData().frontmatter.value.author
-								)[0]
+								?.filter((member) => member.name === post.author)[0]
 								.avatar.endsWith('.mp4')
 						"
 						class="mr-2 inline-block aspect-square w-8 rounded-full"
-						:src="
-							members?.filter(
-								(member) => member.name === useData().frontmatter.value.author
-							)[0].avatar
-						"
+						:src="members?.filter((member) => member.name === post.author)[0].avatar"
 						autoplay
 						muted
 						loop
@@ -50,23 +46,15 @@ watch(
 					/>
 					<img
 						class="mr-2 inline-block aspect-square w-8 rounded-full"
-						:src="
-							members?.filter(
-								(member) => member.name === useData().frontmatter.value.author
-							)[0].avatar
-						"
+						:src="members?.filter((member) => member.name === post.author)[0].avatar"
 						v-else
 					/>
 					<span>
-						<span class="font-semibold">{{ useData().frontmatter.value.author }}</span>
-						• {{ formatDate(useData().frontmatter.value.date).readable }}
+						<span class="font-semibold">{{ post.author }}</span>
+						• {{ formatDate(post.date).readable }}
 					</span>
 				</div>
-				<ul class="my-3 flex flex-wrap" v-if="useData().frontmatter.value.tags">
-					<li class="tag" :key="tag" v-for="tag in useData().frontmatter.value.tags">
-						{{ tag }}
-					</li>
-				</ul>
+				<TagBadges class="my-3" :tagList="post.tags" v-if="post.tags" />
 			</h2>
 		</template>
 	</Layout>

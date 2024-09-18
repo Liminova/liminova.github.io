@@ -4,6 +4,7 @@ import { useData } from "vitepress";
 import { data as posts } from "../../../posts.data";
 import { useYearSort } from "../libs";
 import type { ThemeConfig } from "../../../config.mts";
+import TagBadges from "../components/TagBadges.vue";
 
 const postsByYear = computed(() => useYearSort(posts));
 const data = useData<ThemeConfig>();
@@ -72,11 +73,7 @@ const members = data.theme.value.members;
 							• {{ post.date.readable.slice(0, -6) }}
 						</span>
 					</div>
-					<ul class="ml-8 flex max-w-fit flex-wrap justify-end" v-if="post.tags">
-						<li class="tag" :key="tag" v-for="tag in post.tags">
-							{{ tag }}
-						</li>
-					</ul>
+					<TagBadges class="ml-8 justify-end" :tagList="post.tags" v-if="post.tags" />
 				</div>
 				<hr class="my-3" v-if="index !== posts.length - 1" />
 			</div>
