@@ -44,7 +44,7 @@ const members = data.theme.value.members;
 				>
 					{{ post.description }}
 				</div>
-				<div class="my-2 flex items-center justify-between text-sm">
+				<div class="my-2 flex flex-wrap items-center justify-between text-sm">
 					<div class="flex min-w-fit items-center">
 						<video
 							v-if="
@@ -73,7 +73,7 @@ const members = data.theme.value.members;
 							• {{ post.date.readable.slice(0, -6) }}
 						</span>
 					</div>
-					<TagBadges class="ml-8 justify-end" :tagList="post.tags" v-if="post.tags" />
+					<TagBadges class="mt-1 justify-end" :tagList="post.tags" v-if="post.tags" />
 				</div>
 				<hr class="my-3" v-if="index !== posts.length - 1" />
 			</div>
