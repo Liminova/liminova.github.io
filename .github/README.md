@@ -1,6 +1,6 @@
 # Liminova's website
 
-![Anna Yanami](./yanami.jpg)
+![Anna Yanami](../public/yanami/s1e5-00.19.19.116.jpg)
 
 codename `yanami`.
 

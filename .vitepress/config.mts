@@ -37,6 +37,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 			{ text: "Home", link: "/" },
 			{ text: "Blog", link: "/blog" },
 			{ text: "Contests", link: "/contests" },
+			{ text: "Wall of Yanami", link: "/wall-of-yanami" },
 		],
 
 		socialLinks: [{ icon: "github", link: "https://github.com/Liminova" }],

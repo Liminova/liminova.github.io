@@ -5,6 +5,7 @@ import TeamMembers from "./yanami/components/TeamMembers.vue";
 import Blog from "./yanami/layouts/Blog.vue";
 import Contests from "./yanami/layouts/Contests.vue";
 import CustomLayout from "./yanami/layouts/CustomLayout.vue";
+import WallOfYanami from "./yanami/layouts/WallOfYanami.vue";
 import { goatcounter } from "./yanami/plugins";
 
 export default {
@@ -14,6 +15,7 @@ export default {
 		app.component("Blog", Blog);
 		app.component("Contests", Contests);
 		app.component("TeamMembers", TeamMembers);
+		app.component("WallOfYanami", WallOfYanami);
 		goatcounter({ id: "liminova" });
 	},
 } satisfies Theme;
