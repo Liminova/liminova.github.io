@@ -3,8 +3,8 @@ import { useData } from "vitepress";
 import { computed } from "vue";
 import type { ThemeConfig } from "../../../config.mts";
 import { data as posts } from "../../../posts.data";
-import { useYearSort } from "../libs";
 import TagBadges from "../components/TagBadges.vue";
+import { useYearSort } from "../libs";
 
 const postsByYear = computed(() => useYearSort(posts));
 const data = useData<ThemeConfig>();

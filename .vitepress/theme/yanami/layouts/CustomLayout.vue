@@ -5,9 +5,9 @@
 import { useData, useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { watch } from "vue";
-import { formatDate } from "../libs";
 import type { ThemeConfig } from "../../../config.mts";
 import TagBadges from "../components/TagBadges.vue";
+import { formatDate } from "../libs";
 
 const { Layout } = DefaultTheme;
 const route = useRoute();
@@ -67,7 +67,7 @@ watch(
 
 <style scoped>
 li {
-	@apply inline;
+	display: inline;
 }
 
 li:not(.tag):not(:last-child)::after {
