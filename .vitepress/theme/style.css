@@ -9,3 +9,9 @@
     --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #3f7bb1, #2e5b97, #274e84, #264a7b, #0e2947);
     --vp-c-brand-1: #274e84;
 }
+
+:root.dark {
+    /* -10 sat, +20 bright */
+    --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #6496c1, #477bbe, #3f6fb2, #3c6bac, #225489);
+    --vp-c-brand-1: #4c81af;
+}
