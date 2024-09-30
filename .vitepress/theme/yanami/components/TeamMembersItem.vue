@@ -35,6 +35,7 @@ withDefaults(
 					:alt="member.name"
 				/>
 			</figure>
+
 			<div class="data">
 				<h1 class="name">
 					{{ member.name }}
