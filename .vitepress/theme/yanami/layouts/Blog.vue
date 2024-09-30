@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { useData } from "vitepress";
+import { computed } from "vue";
+import type { ThemeConfig } from "../../../config.mts";
 import { data as posts } from "../../../posts.data";
 import { useYearSort } from "../libs";
-import type { ThemeConfig } from "../../../config.mts";
 import TagBadges from "../components/TagBadges.vue";
 
 const postsByYear = computed(() => useYearSort(posts));

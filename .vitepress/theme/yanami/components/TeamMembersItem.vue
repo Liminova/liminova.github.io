@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import VPLink from "vitepress/dist/client/theme-default/components/VPLink.vue";
 import VPSocialLinks from "./VPSocialLinks.vue";
-import type { DefaultTheme } from "vitepress/theme";
+import type { TeamMember } from "../../../config.mjs";
 
-interface Props {
-	size?: "small" | "medium";
-	member: DefaultTheme.TeamMember;
-}
-
-withDefaults(defineProps<Props>(), {
-	size: "medium",
-});
+withDefaults(
+	defineProps<{
+		size?: "small" | "medium";
+		member: TeamMember;
+	}>(),
+	{
+		size: "medium",
+	}
+);
 </script>
 
 <template>

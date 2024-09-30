@@ -5,23 +5,15 @@ import { type DefaultTheme, defineConfigWithTheme } from "vitepress";
 
 type Head = Array<[string, Record<string, string>]>;
 export type ThemeConfig = DefaultTheme.Config & { members?: Array<TeamMember> };
-interface TeamMember {
-	avatar: string;
-	name: string;
-	title?: string;
-	org?: string;
-	orgLink?: string;
-	desc?: string;
-	links?: Array<SocialLink>;
-	sponsor?: string;
-	actionText?: string;
-}
-interface SocialLink {
-	icon: SocialLinkIcon;
+
+export type TeamMember = Omit<DefaultTheme.TeamMember, "links"> & {
+	links: Array<SocialLink>;
+};
+
+export interface SocialLink {
+	icon: Omit<DefaultTheme.SocialLinkIcon, "svg"> | "osu" | "mail";
 	link: string;
-	ariaLabel?: string;
 }
-export type SocialLinkIcon = DefaultTheme.SocialLinkIcon | "osu" | "mail";
 
 const assetsCopyQueue: Array<{ src: string; dest: string }> = [];
 
