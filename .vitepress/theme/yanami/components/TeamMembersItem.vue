@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { AtSign } from "lucide-vue-next";
 import VPLink from "vitepress/dist/client/theme-default/components/VPLink.vue";
-import VPSocialLinks from "./VPSocialLinks.vue";
+import { OsuIcon } from "vue3-simple-icons";
 import type { TeamMember } from "../../../config.mjs";
 
 withDefaults(
@@ -54,8 +55,21 @@ withDefaults(
 					</VPLink>
 				</p>
 				<p v-if="member.desc" class="desc" v-html="member.desc" />
+
 				<div v-if="member.links" class="links">
-					<VPSocialLinks :links="member.links" />
+					<a
+						v-for="{ link, icon } in member.links"
+						:key="link"
+						class="flex size-9 items-center justify-center !text-[var(--vp-c-text-2)] transition-colors duration-500 hover:!text-[var(--vp-c-text-1)] hover:duration-200"
+						:href="link"
+						:aria-label="`${icon}`"
+						target="_blank"
+						rel="noopener"
+					>
+						<AtSign v-if="icon === 'mail'" />
+						<OsuIcon v-else-if="icon === 'osu'" />
+						<span v-else :class="`vpi-social-${icon} w-5 h-5`" />
+					</a>
 				</div>
 			</div>
 		</div>
