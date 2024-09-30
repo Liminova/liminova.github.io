@@ -74,15 +74,28 @@ withDefaults(
 				</div>
 			</div>
 		</div>
-		<div v-if="member.sponsor" class="sp">
-			<VPLink class="sp-link" :href="member.sponsor" no-icon>
-				<span class="vpi-heart sp-icon" /> {{ member.actionText || "Sponsor" }}
+
+		<div v-if="member.sponsor" class="sponsor-link">
+			<VPLink
+				class="flex items-center justify-center bg-[var(--vp-c-bg-soft)] p-4 text-center text-sm font-medium text-[var(--vp-c-sponsor)] transition-colors duration-200"
+				:href="member.sponsor"
+				no-icon
+			>
+				<span class="vpi-heart sp-icon mr-2 text-[16px]" />
+				{{ member.actionText || "Sponsor" }}
 			</VPLink>
 		</div>
 	</article>
 </template>
 
 <style scoped>
+.sponsor-link:hover,
+.sponsor-link:focus {
+	outline: none;
+	color: var(--vp-c-white);
+	background-color: var(--vp-c-sponsor);
+}
+
 .TeamMembersItem {
 	display: flex;
 	flex-direction: column;
@@ -227,32 +240,5 @@ withDefaults(
 	display: flex;
 	justify-content: center;
 	height: 56px;
-}
-
-.sp-link {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	padding: 16px;
-	font-size: 14px;
-	font-weight: 500;
-	color: var(--vp-c-sponsor);
-	background-color: var(--vp-c-bg-soft);
-	transition:
-		color 0.25s,
-		background-color 0.25s;
-}
-
-.sp .sp-link.link:hover,
-.sp .sp-link.link:focus {
-	outline: none;
-	color: var(--vp-c-white);
-	background-color: var(--vp-c-sponsor);
-}
-
-.sp-icon {
-	margin-right: 8px;
-	font-size: 16px;
 }
 </style>
