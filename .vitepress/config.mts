@@ -3,7 +3,6 @@ import { copyFile, readFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { type DefaultTheme, defineConfigWithTheme } from "vitepress";
 
-type Head = Array<[string, Record<string, string>]>;
 export type ThemeConfig = DefaultTheme.Config & { members?: Array<TeamMember> };
 
 export type TeamMember = Omit<DefaultTheme.TeamMember, "links"> & {
@@ -104,6 +103,8 @@ export default defineConfigWithTheme<ThemeConfig>({
 		["link", { rel: "manifest", href: "/favicon/site.webmanifest" }],
 	],
 	transformPageData(pageData, ctx) {
+		type Head = Array<[string, Record<string, string>]>;
+
 		const excerpt = pageData.frontmatter.excerpt as string;
 		const thumbnail = pageData.frontmatter.thumbnail as string;
 
