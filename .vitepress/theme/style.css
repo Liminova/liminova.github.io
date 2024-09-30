@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* refer to this: https://coolors.co/3f7bb1-2e5b97-274e84-264a7b-0e2947 */
+/* huge thanks to OrangeJuice for picking the colors! */
+:root {
+    --vp-home-hero-name-color: transparent;
+    --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #3f7bb1, #2e5b97, #274e84, #264a7b, #0e2947);
+    --vp-c-brand-1: #274e84;
+}

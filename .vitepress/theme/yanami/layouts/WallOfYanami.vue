@@ -4,6 +4,8 @@
 		<p class="my-6">
 			A collection of Anna Yanami's frames from Make Heroine ga Oosugiru! - the namesake of
 			this website internally. Why? Why <span class="italic">not?</span>
+			<br />
+			Shoutout to OrangeJuice for skimming through all the episodes and picking these frames.
 		</p>
 		<hr class="my-8" />
 		<div class="md:grid md:grid-cols-2 md:gap-4 lg:grid-cols-3">
