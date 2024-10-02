@@ -65,24 +65,3 @@ import { sorted } from "./Blog.state";
 		<div v-if="sorted.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
 	</div>
 </template>
-
-<style>
-.avatar {
-	position: relative;
-	flex-shrink: 0;
-	margin: 0 auto;
-	border-radius: 50%;
-	box-shadow: var(--vp-shadow-3);
-}
-
-.avatar-img {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	border-radius: 50%;
-	object-fit: cover;
-	aspect-ratio: 1/1;
-}
-</style>
