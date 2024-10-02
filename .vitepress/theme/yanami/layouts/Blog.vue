@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Avatar from "../components/Avatar.vue";
 import TagBadges from "../components/TagBadges.vue";
 import { sorted } from "./Blog.state";
 </script>
@@ -38,33 +39,22 @@ import { sorted } from "./Blog.state";
 				</div>
 
 				<div class="my-2 flex flex-wrap items-center justify-between text-sm">
-					<div class="flex min-w-fit items-center">
-						<video
-							v-if="
-								members
-									?.filter((member) => member.name === post.author)[0]
-									.avatar.endsWith('.mp4')
-							"
-							class="mr-2 inline-block aspect-square w-8 rounded-full"
-							:src="
-								members?.filter((member) => member.name === post.author)[0].avatar
-							"
-							autoplay
-							muted
-							loop
-							playsinline
-						/>
-						<img
-							class="mr-2 inline-block aspect-square w-8 rounded-full"
-							:src="
-								members?.filter((member) => member.name === post.author)[0].avatar
-							"
-							v-else
-						/>
-						<span>
-							<span class="font-semibold">{{ post.author }}</span>
-							• {{ post.date.readable.slice(0, -6) }}
-						</span>
+					<!-- "items-center" causes date to be centered if it's not in this div -->
+					<div class="flex items-center gap-1">
+						<div class="flex items-center gap-2">
+							<div
+								v-for="author in post.authors"
+								:key="author.name"
+								class="flex min-w-fit items-center"
+							>
+								<Avatar
+									:src="author.avatar"
+									class="mr-1 inline-block aspect-square w-5 rounded-full"
+								/>
+								<span class="font-semibold">{{ author.name }}</span>
+							</div>
+						</div>
+						• {{ post.date.readable.slice(0, -6) }}
 					</div>
 					<TagBadges class="mt-1 justify-end" :tagList="post.tags" v-if="post.tags" />
 				</div>
