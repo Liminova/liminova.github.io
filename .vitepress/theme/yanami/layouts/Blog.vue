@@ -1,14 +1,6 @@
 <script setup lang="ts">
-import { useData } from "vitepress";
-import { computed } from "vue";
-import type { ThemeConfig } from "../../../config.mts";
-import { data as posts } from "../../../posts.data";
 import TagBadges from "../components/TagBadges.vue";
-import { useYearSort } from "../libs";
-
-const postsByYear = computed(() => useYearSort(posts));
-const data = useData<ThemeConfig>();
-const members = data.theme.value.members;
+import { sorted } from "./Blog.state";
 </script>
 
 <template>
@@ -17,7 +9,7 @@ const members = data.theme.value.members;
 		<p class="my-6">An archive of our blog posts.</p>
 		<hr class="my-8" />
 		<div
-			v-for="posts in postsByYear"
+			v-for="posts in sorted"
 			:key="posts[0].date.readable.slice(-4)"
 			class="border border-dashed border-[#c7c7c7] last:border-none"
 		>
@@ -78,9 +70,7 @@ const members = data.theme.value.members;
 				<hr class="my-3" v-if="index !== posts.length - 1" />
 			</div>
 		</div>
-		<div v-if="postsByYear.length === 0" class="my-4">
-			Nothing here just yet, but we're cooking.
-		</div>
+		<div v-if="sorted.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
 	</div>
 </template>
 
