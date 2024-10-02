@@ -36,6 +36,7 @@ import { sorted } from "./Blog.state";
 				>
 					{{ post.description }}
 				</div>
+
 				<div class="my-2 flex flex-wrap items-center justify-between text-sm">
 					<div class="flex min-w-fit items-center">
 						<video
@@ -67,6 +68,7 @@ import { sorted } from "./Blog.state";
 					</div>
 					<TagBadges class="mt-1 justify-end" :tagList="post.tags" v-if="post.tags" />
 				</div>
+
 				<hr class="my-3" v-if="index !== posts.length - 1" />
 			</div>
 		</div>
