@@ -15,3 +15,7 @@
     --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #6496c1, #477bbe, #3f6fb2, #3c6bac, #225489);
     --vp-c-brand-1: #4c81af;
 }
+
+.dark * {
+    border-color: grey;
+}
