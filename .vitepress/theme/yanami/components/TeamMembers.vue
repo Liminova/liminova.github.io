@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import type { DefaultTheme } from "vitepress/theme";
 import { computed } from "vue";
+import type { TeamMember } from "../../../config.mjs";
 import TeamMembersItem from "./TeamMembersItem.vue";
 
-interface Props {
-	size?: "small" | "medium";
-	members: Array<DefaultTheme.TeamMember>;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-	size: "medium",
-});
+const props = withDefaults(
+	defineProps<{
+		size?: "small" | "medium";
+		members: Array<TeamMember>;
+	}>(),
+	{
+		size: "medium",
+	}
+);
 
 const classes = computed(() => [props.size, `count-${props.members.length}`]);
 </script>
