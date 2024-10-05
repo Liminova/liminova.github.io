@@ -17,6 +17,41 @@
 				</figcaption>
 			</figure>
 			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e1-00.09.34.408.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 1 - Professional Childhood Friend Yanami Anna's Style of Losing -
+					09:34.408
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e1-00.09.51.758.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 1 - Professional Childhood Friend Yanami Anna's Style of Losing -
+					09:51.758
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e1-00.15.04.863.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 1 - Professional Childhood Friend Yanami Anna's Style of Losing -
+					15:04.863
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e1-00.15.06.365.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 1 - Professional Childhood Friend Yanami Anna's Style of Losing -
+					15:06.365
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e1-00.17.54.324.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 1 - Professional Childhood Friend Yanami Anna's Style of Losing -
+					17:54.324
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
 				<img src="/yanami/s1e1-00.18.07.629.jpg" />
 				<figcaption class="my-2 text-center text-sm italic">
 					Episode 1 - Professional Childhood Friend Yanami Anna's Style of Losing -
@@ -31,15 +66,58 @@
 				</figcaption>
 			</figure>
 			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e1-00.22.16.170.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 1 - Professional Childhood Friend Yanami Anna's Style of Losing -
+					22:16.170
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e2-00.07.59.479.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 2 - The Promised Failure for You - 07:59.479
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e2-00.08.55.577.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 2 - The Promised Failure for You - 08:55.577
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e2-00.09.19.726.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 2 - The Promised Failure for You - 09:19.726
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
 				<img src="/yanami/s1e2-00.14.30.120.jpg" />
 				<figcaption class="my-2 text-center text-sm italic">
 					Episode 2 - The Promised Failure for You - 14:30.120
 				</figcaption>
 			</figure>
 			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e2-00.15.59.751.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 2 - The Promised Failure for You - 15:59.751
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e2-00.19.56.238.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 2 - The Promised Failure for You - 19:56.238
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
 				<img src="/yanami/s1e2-00.20.37.070.jpg" />
 				<figcaption class="my-2 text-center text-sm italic">
 					Episode 2 - The Promised Failure for You - 20:37.070
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e2-00.20.50.709.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 2 - The Promised Failure for You - 20:50.709
 				</figcaption>
 			</figure>
 			<figure class="mb-3 md:mb-0">
@@ -66,6 +144,20 @@
 				<figcaption class="my-2 text-center text-sm italic">
 					Episode 4 - When You Stare into a Losing Heroine, the Losing Heroine Stares Back
 					into You - 05:09.643
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e4-00.17.15.118.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 4 - When You Stare into a Losing Heroine, the Losing Heroine Stares Back
+					into You - 17:15.118
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e4-00.17.15.202.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 4 - When You Stare into a Losing Heroine, the Losing Heroine Stares Back
+					into You - 17:15.202
 				</figcaption>
 			</figure>
 			<figure class="mb-3 md:mb-0">
@@ -110,6 +202,12 @@
 				</figcaption>
 			</figure>
 			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e5-00.08.09.322.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 5 - Asagumo Chihaya Is Led Astray - 08:09.322
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
 				<img src="/yanami/s1e5-00.13.01.447.jpg" />
 				<figcaption class="my-2 text-center text-sm italic">
 					Episode 5 - Asagumo Chihaya Is Led Astray - 13:01.447
@@ -132,6 +230,13 @@
 				<figcaption class="my-2 text-center text-sm italic">
 					Episode 6 - Let Any One of You Who Has Never Been Dumped Be the First to Throw a
 					Stone at the Losing Heroine - 17:35.222
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e6-00.18.46.001.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 6 - Let Any One of You Who Has Never Been Dumped Be the First to Throw a
+					Stone at the Losing Heroine - 18:46.001
 				</figcaption>
 			</figure>
 			<figure class="mb-3 md:mb-0">
@@ -164,6 +269,30 @@
 				<img src="/yanami/s1e7-00.07.59.813.jpg" />
 				<figcaption class="my-2 text-center text-sm italic">
 					Episode 7 - The Other Side of a Happy Ending - 07:59.813
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e7-00.21.10.978.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 7 - The Other Side of a Happy Ending - 21:10.978
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e7-00.21.31.373.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 7 - The Other Side of a Happy Ending - 21:31.373
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e8-00.07.54.432.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 8 - If You Are In Trouble, Feel Free to Consult - 07:54.432
+				</figcaption>
+			</figure>
+			<figure class="mb-3 md:mb-0">
+				<img src="/yanami/s1e8-00.10.21.788.jpg" />
+				<figcaption class="my-2 text-center text-sm italic">
+					Episode 8 - If You Are In Trouble, Feel Free to Consult - 10:21.788
 				</figcaption>
 			</figure>
 			<figure class="mb-3 md:mb-0">
