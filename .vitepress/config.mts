@@ -93,6 +93,12 @@ export default defineConfigWithTheme<ThemeConfig>({
 				title: "happy to be here",
 				links: [],
 			},
+			{
+				avatar: "/snappy.jpg",
+				name: "Snappy",
+				title: "người đàn ông đẹp trai thứ 2 công ty",
+				links: [{ icon: "github", link: "https://github.com/snwappy" }],
+			},
 		],
 	},
 	head: [
