@@ -29,8 +29,8 @@ import { data as posts, type Post } from "../../../posts.data";
  * ]
  * ```
  */
-function useYearSort(posts: Array<Post>): Array<Array<Post>> {
-	const data: Array<Array<Post>> = [];
+function useYearSort(posts: Post[]): Post[][] {
+	const data: Post[][] = [];
 	let year = "0";
 	let index = -1;
 

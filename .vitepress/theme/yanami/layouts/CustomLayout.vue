@@ -5,6 +5,7 @@
 import { useData, useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { watch } from "vue";
+
 import type { TeamMember } from "../../../config.mjs";
 import Avatar from "../components/Avatar.vue";
 import TagBadges from "../components/TagBadges.vue";
@@ -17,22 +18,23 @@ watch(
 	() => route.path,
 	(path, referrer) => {
 		window.goatcounter?.count?.({ path, referrer });
-	}
+	},
 );
 
-function getPostAuthors(): Array<TeamMember> {
+function getPostAuthors(): TeamMember[] {
 	const data = useData();
-	const members = (data.theme.value as { members: Array<TeamMember> }).members;
-	const postAuthors = data.frontmatter.value.author as string | Array<string> | undefined;
+	const members = (data.theme.value as { members: TeamMember[] }).members;
+	const postAuthors = data.frontmatter.value.author as string | string[] | undefined;
 	if (postAuthors === undefined) {
 		throw new Error(`author field in ${data.page.value.filePath} is empty`);
 	}
 
+	// eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
 	switch (true) {
 		case typeof postAuthors === "string":
-			return members.filter((member) => member.name === postAuthors);
+			return members.filter(member => member.name === postAuthors);
 		case typeof postAuthors === "object":
-			return members.reduce((acc: Array<TeamMember>, member: TeamMember) => {
+			return members.reduce((acc: TeamMember[], member: TeamMember) => {
 				if (postAuthors.includes(member.name)) {
 					acc.push(member);
 				}

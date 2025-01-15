@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
-function mountGoatcounter(id: string) {
+function mountGoatcounter(id: string): void {
 	if (window.goatcounter || window.location.hostname === "localhost") {
 		return;
 	}

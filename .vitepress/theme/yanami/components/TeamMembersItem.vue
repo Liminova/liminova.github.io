@@ -2,6 +2,7 @@
 import { AtSign } from "lucide-vue-next";
 import VPLink from "vitepress/dist/client/theme-default/components/VPLink.vue";
 import { OsuIcon } from "vue3-simple-icons";
+
 import type { TeamMember } from "../../../config.mjs";
 
 withDefaults(
@@ -11,7 +12,7 @@ withDefaults(
 	}>(),
 	{
 		size: "medium",
-	}
+	},
 );
 </script>
 

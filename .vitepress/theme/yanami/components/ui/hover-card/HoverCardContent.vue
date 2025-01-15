@@ -6,7 +6,8 @@ import {
 	HoverCardPortal,
 	useForwardProps,
 } from "radix-vue";
-import { type HTMLAttributes, computed } from "vue";
+import { computed, type HTMLAttributes } from "vue";
+
 import { classname } from "../../../libs";
 
 // adding "class" to the props, allow override tailwind classes
@@ -15,7 +16,7 @@ const props = withDefaults(
 	defineProps<HoverCardContentProps & { class?: HTMLAttributes["class"] }>(),
 	{
 		sideOffset: 4,
-	}
+	},
 );
 
 // still props but without the "class"
@@ -24,7 +25,7 @@ const forwardedProps = useForwardProps(
 		const { class: _, ...delegated } = props;
 
 		return delegated;
-	})
+	}),
 );
 </script>
 

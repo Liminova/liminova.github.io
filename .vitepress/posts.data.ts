@@ -1,4 +1,5 @@
 import { createContentLoader } from "vitepress";
+
 import config from "./config.mjs";
 import { formatDate } from "./theme/yanami/libs";
 
@@ -13,18 +14,18 @@ export interface PostAuthor {
 export interface Post {
 	title: string;
 	url: string;
-	authors: Array<PostAuthor>;
+	authors: PostAuthor[];
 	date: {
 		original: string; // ISO 8601 date string
 		unixMilliseconds: number; // Unix timestamp
 		readable: string; // Human-readable date string
 	};
 	description?: string;
-	tags?: Array<string>;
+	tags?: string[];
 	thumbnail?: string;
 }
 
-declare const data: Array<Post>;
+declare const data: Post[];
 export { data };
 
 const patterns = ["blog/*.md"];
@@ -37,7 +38,7 @@ if (process.env.NODE_ENV !== "production") {
  */
 export default createContentLoader(patterns, {
 	excerpt: false,
-	transform(raw): Array<Post> {
+	transform(raw): Post[] {
 		const membersData = config.themeConfig?.members;
 		if (membersData === undefined) {
 			throw new Error("members in config.themeConfig is undefined");
@@ -45,15 +46,16 @@ export default createContentLoader(patterns, {
 
 		return raw
 			.map(({ url, frontmatter }) => {
-				const authors: Array<PostAuthor> = [];
+				const authors: PostAuthor[] = [];
+				// eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
 				switch (true) {
 					case typeof frontmatter.author === "string": {
 						const findResult = membersData.find(
-							(member) => member.name === frontmatter.author
+							member => member.name === frontmatter.author,
 						);
 						if (!findResult) {
 							throw new Error(
-								`author ${frontmatter.author} in ${url} not found in \`config.mts\``
+								`author ${frontmatter.author} in ${url} not found in \`config.mts\``,
 							);
 						}
 
@@ -61,13 +63,13 @@ export default createContentLoader(patterns, {
 						break;
 					}
 
-					case typeof frontmatter.author === "object" &&
-						Array.isArray(frontmatter.author): {
-						for (const author of frontmatter.author as Array<string>) {
-							const findResult = membersData.find((member) => member.name === author);
+					case typeof frontmatter.author === "object"
+						&& Array.isArray(frontmatter.author): {
+						for (const author of frontmatter.author as string[]) {
+							const findResult = membersData.find(member => member.name === author);
 							if (!findResult) {
 								throw new Error(
-									`author ${author} in ${url} not found in \`config.mts\``
+									`author ${author} in ${url} not found in \`config.mts\``,
 								);
 							}
 
@@ -79,7 +81,7 @@ export default createContentLoader(patterns, {
 
 					default:
 						throw new Error(
-							`type of author must be \`string\` or \`Array<string>\` in ${url}`
+							`type of author must be \`string\` or \`Array<string>\` in ${url}`,
 						);
 				}
 
@@ -93,7 +95,7 @@ export default createContentLoader(patterns, {
 					authors,
 					description: frontmatter.description as string | undefined,
 					date: formatDate(frontmatter.date as string),
-					tags: frontmatter.tags as Array<string> | undefined,
+					tags: frontmatter.tags as string[] | undefined,
 					thumbnail: frontmatter.thumbnail as string | undefined,
 				};
 			})

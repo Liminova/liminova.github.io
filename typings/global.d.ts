@@ -8,7 +8,7 @@ declare namespace GoatCounter {
 
 	interface GoatCounter {
 		no_onload?: boolean;
-		count?: (vars: CountVars) => void;
+		count?: (vars: CountVars)=> void;
 	}
 }
 

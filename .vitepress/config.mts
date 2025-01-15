@@ -1,12 +1,13 @@
 import { createHash } from "node:crypto";
 import { copyFile, readFileSync } from "node:fs";
 import { basename, join } from "node:path";
+
 import { type DefaultTheme, defineConfigWithTheme } from "vitepress";
 
-export type ThemeConfig = DefaultTheme.Config & { members?: Array<TeamMember> };
+export type ThemeConfig = DefaultTheme.Config & { members?: TeamMember[] };
 
 export type TeamMember = Omit<DefaultTheme.TeamMember, "links"> & {
-	links: Array<SocialLink>;
+	links: SocialLink[];
 };
 
 export interface SocialLink {
@@ -34,9 +35,9 @@ export default defineConfigWithTheme<ThemeConfig>({
 		socialLinks: [{ icon: "github", link: "https://github.com/Liminova" }],
 		footer: {
 			message:
-				'八奈見 is licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>. Source code available <a href="https://github.com/Liminova/liminova.github.io">here</a>.',
+				"八奈見 is licensed under the <a href=\"https://opensource.org/licenses/MIT\">MIT License</a>. Source code available <a href=\"https://github.com/Liminova/liminova.github.io\">here</a>.",
 			copyright:
-				'Copyright © 2024-present <a href="https://github.com/Liminova">Liminova</a>.',
+				"Copyright © 2024-present <a href=\"https://github.com/Liminova\">Liminova</a>.",
 		},
 		externalLinkIcon: true,
 		members: [
@@ -122,16 +123,16 @@ export default defineConfigWithTheme<ThemeConfig>({
 			(pageData.frontmatter.head as Head).push(
 				["meta", { property: "description", content: excerpt }],
 				["meta", { property: "og:description", content: excerpt }],
-				["meta", { property: "twitter:description", content: excerpt }]
+				["meta", { property: "twitter:description", content: excerpt }],
 			);
 		}
 
 		if (thumbnail) {
-			const outputPath = (() => {
+			const outputPath = ((): string => {
 				if (
-					thumbnail.startsWith("http") ||
-					thumbnail.startsWith("//") ||
-					process.env.NODE_ENV !== "production"
+					thumbnail.startsWith("http")
+					|| thumbnail.startsWith("//")
+					|| process.env.NODE_ENV !== "production"
 				) {
 					return thumbnail;
 				}
@@ -156,7 +157,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 			(pageData.frontmatter.head as Head).push(
 				["meta", { property: "og:image", content: outputPath }],
 				["meta", { property: "twitter:image", content: outputPath }],
-				["meta", { name: "twitter:card", content: "summary_large_image" }]
+				["meta", { name: "twitter:card", content: "summary_large_image" }],
 			);
 		}
 	},

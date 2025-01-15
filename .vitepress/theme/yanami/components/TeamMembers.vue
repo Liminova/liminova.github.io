@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { computed } from "vue";
+
 import type { TeamMember } from "../../../config.mjs";
 import TeamMembersItem from "./TeamMembersItem.vue";
 
 const props = withDefaults(
 	defineProps<{
 		size?: "small" | "medium";
-		members: Array<TeamMember>;
+		members: TeamMember[];
 	}>(),
 	{
 		size: "medium",
-	}
+	},
 );
 
 const classes = computed(() => [props.size, `count-${props.members.length}`]);
