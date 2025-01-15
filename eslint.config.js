@@ -1,15 +1,19 @@
 import hagemanto from "eslint-plugin-hagemanto";
-import tailwind from "eslint-plugin-tailwindcss";
 import vue from "eslint-plugin-vue";
 import globals from "globals";
 
 export default [
-	{ name: "yanami/includes",ignores: [".vitepress/cache/**/*.*", ".vitepress/dist/**/*.*", ".vitepress/theme/env.d.ts", "*.config.{ts,js,cjs}"] },
+	{ name: "yanami/includes", ignores: [".vitepress/cache/**/*.*", ".vitepress/dist/**/*.*", ".vitepress/theme/env.d.ts", "*.config.{ts,js,cjs}"] },
 	{ name: "yanami/excludes", files: ["**/*.{ts,vue,mts}"] },
 
-	...hagemanto({ enablePrettier: true }),
+	...hagemanto({
+		enableJsx: false,
+		enableTailwind: true,
+		enableTs: true,
+		sortImports: true,
+		styler: "stylistic"
+	}),
 	...vue.configs["flat/essential"],
-	...tailwind.configs["flat/recommended"],
 
 	{
 		name: "yanami/rules",
