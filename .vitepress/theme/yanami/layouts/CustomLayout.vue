@@ -51,6 +51,7 @@ function getPostAuthors(): TeamMember[] {
 	<Layout>
 		<template class="my-4" #doc-before>
 			<h1 class="my-2 text-4xl font-semibold leading-10">
+				<!-- @vue-expect-error -->
 				{{ $frontmatter.title }}
 			</h1>
 			<h2 class="my-2">
@@ -64,8 +65,10 @@ function getPostAuthors(): TeamMember[] {
 							<span class="font-semibold">{{ author.name }}</span>
 						</span>
 					</div>
+					<!-- @vue-expect-error -->
 					&nbsp;• {{ formatDate($frontmatter.date).readable }}
 				</div>
+				<!-- @vue-expect-error -->
 				<TagBadges class="my-3" :tagList="$frontmatter.tags" v-if="$frontmatter.tags" />
 			</h2>
 		</template>
