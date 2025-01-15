@@ -17,7 +17,7 @@ const props = defineProps<{ yanamiFrames: Array<{ src: string; desc: string; bg?
 				v-for="frame in props.yanamiFrames"
 				:key="frame.src"
 				class="mb-3 md:mb-0">
-				<div class="relative flex aspect-video h-auto w-full" :style="{ backgroundColor: frame.bg ?? 'transparent' }">
+				<div class="relative flex aspect-video h-auto w-full" :style="{ backgroundColor: frame.bg ? `#${frame.bg}` : 'transparent' }">
 					<img
 						:src="frame.src"
 						class="absolute left-0 top-0 h-auto w-full"
