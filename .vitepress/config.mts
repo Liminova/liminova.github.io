@@ -44,7 +44,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 				title: "resident troller, founder of CTF division",
 				links: [
 					{ icon: "github", link: "https://github.com/j1nxie" },
-					{ icon: "twitter", link: "https://x.com/_lumi9" },
+					{ icon: "x", link: "https://x.com/_lumi9" },
 					{ icon: "osu", link: "https://osu.ppy.sh/u/14585583" },
 				],
 			},
