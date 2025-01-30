@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { AtSign } from "lucide-vue-next";
 import VPLink from "vitepress/dist/client/theme-default/components/VPLink.vue";
-import { OsuIcon } from "vue3-simple-icons";
+import { GitHubIcon, GmailIcon, OsuIcon, XIcon } from "vue3-simple-icons";
 
 import type { TeamMember } from "../../../config.mjs";
 
@@ -66,11 +65,11 @@ withDefaults(
 						:href="link"
 						:aria-label="`${icon}`"
 						target="_blank"
-						rel="noopener"
-					>
-						<AtSign v-if="icon === 'mail'" />
-						<OsuIcon v-else-if="icon === 'osu'" />
-						<span v-else :class="`vpi-social-${icon} w-5 h-5`" />
+						rel="noopener">
+						<GmailIcon v-if="icon === 'mail'" size="1.25rem" />
+						<OsuIcon v-else-if="icon === 'osu'" size="1.25rem" />
+						<XIcon v-else-if="icon === 'x'" size="1.25rem" />
+						<GitHubIcon v-else-if="icon === 'github'" size="1.25rem" />
 					</a>
 				</div>
 			</div>
