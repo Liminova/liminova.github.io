@@ -7,14 +7,11 @@ import { type DefaultTheme, defineConfigWithTheme } from "vitepress";
 export type ThemeConfig = DefaultTheme.Config & { members?: TeamMember[] };
 
 export type TeamMember = Omit<DefaultTheme.TeamMember, "links"> & {
-	links: SocialLink[];
+	links: Array<{
+		icon: "github" | "x" | "osu" | "mail";
+		link: string;
+	}>;
 };
-
-export interface SocialLink {
-	icon: Omit<DefaultTheme.SocialLinkIcon, "svg"> | "osu" | "mail";
-	link: string;
-}
-
 const assetsCopyQueue: Array<{ src: string; dest: string }> = [];
 
 export default defineConfigWithTheme<ThemeConfig>({
