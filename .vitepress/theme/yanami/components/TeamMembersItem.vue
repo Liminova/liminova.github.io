@@ -26,14 +26,12 @@ withDefaults(
 					autoplay
 					muted
 					loop
-					playsinline
-				/>
+					playsinline />
 				<img
 					v-else-if="member.avatar"
 					class="avatar-img"
 					:src="member.avatar"
-					:alt="member.name"
-				/>
+					:alt="member.name" />
 			</figure>
 
 			<div class="data">
@@ -50,8 +48,7 @@ withDefaults(
 						class="org"
 						:class="{ link: member.orgLink }"
 						:href="member.orgLink"
-						no-icon
-					>
+						no-icon>
 						{{ member.org }}
 					</VPLink>
 				</p>
@@ -79,8 +76,7 @@ withDefaults(
 			<VPLink
 				class="flex items-center justify-center bg-[var(--vp-c-bg-soft)] p-4 text-center text-sm font-medium text-[var(--vp-c-sponsor)] transition-colors duration-200"
 				:href="member.sponsor"
-				no-icon
-			>
+				no-icon>
 				<span class="vpi-heart sp-icon mr-2 text-[16px]" />
 				{{ member.actionText || "Sponsor" }}
 			</VPLink>
