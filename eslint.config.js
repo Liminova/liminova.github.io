@@ -11,7 +11,8 @@ export default [
 		enableTailwind: true,
 		enableTs: true,
 		sortImports: true,
-		styler: "stylistic"
+		styler: "stylistic",
+		extraFileExtensions: [".vue"],
 	}),
 	...vue.configs["flat/essential"],
 
@@ -22,15 +23,5 @@ export default [
 			"tailwindcss/no-custom-classname": "off",
 			"vue/html-indent": ["error", "tab"],
 		},
-	},
-
-	// this must be last to override all other configs
-	{
-		name: "yanami/language-options",
-		languageOptions: {
-			globals: globals.browser, parserOptions: {
-				project: true, parser: "@typescript-eslint/parser", extraFileExtensions: [".vue"]
-			}
-		}
 	},
 ];
