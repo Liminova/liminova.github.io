@@ -8,7 +8,7 @@ description: They should've told us about this waaay before July 2024. Turning a
 thumbnail: "./any-distro-on-wsl/thumb.jpg"
 ---
 
-They should've told us about this waaay before July 2024. Turning any container image into WSL2 distro, I'll be using `fedora` to demonstrate.
+They really should've spilled the beans waaay before July 2024! Turning any container image into a WSL2 distro? I'll be using `fedora` for this post.
 
 <details>
 <summary>Ranting</summary>
@@ -24,7 +24,26 @@ As for WSL, even though it still works perfectly fine, version 24 and all the to
 Fedora Remix requires me to wait for their fork to upgrade before I can proceed with my own upgrade whenever a new release is available. It turns out that WSL functions similarly to a container, allowing the use of any image as a WSL distro. However, the process was not seamless, which is the reason for the existence of this article.
 </details>
 
-## Install WSL
+# TL;DR:
+1. Install any distro first and Docker Engine
+
+2. Extract the image
+    ```wsl
+    sudo docker run -t --name wsl_export <distro> ls /
+    sudo docker export wsl_export > /mnt/c/<distro>-rootfs.tar
+    ```
+
+3. Import the image, cleanup and set default distro
+    ```powershell
+    wsl --import <distro> C:\<distro> C:\<distro>-rootfs.tar
+    Remove-Item C:\<distro>-rootfs.tar
+    wsl --unregister <old-distro>
+    wsl --set-default <distro>
+    ```
+
+> You can skip steps 1 and 2 by asking one of your friends who already uses Linux to export the distro for you.
+
+## Install WSL & Docker Engine
 
 > There are a ton of guides on the internet but here's one to avoid jumping to another article if you haven't installed it yet.
 
@@ -35,11 +54,9 @@ Fedora Remix requires me to wait for their fork to upgrade before I can proceed 
 - `wsl --update`
 - `wsl --install` and follow the instructions
 
-## Install Docker Engine
-
 Follow [this guide](https://docs.docker.com/engine/install/ubuntu/) to install Docker Engine on Ubuntu. No need for the post-installation steps since we only need them to extract the Fedora image from the Docker image.
 
-## Extract the image
+## Extract distro's rootfs from image
 
 Run an empty container using the latest Fedora image
 ```bash
@@ -51,13 +68,12 @@ Export the container using its name to a `.tar` file
 sudo docker export wsl_export > /mnt/c/fedora-rootfs.tar
 ```
 
-## Import the image & clean up
-
+## Import the rootfs & clean up
 ```powershell
 wsl --import Fedora C:\Fedora C:\fedora-rootfs.tar
 ```
 
-Afterwards you can remove the `.tar` file and the WSL distro.
+Afterwards you can remove the `.tar` file and the old distro
 
 ```powershell
 Remove-Item C:\fedora-rootfs.tar
@@ -70,8 +86,6 @@ At this point, you should see the `Fedora` distro in the WSL distro list.
 
 ![](./any-distro-on-wsl/wsl-list-distro.png)
 
-> Ignore the running state since I'm using it to write this article.
-
 ## Post-installation
 
 - Set default distro for WSL
@@ -80,25 +94,19 @@ At this point, you should see the `Fedora` distro in the WSL distro list.
     ```
 
 - Path fixes
-
-    Enter the distro
-    ```powershell
-    wsl
-    ```
-
-    Upon starting, you should expect a bunch of `ERROR: UtilTranslatePathList` messages. This is because Fedora was not shut down ["properly"](https://askubuntu.com/a/1442829) after when we use `docker run` to pull the image, create a container, run a command, and exit. To resolve this, terminate the WSL from Windows, not from within, and then relaunch it.
+    Upon starting using the `wsl` command, you might see a bunch of `ERROR: UtilTranslatePathList` messages. This happens because Fedora wasn't shut down ["the-wsl-way"](https://askubuntu.com/a/1442829) in the second step. Just terminate it from Windows and relaunch it.
     ```powershell
     wsl --terminate Fedora
     wsl
     ```
-    > In the future you should avoid shutting down WSL from the inside, use `wsl --shutdown`.
+    > In the future you should avoid shutting down WSL from the inside, use `wsl --shutdown` instead.
 
 - Update & install additional packages
-    > The term "essential" is subjective, but commonly, developers would require tools like `wget`, `curl`, `sudo`, and `git` for development tasks. However, these are not always included in Docker images by default since their primary use is for deployment.
     ```bash
     dnf update
     dnf install wget curl sudo git passwd ncurses dnf-plugins-core dnf-utils findutils nano
     ```
+    > You may remove those you know and don't need.
 
 -   Add user & set password
     ```bash
@@ -107,11 +115,12 @@ At this point, you should see the `Fedora` distro in the WSL distro list.
     ```
 
 - Set default user in `wsl.conf` & enable `systemd`
+    Modify the `wsl.conf` file using a text editor
     ```bash
     sudo nano /etc/wsl.conf
     ```
 
-    Add the following lines
+    Paste the following contents
     ```bash
     [boot]
     systemd = true
@@ -128,13 +137,15 @@ At this point, you should see the `Fedora` distro in the WSL distro list.
     ```
 
 ## WSLg
-- Systemd service to recreate X11 socket symlink
+
+We are creating two `systemd` services to automatically generate two symlink files on startup for the X11 socket.
+
+1. `/tmp/.X11-unix` -> `/mnt/wslg/.X11-unix`
+    First create the service file
     ```bash
     sudo nano /usr/lib/systemd/system/wslg-tmp-x11.service
     ```
-
     Paste the following contents
-
     ```
     [Unit]
     Description=Recreate WSLg X display file link after /tmp mounted
@@ -148,18 +159,19 @@ At this point, you should see the `Fedora` distro in the WSL distro list.
     ExecStart=/bin/chmod +t /mnt/wslg/.X11-unix
     ExecStart=-/bin/rmdir /tmp/.X11-unix
     ExecStart=/bin/ln -sf /mnt/wslg/.X11-unix /tmp/.X11-unix
-    #ExecStart=/bin/mount -m -o bind /mnt/wslg/.X11-unix /tmp/.X11-unix
+    ExecStart=/bin/mount -m -o bind /mnt/wslg/.X11-unix /tmp/.X11-unix
 
     [Install]
     WantedBy=default.target
     ```
-- Systemd service to recreate WSLg sockets files in `$XDG_RUNTIME_DIR`
+
+2. `$XDG_RUNTIME_DIR` -> `/mnt/wslg/runtime-dir`
+    Create the service file
     ```bash
     sudo nano /usr/lib/systemd/user/wslg-runtime-dir.service
     ```
 
     Paste the following contents
-
     ```
     [Unit]
     Description=Recreate WSLg sockets files in $XDG_RUNTIME_DIR
@@ -173,11 +185,11 @@ At this point, you should see the `Fedora` distro in the WSL distro list.
     WantedBy=default.target
     ```
 
-- Start these services
-    ```bash
-    sudo systemctl enable wslg-tmp-x11
-    sudo systemctl --global enable wslg-runtime-dir
-    ```
+Finally, enable the services
+```bash
+sudo systemctl enable wslg-tmp-x11
+sudo systemctl --global enable wslg-runtime-dir
+```
 
 Everything else, X11 or Wayland-related, should be included in the dependency list of the GUI application you're installing.
 
