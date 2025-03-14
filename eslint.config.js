@@ -1,6 +1,5 @@
 import hagemanto from "eslint-plugin-hagemanto";
 import vue from "eslint-plugin-vue";
-import globals from "globals";
 
 export default [
 	{ name: "yanami/includes", ignores: [".vitepress/cache/**/*.*", ".vitepress/dist/**/*.*", ".vitepress/theme/env.d.ts", "*.config.{ts,js,cjs}"] },
@@ -8,20 +7,14 @@ export default [
 
 	...hagemanto({
 		enableJsx: false,
-		enableTailwind: true,
-		enableTs: true,
-		sortImports: true,
-		styler: "stylistic",
-		extraFileExtensions: [".vue"],
+		vueConfig: vue.configs["flat/essential"],
 	}),
-	...vue.configs["flat/essential"],
 
 	{
 		name: "yanami/rules",
 		rules: {
 			"vue/multi-word-component-names": "off",
-			"tailwindcss/no-custom-classname": "off",
-			"vue/html-indent": ["error", "tab"],
+			"tailwindcss/no-custom-classname": "off"
 		},
 	},
 ];
