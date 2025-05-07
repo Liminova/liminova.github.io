@@ -59,8 +59,7 @@ function getPostAuthors(): TeamMember[] {
 					<div v-for="author in getPostAuthors()" :key="author.name">
 						<Avatar
 							:src="author.avatar"
-							class="mr-2 inline-block aspect-square w-8 rounded-full"
-						/>
+							class="mr-2 inline-block aspect-square w-8 rounded-full"/>
 						<span>
 							<span class="font-semibold">{{ author.name }}</span>
 						</span>

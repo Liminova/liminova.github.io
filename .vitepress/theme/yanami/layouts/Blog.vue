@@ -12,8 +12,7 @@ import { sorted } from "./Blog.state";
 		<div
 			v-for="posts in sorted"
 			:key="posts[0].date.readable.slice(-4)"
-			class="border border-dashed border-[#c7c7c7] last:border-none"
-		>
+			class="border border-dashed border-[#c7c7c7] last:border-none">
 			<div class="my-5 text-2xl font-medium">
 				{{ posts[0].date.readable.slice(-4) }}
 			</div>
@@ -26,15 +25,13 @@ import { sorted } from "./Blog.state";
 						transition:
 							border 0.3s ease,
 							color 0.3s ease;
-					"
-				>
+					">
 					<div class="text-xl font-semibold">
 						{{ post.title }}
 					</div>
 				</a>
 				<div
-					class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-300"
-				>
+					class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-300">
 					{{ post.description }}
 				</div>
 
@@ -45,12 +42,10 @@ import { sorted } from "./Blog.state";
 							<div
 								v-for="author in post.authors"
 								:key="author.name"
-								class="flex min-w-fit items-center"
-							>
+								class="flex min-w-fit items-center">
 								<Avatar
 									:src="author.avatar"
-									class="mr-1 inline-block aspect-square w-5 rounded-full"
-								/>
+									class="mr-1 inline-block aspect-square w-5 rounded-full"/>
 								<span class="font-semibold">{{ author.name }}</span>
 							</div>
 						</div>

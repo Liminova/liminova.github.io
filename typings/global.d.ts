@@ -8,6 +8,7 @@ declare namespace GoatCounter {
 
 	interface GoatCounter {
 		no_onload?: boolean;
+		// eslint-disable-next-line no-unused-vars
 		count?: (vars: CountVars)=> void;
 	}
 }
@@ -18,4 +19,5 @@ declare global {
 	}
 }
 
-export {};
+export { };
+

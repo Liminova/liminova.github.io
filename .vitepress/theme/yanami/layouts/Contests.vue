@@ -87,8 +87,7 @@ onMounted(() => {
 			<div
 				v-for="contest in data"
 				:key="contest.time"
-				class="flex size-full flex-col justify-between rounded-md border"
-			>
+				class="flex size-full flex-col justify-between rounded-md border">
 				<div class="text-balance border-b px-4 py-3 text-center text-lg font-semibold">
 					<span v-if="contest.short">{{ contest.short }}</span>
 					<span v-else>{{ contest.name }}</span>

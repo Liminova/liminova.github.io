@@ -21,7 +21,6 @@ const props = defineProps({
 		autoplay
 		muted
 		loop
-		playsinline
-	/>
+		playsinline/>
 	<img v-else :class="props.class" :src="props.src" />
 </template>
