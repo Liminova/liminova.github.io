@@ -1,0 +1,18 @@
+{
+	"name": "liminova",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"runArgs": ["-v", "global-pnpm-store:/home/liminova/.pnpm-store"],
+	"postCreateCommand": "zsh .devcontainer/postinstall.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Vue.volar",
+				"bradlc.vscode-tailwindcss",
+				"esbenp.prettier-vscode",
+				"YoavBls.pretty-ts-errors"
+			]
+		}
+	}
+}
