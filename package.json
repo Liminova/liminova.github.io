@@ -7,25 +7,22 @@
         "lint": "eslint --fix --cache"
     },
     "devDependencies": {
-        "@types/node": "^22.15.14",
+        "@types/node": "^22.16.5",
         "autoprefixer": "^10.4.21",
-        "eslint": "^9.26.0",
-        "eslint-plugin-hagemanto": "^5.2.5",
-        "eslint-plugin-vue": "^10.1.0",
-        "postcss": "^8.5.3",
+        "postcss": "^8.5.6",
         "tailwindcss": "^3.4.17",
         "typescript": "^5.8.3",
         "vitepress": "^1.6.3",
-        "vue": "^3.5.13"
+        "vue": "^3.5.17"
     },
     "dependencies": {
         "clsx": "2.1.1",
-        "lucide-vue-next": "^0.507.0",
+        "lucide-vue-next": "^0.525.0",
         "markdown-it-mathjax3": "^4.3.2",
         "radix-vue": "^1.9.17",
         "tailwind-merge": "^2.6.0",
         "tailwindcss-animate": "^1.0.7",
-        "vue3-simple-icons": "^13.2.0"
+        "vue3-simple-icons": "^15.6.0"
     },
     "packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247"
 }
