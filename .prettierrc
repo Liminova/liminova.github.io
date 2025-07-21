@@ -1,0 +1,13 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 4,
+  "useTabs": true,
+  "plugins": [
+    "prettier-plugin-tailwindcss",
+    "@trivago/prettier-plugin-sort-imports"
+  ],
+  "tailwindConfig": "./tailwind.config.js",
+  "trailingComma": "none",
+  "tailwindFunctions": ["cva", "cn"]
+}

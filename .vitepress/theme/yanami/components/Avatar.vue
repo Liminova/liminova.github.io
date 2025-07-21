@@ -4,13 +4,13 @@
 const props = defineProps({
 	src: {
 		type: String,
-		required: true,
+		required: true
 	},
 	class: {
 		type: String,
-		required: false,
-	},
-});
+		required: false
+	}
+})
 </script>
 
 <template>
@@ -21,6 +21,7 @@ const props = defineProps({
 		autoplay
 		muted
 		loop
-		playsinline/>
+		playsinline
+	/>
 	<img v-else :class="props.class" :src="props.src" />
 </template>

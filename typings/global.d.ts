@@ -1,23 +1,22 @@
 declare namespace GoatCounter {
 	interface CountVars {
-		event?: boolean;
-		path?: string;
-		title?: string;
-		referrer?: string;
+		event?: boolean
+		path?: string
+		title?: string
+		referrer?: string
 	}
 
 	interface GoatCounter {
-		no_onload?: boolean;
+		no_onload?: boolean
 		// eslint-disable-next-line no-unused-vars
-		count?: (vars: CountVars)=> void;
+		count?: (vars: CountVars) => void
 	}
 }
 
 declare global {
 	interface Window {
-		goatcounter?: GoatCounter.GoatCounter;
+		goatcounter?: GoatCounter.GoatCounter
 	}
 }
 
-export { };
-
+export {}

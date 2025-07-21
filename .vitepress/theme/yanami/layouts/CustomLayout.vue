@@ -2,47 +2,50 @@
 
 <script setup lang="ts">
 /* eslint vue/no-useless-template-attributes: 0 */
-import { useData, useRoute } from "vitepress";
-import DefaultTheme from "vitepress/theme";
-import { watch } from "vue";
+import type { TeamMember } from '../../../config.mjs'
+import '../../style.css'
+import Avatar from '../components/Avatar.vue'
+import TagBadges from '../components/TagBadges.vue'
+import { formatDate } from '../libs'
+import { useData, useRoute } from 'vitepress'
+import DefaultTheme from 'vitepress/theme'
+import { watch } from 'vue'
 
-import type { TeamMember } from "../../../config.mjs";
-import Avatar from "../components/Avatar.vue";
-import TagBadges from "../components/TagBadges.vue";
-import { formatDate } from "../libs";
-
-const { Layout } = DefaultTheme;
-const route = useRoute();
+const { Layout } = DefaultTheme
+const route = useRoute()
 
 watch(
 	() => route.path,
 	(path, referrer) => {
-		window.goatcounter?.count?.({ path, referrer });
-	},
-);
+		window.goatcounter?.count?.({ path, referrer })
+	}
+)
 
 function getPostAuthors(): TeamMember[] {
-	const data = useData();
-	const members = (data.theme.value as { members: TeamMember[] }).members;
-	const postAuthors = data.frontmatter.value.author as string | string[] | undefined;
+	const data = useData()
+	const members = (data.theme.value as { members: TeamMember[] }).members
+	const postAuthors = data.frontmatter.value.author as
+		| string
+		| string[]
+		| undefined
 	if (postAuthors === undefined) {
-		throw new Error(`author field in ${data.page.value.filePath} is empty`);
+		throw new Error(`author field in ${data.page.value.filePath} is empty`)
 	}
 
 	// eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
 	switch (true) {
-		case typeof postAuthors === "string":
-			return members.filter(member => member.name === postAuthors);
-		case typeof postAuthors === "object":
+		case typeof postAuthors === 'string':
+			return members.filter((member) => member.name === postAuthors)
+		case typeof postAuthors === 'object':
 			return members.reduce((acc: TeamMember[], member: TeamMember) => {
 				if (postAuthors.includes(member.name)) {
-					acc.push(member);
+					acc.push(member)
 				}
 
-				return acc;
-			}, []);
+				return acc
+			}, [])
 		default:
-			throw new Error(`invalid author type ${typeof postAuthors}`);
+			throw new Error(`invalid author type ${typeof postAuthors}`)
 	}
 }
 </script>
@@ -50,16 +53,21 @@ function getPostAuthors(): TeamMember[] {
 <template>
 	<Layout>
 		<template class="my-4" #doc-before>
-			<h1 class="my-2 text-4xl font-semibold leading-10">
+			<h1 class="!my-2 !text-4xl !font-semibold !leading-10">
 				<!-- @vue-expect-error -->
 				{{ $frontmatter.title }}
 			</h1>
 			<h2 class="my-2">
 				<div class="flex max-w-fit items-center justify-between">
-					<div v-for="author in getPostAuthors()" :key="author.name">
+					<div
+						v-for="author in getPostAuthors()"
+						:key="author.name"
+						class="flex flex-row items-center"
+					>
 						<Avatar
 							:src="author.avatar"
-							class="mr-2 inline-block aspect-square w-8 rounded-full"/>
+							class="mr-2 inline-block aspect-square w-8 rounded-full"
+						/>
 						<span>
 							<span class="font-semibold">{{ author.name }}</span>
 						</span>
@@ -68,7 +76,10 @@ function getPostAuthors(): TeamMember[] {
 					&nbsp;• {{ formatDate($frontmatter.date).readable }}
 				</div>
 				<!-- @vue-expect-error -->
-				<TagBadges class="my-3" :tagList="$frontmatter.tags" v-if="$frontmatter.tags" />
+				<TagBadges
+					:tagList="$frontmatter.tags"
+					v-if="$frontmatter.tags"
+				/>
 			</h2>
 		</template>
 	</Layout>
@@ -80,6 +91,6 @@ li {
 }
 
 li:not(.tag):not(:last-child)::after {
-	content: " • ";
+	content: ' • ';
 }
 </style>

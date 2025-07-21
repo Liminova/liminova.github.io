@@ -1,4 +1,4 @@
-import { data as posts, type Post } from "../../../posts.data";
+import { data as posts, type Post } from '../../../posts.data'
 
 /**
  * Group posts by year.
@@ -30,28 +30,28 @@ import { data as posts, type Post } from "../../../posts.data";
  * ```
  */
 function useYearSort(posts: Post[]): Post[][] {
-	const data: Post[][] = [];
-	let year = "0";
-	let index = -1;
+	const data: Post[][] = []
+	let year = '0'
+	let index = -1
 
 	for (const post of posts) {
 		if (post.date.original) {
-			const y: string = post.date.original.split("-")[0];
+			const y: string = post.date.original.split('-')[0]
 			if (y === year) {
-				data[index].push(post);
+				data[index].push(post)
 			} else {
-				index++;
-				data[index] = [];
-				data[index].push(post);
-				year = y;
+				index++
+				data[index] = []
+				data[index].push(post)
+				year = y
 			}
 		}
 	}
 
-	return data;
+	return data
 }
 
 // Variable hoisted to another file instead of leaving in Blog.vue
 // to avoid re-sorting posts every time the /blog page is accessed.
-const sorted = useYearSort(posts);
-export { sorted };
+const sorted = useYearSort(posts)
+export { sorted }

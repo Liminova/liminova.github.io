@@ -1,9 +1,9 @@
 ---
-title: "idekCTF 2024: rev/Game"
+title: 'idekCTF 2024: rev/Game'
 date: 2024-08-27
 author: NamSPro
-categories: ["ctf"]
-tags: ["rev", "idekctf"]
+categories: ['ctf']
+tags: ['rev', 'idekctf']
 description: The time is 9:20 am. I just woke up and found out that idekCTF 2024 has a game in it! Time to try it out!
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: page
 ---
+
 <script setup lang="ts">
 const yanamiFrames = [
 	{

@@ -1,21 +1,68 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin "tailwindcss-animate"; /* If `tailwindcss-animate` provides a v4 compatible plugin */
+
+@source "../../../liminova.github.io/**/*.{vue,ts,md}";
+
+@theme {
+	/* Extending font families */
+	--font-sans:
+		'Inter', var(--font-sans-default); /* Note: Tailwind v4 often provides defaults as CSS variables, like --font-sans-default */
+
+	/* Keyframes */
+	@keyframes accordion-down {
+		from {
+			height: 0;
+		}
+		to {
+			height: var(--radix-accordion-content-height);
+		}
+	}
+	@keyframes accordion-up {
+		from {
+			height: var(--radix-accordion-content-height);
+		}
+		to {
+			height: 0;
+		}
+	}
+
+	/* Animations */
+	--animation-accordion-down: accordion-down 0.2s ease-out;
+	--animation-accordion-up: accordion-up 0.2s ease-out;
+}
+
+/* Dark mode strategy (if needed, otherwise default to media query) */
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* refer to this: https://coolors.co/3f7bb1-2e5b97-274e84-264a7b-0e2947 */
 /* huge thanks to OrangeJuice for picking the colors! */
 :root {
-    --vp-home-hero-name-color: transparent;
-    --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #3f7bb1, #2e5b97, #274e84, #264a7b, #0e2947);
-    --vp-c-brand-1: #274e84;
+	--vp-home-hero-name-color: transparent;
+	--vp-home-hero-name-background: -webkit-linear-gradient(
+		120deg,
+		#3f7bb1,
+		#2e5b97,
+		#274e84,
+		#264a7b,
+		#0e2947
+	);
+	--vp-c-brand-1: #274e84;
 }
 
 :root.dark {
-    /* -10 sat, +20 bright */
-    --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #6496c1, #477bbe, #3f6fb2, #3c6bac, #225489);
-    --vp-c-brand-1: #4c81af;
+	/* -10 sat, +20 bright */
+	--vp-home-hero-name-background: -webkit-linear-gradient(
+		120deg,
+		#6496c1,
+		#477bbe,
+		#3f6fb2,
+		#3c6bac,
+		#225489
+	);
+	--vp-c-brand-1: #4c81af;
 }
 
 .dark * {
-    border-color: grey;
+	border-color: grey;
 }

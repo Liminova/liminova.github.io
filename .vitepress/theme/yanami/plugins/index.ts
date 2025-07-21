@@ -1,1 +1,1 @@
-export { goatcounter } from "./goatcounter";
+export { goatcounter } from './goatcounter'

@@ -1,2 +1,2 @@
-export { classname } from "./classname";
-export { formatDate } from "./formatDate";
+export { cn as classname } from './classname'
+export { formatDate } from './formatDate'

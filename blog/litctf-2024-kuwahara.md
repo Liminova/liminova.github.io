@@ -1,10 +1,10 @@
 ---
-title: "LITCTF 2024: misc/Kuwahara"
+title: 'LITCTF 2024: misc/Kuwahara'
 date: 2024-08-13
 author: beerpsi
-categories: ["ctf"]
-tags: ["misc", "litctf"]
-description:  I was invited to play Lexington Informatics Tournament CTF 2024 with Liminova. This is my first time playing CTF, and while we did not win, we had two first-solves, one of which is titled Kuwahara, the problem you're reading about now.
+categories: ['ctf']
+tags: ['misc', 'litctf']
+description: I was invited to play Lexington Informatics Tournament CTF 2024 with Liminova. This is my first time playing CTF, and while we did not win, we had two first-solves, one of which is titled Kuwahara, the problem you're reading about now.
 ---
 
 > Finally a good stego problem??
@@ -29,7 +29,7 @@ image using the Kuwahara filter and an encoding scheme.
 
 ## Kuwahara filter
 
-The Kuwahara filter is a smoothing filter used for adaptive noise reduction on *grayscale*
+The Kuwahara filter is a smoothing filter used for adaptive noise reduction on _grayscale_
 images. In this image, suppose we take a window divided into 4 overlapping, equal quadrants:
 
 ```
@@ -115,6 +115,7 @@ def kuwahara(original_image: MatLike, winsize: int):
 
     return avgs, stddevs
 ```
+
 </details>
 
 ## Encoding information using the Kuwahara filter
@@ -164,12 +165,12 @@ The encoding procedure can be described as follows:
 1. Calculate the mean and variance for all quadrants in the image
 2. Find the quadrants with the smallest variance to set the target pixels to
 3. Starting from `(x, y) = (window_size, window_size)`, for each digit `m` in the message:
-   1. Replace the pixel at `(x, y)` with the mean of the quadrant with the `m + 1`th
-   smallest variance. (e.g. if `m = 1` then the mean of the quadrant with the second least
-   variance is used).
-   2. Increment `y` by 1.
-   3. If `y` is equal to the width of the image minus `window_size`, increment `x` by 1
-   and set `y` to `window_size`.
+    1. Replace the pixel at `(x, y)` with the mean of the quadrant with the `m + 1`th
+       smallest variance. (e.g. if `m = 1` then the mean of the quadrant with the second least
+       variance is used).
+    2. Increment `y` by 1.
+    3. If `y` is equal to the width of the image minus `window_size`, increment `x` by 1
+       and set `y` to `window_size`.
 
 Since there are only 4 quadrants, the message must be encoded in base-4
 or lower. In the script, it is encoded as base-3, in order to distinguish
@@ -184,6 +185,7 @@ flag = [enc + 1 for enc in encode("FLAG", 3)] # FLAG encoded with base 3, plus 1
 The implementation of the base-N encoding and decoding routines are not important,
 and can be read in the provided module `encoder.py`. However, there are two important
 properties to note:
+
 1. The `encode` and `decode` functions return/take a list of digits:
 
 ```python
@@ -194,7 +196,7 @@ properties to note:
 ```
 
 2. Each character takes up a constant number of digits, determined by the base $b$ and the
-number of characters in the provided character set $x$:
+   number of characters in the provided character set $x$:
 
 $$ \left\lceil log_b \frac{x}{b - 1} \right\rceil + 2 $$
 
@@ -208,16 +210,17 @@ with a little bit of brute forcing:
 
 1. Calculate the mean and variance for all quadrants in the image
 2. Starting from `(x, y) = (window_size, window_size)`, for each pixel `(x, y)`:
-   1. Compare it against the averages of the 3 quadrants around the pixel (the one with
-   the smallest variance is excluded).
-   2. If we find a match, the pixel is encoded, and we save the ordinal (1st, 2nd, ...)
-   of the pixel to the message.
-   3. Otherwise, the pixel is normal, and the message has ended. Exit the function.
-   4. Increment `y` by 1.
-   5. If `y` is equal to the width of the image minus `window_size`, increment `x` by 1
-   and set `y` to `window_size`.
+    1. Compare it against the averages of the 3 quadrants around the pixel (the one with
+       the smallest variance is excluded).
+    2. If we find a match, the pixel is encoded, and we save the ordinal (1st, 2nd, ...)
+       of the pixel to the message.
+    3. Otherwise, the pixel is normal, and the message has ended. Exit the function.
+    4. Increment `y` by 1.
+    5. If `y` is equal to the width of the image minus `window_size`, increment `x` by 1
+       and set `y` to `window_size`.
 
 A Python implementation of that would look something like this:
+
 ```python
 def kuwahara(original_image: MatLike, winsize: int):
     # Refer to "Implementing the Kuwahara filter" for code.
@@ -344,7 +347,7 @@ Traceback (most recent call last):
 ```
 
 That was the decoded message, which was 31 digits in total. Not only was this not divisible
-by 6 (remember that [each character *always* takes up 6 digits](#the-base-3-encoding-scheme)),
+by 6 (remember that [each character _always_ takes up 6 digits](#the-base-3-encoding-scheme)),
 but the whole characters in there didn't decode to part of the flag wrapper:
 
 ```python
@@ -484,6 +487,7 @@ accurate RGB to grayscale conversion, a floating point `ndarray` is desired, bec
 uses floating point coefficients.
 
 ## Conclusion
+
 Overall, the concept of this problem was quite cool, even if a little simple, however it
 ended up being one of the last challenges to get solved at LIT CTF 2024 due to all of
 the problems I mentioned above, making solving this extremely tedious. Maybe if the

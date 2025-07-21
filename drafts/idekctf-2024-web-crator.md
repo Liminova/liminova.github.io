@@ -1,9 +1,9 @@
 ---
-title: "idekCTF 2024: web/crator"
+title: 'idekCTF 2024: web/crator'
 date: 2024-08-19
 author: Rylie
-categories: ["ctf"]
-tags: ["web", "idekctf"]
+categories: ['ctf']
+tags: ['web', 'idekctf']
 ---
 
 - i did all of this while having salc1 in the background.
@@ -22,7 +22,7 @@ tags: ["web", "idekctf"]
             - `GET` -> renders `register.html`
             - `POST` with username + password as form data:
                 - if user already exists -> username taken
-                - else -> add user with *plaintext* password to database
+                - else -> add user with _plaintext_ password to database
                 - redirects to `/login`
         - `/login`:
             - `GET` -> renders `login.html`

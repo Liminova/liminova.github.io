@@ -1,10 +1,10 @@
 ---
-title: "SekaiCTF 2024: ppc/Miku vs. Machine"
+title: 'SekaiCTF 2024: ppc/Miku vs. Machine'
 date: 2024-08-27
 author: NamSPro
-categories: ["ctf"]
-tags: ["ppc", "sekaictf"]
-description:  Continuing with last year's PPC success, I tackled this first. Too bad ours is only the 4th fastest solve...
+categories: ['ctf']
+tags: ['ppc', 'sekaictf']
+description: Continuing with last year's PPC success, I tackled this first. Too bad ours is only the 4th fastest solve...
 ---
 
 > Ah, yes, competitive programming... This would be rated codeforces-800
@@ -24,12 +24,13 @@ artists, in a way such that no show have more than one artist transition.
 This should have some eyebrows raised. Coupled with the fact that: if an artist's
 total show time is less than an individual show's time, there will be a show where
 there are two artist transitions; and we have our idea: select `n` as the length of
-each show,  and have each artist's show time be `m`. Afterwards we can manually
+each show, and have each artist's show time be `m`. Afterwards we can manually
 assign the artist(s) for each show in `O(n)` time.
 
 ## But the "fact" you stated is...
 
 For a longer post, a visual proof of this will be shown below.
+
 <div class="flex flex-wrap justify-evenly gap-y-2">
     <img src="https://nazunacord.net/vsUB1KbySiic.png" alt="Visual proof of the above statement">
 </div>

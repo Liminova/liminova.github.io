@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import VPLink from "vitepress/dist/client/theme-default/components/VPLink.vue";
-import { GitHubIcon, GmailIcon, OsuIcon, XIcon } from "vue3-simple-icons";
-
-import type { TeamMember } from "../../../config.mjs";
+import type { TeamMember } from '../../../config.mjs'
+import { Globe } from 'lucide-vue-next'
+import VPLink from 'vitepress/dist/client/theme-default/components/VPLink.vue'
+import { GitHubIcon, GmailIcon, OsuIcon, XIcon } from 'vue3-simple-icons'
 
 withDefaults(
 	defineProps<{
-		size?: "small" | "medium";
-		member: TeamMember;
+		size?: 'small' | 'medium'
+		member: TeamMember
 	}>(),
 	{
-		size: "medium",
-	},
-);
+		size: 'medium'
+	}
+)
 </script>
 
 <template>
@@ -26,12 +26,14 @@ withDefaults(
 					autoplay
 					muted
 					loop
-					playsinline />
+					playsinline
+				/>
 				<img
 					v-else-if="member.avatar"
 					class="avatar-img"
 					:src="member.avatar"
-					:alt="member.name" />
+					:alt="member.name"
+				/>
 			</figure>
 
 			<div class="data">
@@ -42,13 +44,16 @@ withDefaults(
 					<span v-if="member.title" class="title">
 						{{ member.title }}
 					</span>
-					<span v-if="member.title && member.org" class="at"> @ </span>
+					<span v-if="member.title && member.org" class="at">
+						@
+					</span>
 					<VPLink
 						v-if="member.org"
 						class="org"
 						:class="{ link: member.orgLink }"
 						:href="member.orgLink"
-						no-icon>
+						no-icon
+					>
 						{{ member.org }}
 					</VPLink>
 				</p>
@@ -58,15 +63,17 @@ withDefaults(
 					<a
 						v-for="{ link, icon } in member.links"
 						:key="link"
-						class="flex size-9 items-center justify-center !text-[var(--vp-c-text-2)] transition-colors duration-500 hover:!text-[var(--vp-c-text-1)] hover:duration-200"
+						class="flex size-9 items-center justify-center !text-[var(--vp-c-text-2)] transition-colors duration-500 hover:!text-[var(--vp-c-text-1)] hover:duration-200 [&>svg]:size-5"
 						:href="link"
 						:aria-label="`${icon}`"
 						target="_blank"
-						rel="noopener">
-						<GmailIcon v-if="icon === 'mail'" size="1.25rem" />
-						<OsuIcon v-else-if="icon === 'osu'" size="1.25rem" />
-						<XIcon v-else-if="icon === 'x'" size="1.25rem" />
-						<GitHubIcon v-else-if="icon === 'github'" size="1.25rem" />
+						rel="noopener"
+					>
+						<GmailIcon v-if="icon === 'mail'" />
+						<OsuIcon v-else-if="icon === 'osu'" />
+						<XIcon v-else-if="icon === 'x'" />
+						<GitHubIcon v-else-if="icon === 'github'" />
+						<Globe v-else-if="icon === 'website'" />
 					</a>
 				</div>
 			</div>
@@ -76,9 +83,10 @@ withDefaults(
 			<VPLink
 				class="flex items-center justify-center bg-[var(--vp-c-bg-soft)] p-4 text-center text-sm font-medium text-[var(--vp-c-sponsor)] transition-colors duration-200"
 				:href="member.sponsor"
-				no-icon>
+				no-icon
+			>
 				<span class="vpi-heart sp-icon mr-2 text-[16px]" />
-				{{ member.actionText || "Sponsor" }}
+				{{ member.actionText || 'Sponsor' }}
 			</VPLink>
 		</div>
 	</article>
