@@ -27,5 +27,21 @@
 		"tailwind-merge": "^3.3.1",
 		"tailwindcss-animate": "^1.0.7",
 		"vue3-simple-icons": "^15.6.0"
+	},
+	"prettier": {
+		"semi": false,
+		"singleQuote": true,
+		"tabWidth": 4,
+		"useTabs": true,
+		"plugins": [
+			"prettier-plugin-tailwindcss",
+			"@trivago/prettier-plugin-sort-imports"
+		],
+		"tailwindStylesheet": ".vitepress/theme/style.css",
+		"trailingComma": "none",
+		"tailwindFunctions": [
+			"cva",
+			"cn"
+		]
 	}
 }
