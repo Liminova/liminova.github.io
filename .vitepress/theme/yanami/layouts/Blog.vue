@@ -10,14 +10,13 @@ import { sorted } from './Blog.state'
 		<p class="!my-6">An archive of our blog posts.</p>
 		<hr class="!my-8" />
 		<div
-			v-for="posts in sorted"
+			v-for="(posts, index) in sorted"
 			:key="posts[0].date.readable.slice(-4)"
-			class="border-b border-dashed border-[#c7c7c7] last:border-none"
 		>
 			<div class="my-5 text-2xl font-medium">
 				{{ posts[0].date.readable.slice(-4) }}
 			</div>
-			<div class="mx-3 my-6" v-for="(post, index) in posts" :key="index">
+			<div class="mx-3 my-6 border-b border-dashed border-[#c7c7c7] last-of-type:border-none" v-for="(post, index) in posts" :key="index">
 				<a
 					:href="post.url"
 					:key="index"
@@ -66,9 +65,9 @@ import { sorted } from './Blog.state'
 						v-if="post.tags"
 					/>
 				</div>
-
-				<hr class="my-3" v-if="index !== posts.length - 1" />
 			</div>
+
+				<hr class="my-3" v-if="index !== sorted.length - 1" />
 		</div>
 		<div v-if="sorted.length === 0" class="my-4">
 			Nothing here just yet, but we're cooking.
