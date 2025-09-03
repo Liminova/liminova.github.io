@@ -10,12 +10,19 @@ hero:
 ---
 
 <script setup>
-import { useData } from "vitepress";
+import { useData } from 'vitepress'
 
-const data = useData();
-const members = data.theme.value.members;
+const data = useData()
+const members = data.theme.value.members
+const alumnis = data.theme.value.alumnis
 </script>
 
 <h1>Meet the Team</h1>
 
 <TeamMembers size="medium" :members="members" />
+
+<hr>
+
+<h1>Alumnis</h1>
+
+<TeamMembers size="medium" :members="alumnis" />

@@ -5,7 +5,10 @@ import { copyFile, readFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
 import { type DefaultTheme, defineConfigWithTheme } from 'vitepress'
 
-export type ThemeConfig = DefaultTheme.Config & { members?: TeamMember[] }
+export type ThemeConfig = DefaultTheme.Config & {
+	members?: TeamMember[]
+	alumnis?: TeamMember[]
+}
 
 export type TeamMember = Omit<DefaultTheme.TeamMember, 'links'> & {
 	links: Array<{
@@ -44,15 +47,11 @@ export default defineConfigWithTheme<ThemeConfig>({
 				name: 'Rylie',
 				title: 'resident troller, founder of CTF division',
 				links: [
+					{ icon: 'website', link: 'https://rylie.moe' },
 					{ icon: 'github', link: 'https://github.com/j1nxie' },
 					{ icon: 'x', link: 'https://x.com/_lumi9' },
 					{ icon: 'osu', link: 'https://osu.ppy.sh/u/14585583' }
 				]
-			},
-			{
-				avatar: 'https://avatars.githubusercontent.com/u/107946882?v=4',
-				name: 'Peachy',
-				links: [{ icon: 'github', link: 'https://github.com/Peachy72' }]
 			},
 			{
 				avatar: '/delnegend.mp4',
@@ -97,6 +96,13 @@ export default defineConfigWithTheme<ThemeConfig>({
 				name: 'Snappy',
 				title: 'người đàn ông đẹp trai thứ 2 công ty',
 				links: [{ icon: 'github', link: 'https://github.com/snwappy' }]
+			}
+		],
+		alumnis: [
+			{
+				avatar: 'https://avatars.githubusercontent.com/u/107946882?v=4',
+				name: 'Peachy',
+				links: [{ icon: 'github', link: 'https://github.com/Peachy72' }]
 			}
 		]
 	},
