@@ -32,7 +32,7 @@ onMounted(() => {
 </script>
 
 <template>
-	<div class="mx-auto my-0 max-w-6xl px-8 pb-0 pt-10">
+	<div class="mx-auto my-0 max-w-6xl px-8 py-10">
 		<h1 class="!text-5xl !font-semibold !leading-10">Contests</h1>
 		<p class="!my-6">We aren't very good yet, but we're trying. :3</p>
 		<p class="!my-6">
