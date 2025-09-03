@@ -5,6 +5,14 @@ layout: page
 <script setup>
 const data = [
     {
+        name: "Lexington Informatics Tournament CTF 2025",
+        short: "LIT CTF 2025",
+        time: "August 23 - August 25, 2025",
+        placement: 142,
+        ctfPoints: 2477,
+        ctfRating: 24.807,
+    },
+    {
         name: "CyberSpace CTF 2024",
         time: "August 30 - September 01, 2024",
         placement: 235,
