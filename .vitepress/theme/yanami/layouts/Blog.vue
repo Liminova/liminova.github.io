@@ -12,7 +12,7 @@ import { sorted } from './Blog.state'
 		<div
 			v-for="posts in sorted"
 			:key="posts[0].date.readable.slice(-4)"
-			class="border border-dashed border-[#c7c7c7] last:border-none"
+			class="border-b border-dashed border-[#c7c7c7] last:border-none"
 		>
 			<div class="my-5 text-2xl font-medium">
 				{{ posts[0].date.readable.slice(-4) }}
