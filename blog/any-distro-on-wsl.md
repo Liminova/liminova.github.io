@@ -12,9 +12,9 @@ thumbnail: './any-distro-on-wsl/thumb.jpg'
 
 Get your favorite Linux distro running in WSL in minutes:
 
-- Export a container image as a rootfs tarball.
-- Import it into WSL and remove leftovers.
-- Set your new distro as the default.
+-   Export a container image as a rootfs tarball.
+-   Import it into WSL and remove leftovers.
+-   Set your new distro as the default.
 
 ```bash
 # Export Fedora image
@@ -32,17 +32,17 @@ wsl --set-default Fedora
 
 ### Prerequisites
 
-- WSL2 enabled on Windows (run `wsl --install`).
-- Docker Engine installed in your WSL distro (needed only for export).
+-   WSL2 enabled on Windows (run `wsl --install`).
+-   Docker Engine installed in your WSL distro (needed only for export).
 
 > There are a ton of guides on the internet but here's one to avoid jumping to another article if you haven't installed it yet.
 
-- `Windows + S` > type `Turn Windows features`
-- Open `Turn Windows features on or off`
-- Enable `Virtual Machine Platform` and `Windows Subsystem for Linux` > `OK` > Restart
-- `Windows + X` > `Terminal` or `PowerShell`
-- `wsl --update`
-- `wsl --install` and follow the instructions
+-   `Windows + S` > type `Turn Windows features`
+-   Open `Turn Windows features on or off`
+-   Enable `Virtual Machine Platform` and `Windows Subsystem for Linux` > `OK` > Restart
+-   `Windows + X` > `Terminal` or `PowerShell`
+-   `wsl --update`
+-   `wsl --install` and follow the instructions
 
 Follow [this guide](https://docs.docker.com/engine/install/ubuntu/) to install Docker Engine on Ubuntu. No need for the post-installation steps since we only need them to extract the Fedora image from the Docker image.
 
@@ -85,14 +85,14 @@ At this point, you should see the `Fedora` distro in the WSL distro list.
 
 ## Post-installation tweaks
 
-- Set default distro for WSL
+-   Set default distro for WSL
 
     ```powershell
     wsl --set-default Fedora
     ```
 
-- Path fixes
-  Upon starting using the `wsl` command, you might see a bunch of `ERROR: UtilTranslatePathList` messages. This happens because Fedora wasn't shut down ["the-wsl-way"](https://askubuntu.com/a/1442829) in the second step. Just terminate it from Windows and relaunch it.
+-   Path fixes \
+    Upon starting using the `wsl` command, you might see a bunch of `ERROR: UtilTranslatePathList` messages. This happens because Fedora wasn't shut down ["the-wsl-way"](https://askubuntu.com/a/1442829) in the second step. Just terminate it from Windows and relaunch it.
 
     ```powershell
     wsl --terminate Fedora
@@ -101,7 +101,7 @@ At this point, you should see the `Fedora` distro in the WSL distro list.
 
     > In the future you should avoid shutting down WSL from the inside, use `wsl --shutdown` instead.
 
-- Update & install additional packages
+-   Update & install additional packages
 
 Update and add essentials:
 
@@ -112,15 +112,15 @@ dnf install wget curl sudo git passwd ncurses dnf-utils nano
 
     > You may remove those you know and don't need.
 
-- Add user & set password
+-   Add user & set password
 
     ```bash
     useradd -G wheel yourusername
     passwd yourusername
     ```
 
-- Set default user in `wsl.conf` & enable `systemd`
-  Modify the `wsl.conf` file using a text editor
+-   Set default user in `wsl.conf` & enable `systemd`
+    Modify the `wsl.conf` file using a text editor
 
     ```bash
     sudo nano /etc/wsl.conf
@@ -214,26 +214,26 @@ Everything else, X11 or Wayland-related, should be included in the dependency li
 
 If you're using Windows Terminal (btw you should), you can create a shortcut to open the WSL distro in Windows Terminal and pin it to the taskbar.
 
-- Right-click on desktop > `New` > `Shortcut`
-- Paste the following path
+-   Right-click on desktop > `New` > `Shortcut`
+-   Paste the following path
     ```
     %userprofile%\AppData\Local\Microsoft\WindowsApps\wt.exe -p Fedora
     ```
-- `Next` > enter `Fedora` > `Finish`
-- Hold `Alt` and double click on the shortcut to open its `Properties` panel
-- Select `Change Icon...` and use this <a href="./any-distro-on-wsl/fedora.ico" download>fedora.ico</a>
-- Drag the shortcut onto the taskbar
-  ![](./any-distro-on-wsl/taskbar-shortcut.png)
+-   `Next` > enter `Fedora` > `Finish`
+-   Hold `Alt` and double click on the shortcut to open its `Properties` panel
+-   Select `Change Icon...` and use this <a href="./any-distro-on-wsl/fedora.ico" download>fedora.ico</a>
+-   Drag the shortcut onto the taskbar
+    ![](./any-distro-on-wsl/taskbar-shortcut.png)
 
 ## Best practices for backup & restore
 
-- Find and remove unnecessary files and directories with [`ncdu`](https://dev.yorhel.nl/ncdu) (v2.5 and above)
+-   Find and remove unnecessary files and directories with [`ncdu`](https://dev.yorhel.nl/ncdu) (v2.5 and above)
 
     ```
     sudo /path/to/ncdu -t8 --exclude /mnt /
     ```
 
-- Shrink the WSL2 `.vhdx` disk
+-   Shrink the WSL2 `.vhdx` disk
 
     Identify the `ext4.vhdx` file from the location you specified during the [import](#import-the-image-clean-up) process OR in `regedit` at
 
@@ -261,28 +261,28 @@ If you're using Windows Terminal (btw you should), you can create a shortcut to 
     exit
     ```
 
-- To backup, copy the whole `ext4.vhdx` file to another location or use
+-   To backup, copy the whole `ext4.vhdx` file to another location or use
 
     ```PowerShell
     wsl --export --vhd <Distribution Name> <FileName>
     ```
 
-- To restore, use
+-   To restore, use
     ```PowerShell
     wsl --import --vhd <Distribution Name> <InstallLocation> <FileName>
     ```
 
 ## References
 
-- [Import any Linux distribution to use with WSL | Microsoft](https://learn.microsoft.com/en-us/windows/wsl/use-custom-distro)
-- [Using Fedora 33 with Microsoft’s WSL2 | Fedora Magazine](https://fedoramagazine.org/wsl-fedora-33/)
-- [How to set default user for manually installed WSL distro? | superuser](https://superuser.com/a/1566031)
-- [Multiple UtilTranslatePathList errors when restarting Ubuntu on WSL after a shutdown | AskUbuntu](https://askubuntu.com/a/1442829)
-- [Advanced settings configuration in WSL | Microsoft](https://learn.microsoft.com/en-us/windows/wsl/wsl-config)
-- [Basic commands for WSL | Microsoft](https://learn.microsoft.com/en-us/windows/wsl/basic-commands)
-- [libGLESv2.so.2: cannot open shared object file: No such file or directory | Qt Forum](https://forum.qt.io/topic/137040/libglesv2-so-2-cannot-open-shared-object-file-no-such-file-or-directory)
-- [Diagnosing "cannot open display" type issues with WSLg | GitHub - wslg](https://github.com/microsoft/wslg/wiki/Diagnosing-%22cannot-open-display%22-type-issues-with-WSLg)
-- [viruscamp/wslg-links | Recreate WSLg sockets after `/tmp` and `$XDG_RUNTIME_DIR` mounted](https://github.com/viruscamp/wslg-links)
+-   [Import any Linux distribution to use with WSL | Microsoft](https://learn.microsoft.com/en-us/windows/wsl/use-custom-distro)
+-   [Using Fedora 33 with Microsoft’s WSL2 | Fedora Magazine](https://fedoramagazine.org/wsl-fedora-33/)
+-   [How to set default user for manually installed WSL distro? | superuser](https://superuser.com/a/1566031)
+-   [Multiple UtilTranslatePathList errors when restarting Ubuntu on WSL after a shutdown | AskUbuntu](https://askubuntu.com/a/1442829)
+-   [Advanced settings configuration in WSL | Microsoft](https://learn.microsoft.com/en-us/windows/wsl/wsl-config)
+-   [Basic commands for WSL | Microsoft](https://learn.microsoft.com/en-us/windows/wsl/basic-commands)
+-   [libGLESv2.so.2: cannot open shared object file: No such file or directory | Qt Forum](https://forum.qt.io/topic/137040/libglesv2-so-2-cannot-open-shared-object-file-no-such-file-or-directory)
+-   [Diagnosing "cannot open display" type issues with WSLg | GitHub - wslg](https://github.com/microsoft/wslg/wiki/Diagnosing-%22cannot-open-display%22-type-issues-with-WSLg)
+-   [viruscamp/wslg-links | Recreate WSLg sockets after `/tmp` and `$XDG_RUNTIME_DIR` mounted](https://github.com/viruscamp/wslg-links)
 
 <style>
 main img {
