@@ -5,6 +5,13 @@ layout: page
 <script setup>
 const data = [
     {
+        name: "ImaginaryCTF 2025",
+        time: "September 06 - September 08, 2025",
+        placement: 180,
+        ctfPoints: 1800,
+        ctfRating: 12.109,
+    },
+    {
         name: "Lexington Informatics Tournament CTF 2025",
         short: "LIT CTF 2025",
         time: "August 23 - August 25, 2025",
