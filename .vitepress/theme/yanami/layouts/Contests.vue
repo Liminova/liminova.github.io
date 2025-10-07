@@ -33,7 +33,7 @@ onMounted(() => {
 
 <template>
 	<div class="mx-auto my-0 max-w-6xl px-8 py-10">
-		<h1 class="!text-5xl !font-semibold !leading-10">Contests</h1>
+		<h1 class="!text-5xl !leading-10 !font-semibold">Contests</h1>
 		<p class="!my-6">We aren't very good yet, but we're trying. :3</p>
 		<p class="!my-6">
 			All times are in UTC+7 (ICT), as displayed on CTFtime.
@@ -71,7 +71,7 @@ onMounted(() => {
 					</td>
 					<td class="-ml-4 h-12 p-4 text-left align-middle">
 						<div>
-							<div class="text-balance text-xl font-semibold">
+							<div class="text-xl font-semibold text-balance">
 								{{ contest.name }}
 							</div>
 							<div>{{ contest.time }}</div>
@@ -109,7 +109,7 @@ onMounted(() => {
 				class="flex size-full flex-col justify-between rounded-md border"
 			>
 				<div
-					class="text-balance border-b px-4 py-3 text-center text-lg font-semibold"
+					class="border-b px-4 py-3 text-center text-lg font-semibold text-balance"
 				>
 					<span v-if="contest.short">{{ contest.short }}</span>
 					<span v-else>{{ contest.name }}</span>

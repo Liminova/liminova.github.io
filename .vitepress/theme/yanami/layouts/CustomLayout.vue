@@ -53,7 +53,7 @@ function getPostAuthors(): TeamMember[] {
 <template>
 	<Layout>
 		<template class="my-4" #doc-before>
-			<h1 class="!my-2 !text-4xl !font-semibold !leading-10">
+			<h1 class="!my-2 !text-4xl !leading-10 !font-semibold">
 				<!-- @vue-expect-error -->
 				{{ $frontmatter.title }}
 			</h1>

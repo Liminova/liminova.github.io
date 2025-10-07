@@ -5,8 +5,8 @@ const props = defineProps<{
 </script>
 
 <template>
-	<div class="mx-auto my-0 max-w-full px-8 pb-0 pt-10">
-		<h1 class="!text-5xl !font-semibold !leading-10">Wall of Yanami</h1>
+	<div class="mx-auto my-0 max-w-full px-8 pt-10 pb-0">
+		<h1 class="!text-5xl !leading-10 !font-semibold">Wall of Yanami</h1>
 		<p class="!my-6">
 			A collection of Anna Yanami's frames from Make Heroine ga Oosugiru!
 			- the namesake of this website internally. Why? Why
@@ -32,7 +32,7 @@ const props = defineProps<{
 				>
 					<img
 						:src="frame.src"
-						class="absolute left-0 top-0 h-auto w-full"
+						class="absolute top-0 left-0 h-auto w-full"
 						loading="lazy"
 					/>
 				</div>
