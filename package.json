@@ -40,7 +40,6 @@
 		"tailwindStylesheet": ".vitepress/theme/style.css",
 		"trailingComma": "none",
 		"tailwindFunctions": [
-			"cva",
 			"cn"
 		]
 	}
