@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TeamMember } from '../../../config.mjs'
+import Avatar from './Avatar.vue'
 import { Globe } from 'lucide-vue-next'
 import VPLink from 'vitepress/dist/client/theme-default/components/VPLink.vue'
 import { GitHubIcon, GmailIcon, OsuIcon, XIcon } from 'vue3-simple-icons'
@@ -19,17 +20,7 @@ withDefaults(
 	<article class="TeamMembersItem" :class="[size]">
 		<div class="profile">
 			<figure class="avatar">
-				<video
-					v-if="member.avatar && member.avatar.endsWith('.mp4')"
-					class="avatar-img"
-					:src="member.avatar"
-					autoplay
-					muted
-					loop
-					playsinline
-				/>
-				<img
-					v-else-if="member.avatar"
+				<Avatar
 					class="avatar-img"
 					:src="member.avatar"
 					:alt="member.name"
