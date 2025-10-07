@@ -7,22 +7,22 @@
 		"lint": "oxlint --import-plugin -D correctness -D perf && prettier -l -w \"**/*.{js,ts,vue,json,css,md,mts}\""
 	},
 	"devDependencies": {
-		"@tailwindcss/vite": "^4.1.11",
+		"@tailwindcss/vite": "^4.1.14",
 		"@trivago/prettier-plugin-sort-imports": "^5.2.2",
-		"@types/node": "^22.16.5",
-		"oxlint": "^1.7.0",
+		"@types/node": "^22.18.8",
+		"oxlint": "^1.20.0",
 		"postcss": "^8.5.6",
 		"prettier": "^3.6.2",
 		"prettier-plugin-tailwindcss": "^0.6.14",
-		"tailwindcss": "^4.1.11",
-		"typescript": "^5.8.3",
-		"vitepress": "^1.6.3",
-		"vue": "^3.5.17"
+		"tailwindcss": "^4.1.14",
+		"typescript": "^5.9.3",
+		"vitepress": "^1.6.4",
+		"vue": "^3.5.22"
 	},
 	"dependencies": {
 		"clsx": "2.1.1",
-		"lucide-vue-next": "^0.525.0",
-		"markdown-it-mathjax3": "^4.3.2",
+		"lucide-vue-next": "^0.545.0",
+		"markdown-it-mathjax3": "^5.2.0",
 		"radix-vue": "^1.9.17",
 		"tailwind-merge": "^3.3.1",
 		"tailwindcss-animate": "^1.0.7",
