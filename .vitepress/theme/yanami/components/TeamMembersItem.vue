@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { TeamMember } from '../../../config.mjs'
 import Avatar from './Avatar.vue'
-import { Globe } from 'lucide-vue-next'
 import VPLink from 'vitepress/dist/client/theme-default/components/VPLink.vue'
 import { GitHubIcon, GmailIcon, OsuIcon, XIcon } from 'vue3-simple-icons'
 
@@ -64,7 +63,23 @@ withDefaults(
 						<OsuIcon v-else-if="icon === 'osu'" />
 						<XIcon v-else-if="icon === 'x'" />
 						<GitHubIcon v-else-if="icon === 'github'" />
-						<Globe v-else-if="icon === 'website'" />
+						<svg
+							v-else-if="icon === 'website'"
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="size-5"
+						>
+							<circle cx="12" cy="12" r="10" />
+							<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+							<path d="M2 12h20" />
+						</svg>
 					</a>
 				</div>
 			</div>
