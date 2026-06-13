@@ -174,6 +174,9 @@ export default defineConfigWithTheme<ThemeConfig>({
 		}
 	},
 	vite: {
-		plugins: [tailwind()]
+		plugins: [tailwind()],
+		server: {
+			host: '0.0.0.0'
+		}
 	}
 })
