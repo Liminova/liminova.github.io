@@ -1,0 +1,13 @@
+{
+	"singleQuote": true,
+	"trailingComma": "none",
+	"semi": false,
+	"tabWidth": 4,
+	"useTabs": true,
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"sortTailwindcss": {
+		"stylesheet": ".vitepress/theme/style.css",
+		"functions": ["cn"]
+	},
+	"ignorePatterns": ["node_modules/", "public/", ".vitepress/cache/"]
+}
