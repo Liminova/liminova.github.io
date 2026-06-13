@@ -24,10 +24,7 @@ watch(
 function getPostAuthors(): TeamMember[] {
 	const data = useData()
 	const members = (data.theme.value as { members: TeamMember[] }).members
-	const postAuthors = data.frontmatter.value.author as
-		| string
-		| string[]
-		| undefined
+	const postAuthors = data.frontmatter.value.author as string | string[] | undefined
 	if (postAuthors === undefined) {
 		throw new Error(`author field in ${data.page.value.filePath} is empty`)
 	}
@@ -76,10 +73,7 @@ function getPostAuthors(): TeamMember[] {
 					&nbsp;• {{ formatDate($frontmatter.date).readable }}
 				</div>
 				<!-- @vue-expect-error -->
-				<TagBadges
-					:tagList="$frontmatter.tags"
-					v-if="$frontmatter.tags"
-				/>
+				<TagBadges :tagList="$frontmatter.tags" v-if="$frontmatter.tags" />
 			</h2>
 		</template>
 	</Layout>

@@ -15,11 +15,7 @@ function mountGoatcounter(id: string): void {
 }
 
 export function goatcounter({ id }: { id: string }): void {
-	if (
-		process.env.NODE_ENV === 'production' &&
-		id &&
-		typeof window !== 'undefined'
-	) {
+	if (process.env.NODE_ENV === 'production' && id && typeof window !== 'undefined') {
 		mountGoatcounter(id)
 	}
 }

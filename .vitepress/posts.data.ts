@@ -68,9 +68,7 @@ export default createContentLoader(patterns, {
 					case typeof frontmatter.author === 'object' &&
 						Array.isArray(frontmatter.author): {
 						for (const author of frontmatter.author as string[]) {
-							const findResult = membersData.find(
-								(member) => member.name === author
-							)
+							const findResult = membersData.find((member) => member.name === author)
 							if (!findResult) {
 								throw new Error(
 									`author ${author} in ${url} not found in \`config.mts\``

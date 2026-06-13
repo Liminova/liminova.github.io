@@ -9,10 +9,7 @@ import { sorted } from './Blog.state'
 		<h1 class="!text-5xl !leading-10 !font-semibold">All Posts</h1>
 		<p class="!my-6">An archive of our blog posts.</p>
 		<hr class="!my-8" />
-		<div
-			v-for="(posts, index) in sorted"
-			:key="posts[0].date.readable.slice(-4)"
-		>
+		<div v-for="(posts, index) in sorted" :key="posts[0].date.readable.slice(-4)">
 			<div class="my-5 text-2xl font-medium">
 				{{ posts[0].date.readable.slice(-4) }}
 			</div>
@@ -41,9 +38,7 @@ import { sorted } from './Blog.state'
 					{{ post.description }}
 				</div>
 
-				<div
-					class="my-2 flex flex-wrap items-center justify-between text-sm"
-				>
+				<div class="my-2 flex flex-wrap items-center justify-between text-sm">
 					<!-- "items-center" causes date to be centered if it's not in this div -->
 					<div class="flex items-center gap-1">
 						<div class="flex items-center gap-2">
@@ -56,25 +51,17 @@ import { sorted } from './Blog.state'
 									:src="author.avatar"
 									class="mr-1 inline-block aspect-square w-5 rounded-full"
 								/>
-								<span class="font-semibold">{{
-									author.name
-								}}</span>
+								<span class="font-semibold">{{ author.name }}</span>
 							</div>
 						</div>
 						• {{ post.date.readable.slice(0, -6) }}
 					</div>
-					<TagBadges
-						class="mt-1 justify-end"
-						:tagList="post.tags"
-						v-if="post.tags"
-					/>
+					<TagBadges class="mt-1 justify-end" :tagList="post.tags" v-if="post.tags" />
 				</div>
 			</div>
 
 			<hr class="my-3" v-if="index !== sorted.length - 1" />
 		</div>
-		<div v-if="sorted.length === 0" class="my-4">
-			Nothing here just yet, but we're cooking.
-		</div>
+		<div v-if="sorted.length === 0" class="my-4">Nothing here just yet, but we're cooking.</div>
 	</div>
 </template>

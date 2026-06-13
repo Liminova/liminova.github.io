@@ -19,11 +19,7 @@ withDefaults(
 	<article class="TeamMembersItem" :class="[size]">
 		<div class="profile">
 			<figure class="avatar">
-				<Avatar
-					class="avatar-img"
-					:src="member.avatar"
-					:alt="member.name"
-				/>
+				<Avatar class="avatar-img" :src="member.avatar" :alt="member.name" />
 			</figure>
 
 			<div class="data">
@@ -34,9 +30,7 @@ withDefaults(
 					<span v-if="member.title" class="title">
 						{{ member.title }}
 					</span>
-					<span v-if="member.title && member.org" class="at">
-						@
-					</span>
+					<span v-if="member.title && member.org" class="at"> @ </span>
 					<VPLink
 						v-if="member.org"
 						class="org"
@@ -53,7 +47,7 @@ withDefaults(
 					<a
 						v-for="{ link, icon } in member.links"
 						:key="link"
-						class="flex size-9 items-center justify-center !text-[var(--vp-c-text-2)] transition-colors duration-500 hover:!text-[var(--vp-c-text-1)] hover:duration-200 [&>svg]:size-5"
+						class="flex size-9 items-center justify-center text-(--vp-c-text-2)! transition-colors duration-500 hover:text-(--vp-c-text-1)! hover:duration-200 [&>svg]:size-5"
 						:href="link"
 						:aria-label="`${icon}`"
 						target="_blank"
@@ -87,7 +81,7 @@ withDefaults(
 
 		<div v-if="member.sponsor" class="sponsor-link">
 			<VPLink
-				class="flex items-center justify-center bg-[var(--vp-c-bg-soft)] p-4 text-center text-sm font-medium text-[var(--vp-c-sponsor)] transition-colors duration-200"
+				class="flex items-center justify-center bg-(--vp-c-bg-soft) p-4 text-center text-sm font-medium text-(--vp-c-sponsor) transition-colors duration-200"
 				:href="member.sponsor"
 				no-icon
 			>

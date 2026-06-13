@@ -1,4 +1,3 @@
-// @ts-expect-error
 import tailwind from '@tailwindcss/vite'
 import { createHash } from 'node:crypto'
 import { copyFile, readFileSync } from 'node:fs'
@@ -108,18 +107,9 @@ export default defineConfigWithTheme<ThemeConfig>({
 	},
 	head: [
 		['link', { rel: 'icon', href: '/favicon/favicon.ico' }],
-		[
-			'link',
-			{ rel: 'icon', sizes: '32x32', href: '/favicon/favicon-32x32.png' }
-		],
-		[
-			'link',
-			{ rel: 'icon', sizes: '16x16', href: '/favicon/favicon-16x16.png' }
-		],
-		[
-			'link',
-			{ rel: 'apple-touch-icon', href: '/favicon/apple-touch-icon.png' }
-		],
+		['link', { rel: 'icon', sizes: '32x32', href: '/favicon/favicon-32x32.png' }],
+		['link', { rel: 'icon', sizes: '16x16', href: '/favicon/favicon-16x16.png' }],
+		['link', { rel: 'apple-touch-icon', href: '/favicon/apple-touch-icon.png' }],
 		['link', { rel: 'manifest', href: '/favicon/site.webmanifest' }]
 	],
 	transformPageData(pageData, ctx) {
@@ -158,15 +148,9 @@ export default defineConfigWithTheme<ThemeConfig>({
 					.digest('base64')
 					.slice(0, 8)
 				const thumbnailExtension = thumbnail.split('.').pop()
-				const thumbnailBasename = basename(
-					thumbnail,
-					thumbnailExtension
-				)
+				const thumbnailBasename = basename(thumbnail, thumbnailExtension)
 				const thumbnailFilename = `${thumbnailBasename}${thumbnailHash}.${thumbnailExtension}`
-				const destinationPath = join(
-					'.vitepress/dist/assets',
-					thumbnailFilename
-				)
+				const destinationPath = join('.vitepress/dist/assets', thumbnailFilename)
 
 				assetsCopyQueue.push({ src: inputPath, dest: destinationPath })
 
@@ -176,10 +160,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 			;(pageData.frontmatter.head as Head).push(
 				['meta', { property: 'og:image', content: outputPath }],
 				['meta', { property: 'twitter:image', content: outputPath }],
-				[
-					'meta',
-					{ name: 'twitter:card', content: 'summary_large_image' }
-				]
+				['meta', { name: 'twitter:card', content: 'summary_large_image' }]
 			)
 		}
 	},

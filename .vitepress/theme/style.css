@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
-@plugin "tailwindcss-animate"; /* If `tailwindcss-animate` provides a v4 compatible plugin */
+@plugin 'tailwindcss-animate'; /* If `tailwindcss-animate` provides a v4 compatible plugin */
 
-@source "../../../liminova.github.io/**/*.{vue,ts,md}";
+@source '../../../liminova.github.io/**/*.{vue,ts,md}';
 
 @theme {
 	/* Extending font families */
