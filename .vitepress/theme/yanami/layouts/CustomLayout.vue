@@ -1,15 +1,15 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
-
 <script setup lang="ts">
-/* eslint vue/no-useless-template-attributes: 0 */
-import type { TeamMember } from '../../../config.mjs'
-import '../../style.css'
-import Avatar from '../components/Avatar.vue'
-import TagBadges from '../components/TagBadges.vue'
-import { formatDate } from '../libs'
 import { useData, useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { watch } from 'vue'
+
+import type { TeamMember } from '../../../config.mjs'
+
+import '../../style.css'
+import Avatar from '../components/Avatar.vue'
+import TagBadges from '../components/TagBadges.vue'
+import { formatDate } from '../libs/formatDate'
 
 const { Layout } = DefaultTheme
 const route = useRoute()

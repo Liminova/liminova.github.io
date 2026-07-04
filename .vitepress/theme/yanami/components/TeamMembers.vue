@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import type { TeamMember } from '../../../config.mjs'
 import TeamMembersItem from './TeamMembersItem.vue'
-import { computed } from 'vue'
 
 const props = withDefaults(
 	defineProps<{

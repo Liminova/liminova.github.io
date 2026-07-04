@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { TeamMember } from '../../../config.mjs'
-import Avatar from './Avatar.vue'
 import VPLink from 'vitepress/dist/client/theme-default/components/VPLink.vue'
 import { GitHubIcon, GmailIcon, OsuIcon, XIcon } from 'vue3-simple-icons'
+
+import type { TeamMember } from '../../../config.mjs'
+import Avatar from './Avatar.vue'
 
 withDefaults(
 	defineProps<{
