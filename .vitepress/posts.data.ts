@@ -1,6 +1,7 @@
-import config from './config.mjs'
-import { formatDate } from './theme/yanami/libs'
 import { createContentLoader } from 'vitepress'
+
+import config from './config.mjs'
+import { formatDate } from './theme/yanami/libs/formatDate'
 
 // Don't use TeamMember because "the loaded data
 // will be inlined as JSON in the client bundle"

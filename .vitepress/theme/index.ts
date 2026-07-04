@@ -1,12 +1,13 @@
 import './style.css'
+import type { EnhanceAppContext, Theme } from 'vitepress'
+import DefaultTheme from 'vitepress/theme'
+
 import TeamMembers from './yanami/components/TeamMembers.vue'
 import Blog from './yanami/layouts/Blog.vue'
 import Contests from './yanami/layouts/Contests.vue'
 import CustomLayout from './yanami/layouts/CustomLayout.vue'
 import WallOfYanami from './yanami/layouts/WallOfYanami.vue'
-import { goatcounter } from './yanami/plugins'
-import type { EnhanceAppContext, Theme } from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
+import { goatcounter } from './yanami/plugins/goatcounter'
 
 export default {
 	extends: DefaultTheme,

@@ -1,7 +1,8 @@
-import tailwind from '@tailwindcss/vite'
 import { createHash } from 'node:crypto'
 import { copyFile, readFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
+
+import tailwind from '@tailwindcss/vite'
 import { type DefaultTheme, defineConfigWithTheme } from 'vitepress'
 
 export type ThemeConfig = DefaultTheme.Config & {
