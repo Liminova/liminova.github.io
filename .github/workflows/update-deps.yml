@@ -2,7 +2,7 @@ name: Weekly Dependency Update
 
 on:
     schedule:
-        - cron: '0 6 * * 1'
+        - cron: '0 2 * * 1' # Runs every Monday at 9:00 AM UTC+7
     workflow_dispatch:
 
 permissions:
