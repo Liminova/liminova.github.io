@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { onBeforeMount, onMounted, ref } from 'vue'
-
 interface Contest {
 	name: string
 	time: string
@@ -10,25 +8,9 @@ interface Contest {
 	short?: string
 }
 
-const props = defineProps({
-	data: {
-		type: Array<Contest>,
-		required: true
-	}
-})
-
-const isMobile = ref(false)
-
-onBeforeMount(() => {
-	isMobile.value = window.innerWidth <= 768
-})
-
-onMounted(() => {
-	const mediaQuery = window.matchMedia('(max-width: 768px)')
-	mediaQuery.addEventListener('change', (e) => {
-		isMobile.value = e.matches
-	})
-})
+const props = defineProps<{
+	data: Contest[]
+}>()
 </script>
 
 <template>
@@ -40,7 +22,7 @@ onMounted(() => {
 
 		<!-- desktop layout -->
 
-		<div class="rounded-md border" v-if="!isMobile">
+		<div class="hidden rounded-md border md:block">
 			<table class="w-full caption-bottom text-sm">
 				<thead>
 					<tr class="border-b">
@@ -83,9 +65,9 @@ onMounted(() => {
 
 		<!-- mobile layout -->
 
-		<div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4" v-if="isMobile">
+		<div class="block grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4 md:hidden">
 			<div
-				v-for="contest in data"
+				v-for="contest in props.data"
 				:key="contest.time"
 				class="flex size-full flex-col justify-between rounded-md border"
 			>
