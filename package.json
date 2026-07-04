@@ -4,6 +4,7 @@
 		"dev": "vitepress dev",
 		"build": "vitepress build",
 		"preview": "vitepress preview",
+		"start": "vitepress preview",
 		"check": "oxlint --import-plugin -D correctness -D perf && oxfmt"
 	},
 	"dependencies": {
