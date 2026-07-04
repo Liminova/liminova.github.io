@@ -5,6 +5,7 @@
 	"tabWidth": 4,
 	"useTabs": true,
 	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"sortImports": true,
 	"sortTailwindcss": {
 		"stylesheet": ".vitepress/theme/style.css",
 		"functions": ["cn"]
