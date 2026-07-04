@@ -26,7 +26,7 @@ jobs:
 
             - run: pnpm install
 
-            - run: pnpm update --latest
+            - run: pnpm upgrade
 
             - name: Check for changes
               id: changes
