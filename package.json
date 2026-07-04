@@ -1,17 +1,15 @@
 {
 	"type": "module",
 	"scripts": {
-		"docs:dev": "vitepress dev",
-		"docs:build": "vitepress build",
-		"docs:preview": "vitepress preview",
+		"dev": "vitepress dev",
+		"build": "vitepress build",
+		"preview": "vitepress preview",
 		"check": "oxlint --import-plugin -D correctness -D perf && oxfmt"
 	},
 	"dependencies": {
 		"clsx": "2.1.1",
 		"markdown-it-mathjax3": "^5.2.0",
-		"radix-vue": "^1.9.17",
 		"tailwind-merge": "^3.6.0",
-		"tailwindcss-animate": "^1.0.7",
 		"vue3-simple-icons": "^16.10.0"
 	},
 	"devDependencies": {
@@ -19,7 +17,6 @@
 		"@types/node": "^22.19.21",
 		"oxfmt": "^0.54.0",
 		"oxlint": "^1.69.0",
-		"postcss": "^8.5.15",
 		"tailwindcss": "^4.3.0",
 		"typescript": "^5.9.3",
 		"vitepress": "^1.6.4",
