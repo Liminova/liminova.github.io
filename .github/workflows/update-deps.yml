@@ -31,10 +31,8 @@ jobs:
             - name: Check for changes
               id: changes
               run: |
-                  if git diff --stat; then
+                  if ! git diff --quiet; then
                       echo "changed=true" >> "$GITHUB_OUTPUT"
-                  else
-                      echo "changed=false" >> "$GITHUB_OUTPUT"
                   fi
 
             - name: Run checks
