@@ -41,8 +41,17 @@ jobs:
               continue-on-error: true
               run: pnpm check
 
-            - name: Create PR
+            - name: Auto-merge on success
               if: steps.changes.outputs.changed == 'true' && steps.check.outcome == 'success'
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+                  git add .
+                  git commit -m "chore(deps): weekly dependency update"
+                  git push
+
+            - name: Create PR on failure
+              if: steps.changes.outputs.changed == 'true' && steps.check.outcome == 'failure'
               uses: peter-evans/create-pull-request@v8.1.1
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
