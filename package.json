@@ -15,9 +15,9 @@
 	},
 	"devDependencies": {
 		"@tailwindcss/vite": "^4.3.3",
-		"@types/node": "^26.1.1",
+		"@types/node": "^26.1.2",
 		"oxfmt": "^0.55.0",
-		"oxlint": "^1.75.0",
+		"oxlint": "^1.76.0",
 		"tailwindcss": "^4.3.3",
 		"typescript": "^6.0.3",
 		"vitepress": "^1.6.4",
